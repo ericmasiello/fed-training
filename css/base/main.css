@@ -1,11 +1,14 @@
 html {
     color: #363636;
+    font: 12px/16px Arial,"Helvetica Neue",Helvetica,sans-serif;
 }
 
 a {
     color: #007db1;
+    text-decoration: none;
 }
 
 a:hover {
     color: #007db1;
+    text-decoration: underline;
 }

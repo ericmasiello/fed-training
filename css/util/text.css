@@ -1,0 +1,15 @@
+.b {
+    font-weight: 700;
+}
+
+.right {
+    text-align: right!important;
+}
+
+.nowrap {
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: normal;
+}

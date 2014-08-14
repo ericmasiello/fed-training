@@ -24,16 +24,20 @@
 <div id="app">
 
 <header>
-    <h1>
+    <h1 class="app-title">
         <a href="#" title="Product Title"><i></i>Surgical Profitability Compass: <span>Surgeon Manager</span></a>
     </h1>
     <ul>
-        <li><a href="#">Menu <i></i></a></li>
+        <li><a href="#" class="nav--selected-color">Menu <i></i></a></li>
     </ul>
 </header>
 
+<div id="feedback" class="alert is-success">
+    Success message <a href="#">Dismiss</a>
+</div>
+
 <nav>
-    <ul>
+    <ul class="section-nav">
         <li><a href="#!/manager">Manage Duplicate Surgeons</a></li>
         <li><a href="#!/account">My Account</a></li>
     </ul>
@@ -50,7 +54,7 @@
         <form>
             <ul>
                 <li>
-                    <div>
+                    <div class="autocomplete">
                         <input placeholder="Search surgeon names"/>
                     </div>
                 </li>
@@ -87,9 +91,6 @@
                     <td>349</td>
                     <td>
                         <a href="#"> <i></i> Manage Duplicates</a>
-                        <span><i></i> Selected</span>
-                        <span><i></i> Added</span>
-                        <a href="#"><i></i> Add to List</a>
                     </td>
                 </tr>
 
@@ -166,8 +167,8 @@
                 <tfoot>
                 <tr>
                     <td colspan="3">
-                        <input type="button" value="Confirm Duplicates">
-                        <a href="#">Cancel</a>
+                        <input type="button" class="btn--positive" value="Confirm Duplicates">
+                        <a href="#" class="btn  btn--link">Cancel</a>
                     </td>
                 </tr>
                 </tfoot>
@@ -353,7 +354,7 @@
             </li>
         </ul>
         <div>
-            <button disabled>Complete Registration</button>
+            <button class="btn--positive" disabled>Complete Registration</button>
         </div>
     </form>
 

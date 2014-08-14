@@ -1,10 +1,29 @@
 tr {
-
     border-color: #d8d8d8;
+}
+
+th, td {
+
+    font-weight: 400;
+    text-align: left;
+    vertical-align: middle;
+    /* Applies ellipsis and text doesn't wrap */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: normal;
 }
 
 th {
     color: #888;
+}
+
+thead th {
+
+    vertical-align: bottom;
+    /* Undoes the ellipsis property */
+    white-space: normal;
+    text-overflow: clip;
 }
 
 .tbl--borderless tr {
@@ -13,4 +32,8 @@ th {
 
 .tbl__summary {
     background-color: #f0f0f0;
+}
+
+.tbl__summary td {
+    font-weight: 700;
 }

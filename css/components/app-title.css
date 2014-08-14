@@ -1,7 +1,12 @@
 .app-title {
     color: #45525f;
+    font-size: 14px;
+    line-height: 25px;
+    font-weight: 400;
+    vertical-align: middle;
 }
 
 .app-title>a {
     color: #363636;
+    text-decoration: none;
 }

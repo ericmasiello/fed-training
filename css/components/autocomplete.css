@@ -1,0 +1,15 @@
+.autocomplete input {
+
+    background: #fff;
+    border: 1px solid #c4c6c8;
+    line-height: 22px;
+    text-align: left;
+}
+
+.autocomplete input:hover {
+    border-color: #007db1;
+}
+
+.autocomplete input:focus {
+    border-color: #c4c6c8;
+}
