@@ -1,0 +1,10 @@
+a[class^=i-],
+a[class^=i-]:active,
+a[class^=i-]:link,
+a[class^=i-]:visited {
+    color: #363636;
+}
+
+a[class^=i-]:hover {
+    color: #007db1;
+}

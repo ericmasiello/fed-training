@@ -1,0 +1,27 @@
+.autocomplete input:hover,
+[type=email]:hover,
+[type=password]:hover,
+[type=text]:hover,
+select:hover {
+    border-color: #007db1;
+}
+
+.autocomplete input:focus,
+[type=email]:focus,
+[type=password]:focus,
+[type=text]:focus,
+select:focus {
+    border-color: #c4c6c8;
+}
+
+:-moz-placeholder {
+    color: #888;
+}
+
+::-moz-placeholder {
+    color: #888;
+}
+
+:-ms-input-placeholder {
+    color: #888;
+}

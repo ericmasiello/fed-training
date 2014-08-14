@@ -1,0 +1,20 @@
+.is-muted,
+[disabled] {
+    color: #888!important;
+}
+
+.is-error {
+    color: #ce1126;
+}
+
+.is-warning {
+    color: #d5801d;
+}
+
+.is-success {
+    color: #2c8c00;
+}
+
+.is-default {
+    color: #363636;
+}

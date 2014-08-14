@@ -1,0 +1,11 @@
+.nav--selected-color {
+    color: #363636;
+}
+
+.section-nav > li > a {
+    border-bottom-color: transparent;
+}
+
+.section-nav > li > a:hover {
+    border-bottom-color: #007db1;
+}

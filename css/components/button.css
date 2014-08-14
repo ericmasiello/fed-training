@@ -1,0 +1,66 @@
+/* Default Buttons */
+.btn,
+[type=button],
+button {
+    background-color: #f5f5f5;
+    color: #363636;
+}
+
+.btn:hover,
+[type=button]:hover,
+button:hover {
+    background-color: #fff;
+    color: #363636;
+}
+
+.btn:active,
+[type=button]:active,
+button:active {
+    background-color: #fff;
+    color: #363636;
+}
+
+/* Disabled Buttons */
+
+.btn--positive[disabled]:active,
+.btn--positive[disabled]:hover,
+button[disabled],
+button[disabled]:active,
+button[disabled]:active:hover,
+button[disabled]:hover,
+button[disabled]:hover:active {
+    background-color: #f5f5f5;
+    color: #888;
+}
+
+/* Positive Buttons */
+
+.btn--positive {
+    background-color: #007db1;
+    border-color: #006a9a;
+    color: #fff;
+}
+
+.btn--positive:active,
+.btn--positive:hover {
+    background-color: #008ac7;
+    color: #fff;
+}
+
+/* Link Buttons */
+
+.btn--link {
+    color: #007db1;
+}
+
+.btn--link,
+.btn--link:active,
+.btn--link:hover {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.btn--link:active,
+.btn--link:hover {
+    color: #007db1;
+}
