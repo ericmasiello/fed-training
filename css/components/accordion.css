@@ -3,9 +3,14 @@
 }
 
 .tbl--accordion tr[data-part=l1] {
-
+    background: #fff;
 }
 
 .tbl--accordion tr[data-part=l2] {
     border-top-style: dotted;
+    background: #FFF;
+}
+
+.tbl--accordion tr[data-part=l2] > td:first-child {
+    background: transparent url(../../img/accordion_l2-indent.png) 0 0 repeat-y;
 }

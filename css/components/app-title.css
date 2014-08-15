@@ -13,5 +13,7 @@
 
 .app-title__logo {
 
+    /* We set the background image but why can't we see it yet??? */
+    background: transparent url(../../img/app-title__logo.png) 0 center no-repeat;
     border-right: 1px solid #c4c6c8;
 }
