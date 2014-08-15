@@ -6,7 +6,12 @@
     vertical-align: middle;
 }
 
-.app-title>a {
+.app-title > a {
     color: #363636;
     text-decoration: none;
+}
+
+.app-title__logo {
+
+    border-right: 1px solid #c4c6c8;
 }

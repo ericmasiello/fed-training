@@ -6,6 +6,10 @@
     text-decoration: none;
 }
 
+.section-header {
+    border-bottom: 1px solid #d1d1d1;
+}
+
 .section-nav > li {
 
     line-height: 28px;
@@ -14,8 +18,11 @@
 .section-nav > li > a {
     text-decoration: none;
     border-bottom-color: transparent;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
 }
 
 .section-nav > li > a:hover {
+    border-bottom-style: solid;
     border-bottom-color: #007db1;
 }

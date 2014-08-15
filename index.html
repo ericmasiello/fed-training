@@ -23,9 +23,9 @@
 
 <div id="app">
 
-<header>
+<header class="app-header">
     <h1 class="app-title">
-        <a href="#" title="Product Title"><i></i>Surgical Profitability Compass: <span class="b">Surgeon Manager</span></a>
+        <a href="#" title="Product Title"><i class="app-title__logo"></i>Surgical Profitability Compass: <span class="b">Surgeon Manager</span></a>
     </h1>
     <ul>
         <li><a href="#" class="nav--selected-color">Menu <i></i></a></li>
@@ -36,7 +36,7 @@
     Success message <a href="#">Dismiss</a>
 </div>
 
-<nav>
+<nav class="section-header">
     <ul class="section-nav">
         <li><a href="#!/manager">Manage Duplicate Surgeons</a></li>
         <li><a href="#!/account">My Account</a></li>
@@ -73,73 +73,75 @@
     </div>
 
     <div>
-        <div>
+        <div class="bsrh">
             <!-- Left Column -->
 
-            <table id="surgeons">
+            <table class="tbl--accordion" id="surgeons">
                 <thead>
-                <tr>
-                    <th class="nowrap">Surgeon</th>
-                    <th class="nowrap">Case Volume</th>
-                    <th></th>
-                </tr>
+                    <tr>
+                        <th class="nowrap">Surgeon</th>
+                        <th class="nowrap">Case Volume</th>
+                        <th></th>
+                    </tr>
                 </thead>
 
                 <tbody>
-                <tr>
-                    <td><i></i> User 1</td>
-                    <td>349</td>
-                    <td>
-                        <a href="#"> <i></i> Manage Duplicates</a>
-                    </td>
-                </tr>
+                    <tr data-part="l1">
+                        <td><i></i> User 1</td>
+                        <td>349</td>
+                        <td>
+                            <a href="#"> <i></i> Manage Duplicates</a>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td>User 11</td>
-                    <td>72</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>User 111</td>
-                    <td>5</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>User 01</td>
-                    <td>22</td>
-                    <td></td>
-                </tr>
+                    <!-- Child rows -->
+                    <tr data-part="l2">
+                        <td>User 11</td>
+                        <td>72</td>
+                        <td></td>
+                    </tr>
+                    <tr data-part="l2">
+                        <td>User 111</td>
+                        <td>5</td>
+                        <td></td>
+                    </tr>
+                    <tr data-part="l2">
+                        <td>User 01</td>
+                        <td>22</td>
+                        <td></td>
+                    </tr>
+                    <!-- /Child rows -->
 
                 </tbody>
 
                 <tbody>
-                <tr>
-                    <td><i></i> User 2</td>
-                    <td>116</td>
-                    <td>
-                        <span><i></i> Selected</span>
-                    </td>
-                </tr>
+                    <tr data-part="l1">
+                        <td><i></i> User 2</td>
+                        <td>116</td>
+                        <td>
+                            <span><i></i> Selected</span>
+                        </td>
+                    </tr>
                 </tbody>
 
                 <tbody>
-                <tr>
-                    <td><i></i> User 3</td>
-                    <td>74</td>
-                    <td>
-                        <span><i></i> Added</span>
-                    </td>
-                </tr>
+                    <tr data-part="l1">
+                        <td><i></i> User 3</td>
+                        <td>74</td>
+                        <td>
+                            <span><i></i> Added</span>
+                        </td>
+                    </tr>
                 </tbody>
 
                 <tbody>
-                <tr>
-                    <td><i></i> User 4</td>
-                    <td>82</td>
-                    <td>
-                        <a href="#"><i></i> Add to List</a>
-                    </td>
-                </tr>
+                    <tr data-part="l1">
+                        <td><i></i> User 4</td>
+                        <td>82</td>
+                        <td>
+                            <a href="#"><i></i> Add to List</a>
+                        </td>
+                    </tr>
                 </tbody>
 
             </table>
@@ -148,7 +150,7 @@
         <div>
             <!-- Right Column -->
 
-            <table>
+            <table class="bsth">
                 <col>
                 <col>
                 <col>
@@ -225,7 +227,7 @@
                 </tbody>
             </table>
 
-            <div>Select a surgeon from the list to manage duplicate names.</div>
+            <div class="bsth">Select a surgeon from the list to manage duplicate names.</div>
 
         </div>
     </div>

@@ -1,0 +1,11 @@
+.tbl--accordion {
+
+}
+
+.tbl--accordion tr[data-part=l1] {
+
+}
+
+.tbl--accordion tr[data-part=l2] {
+    border-top-style: dotted;
+}

@@ -1,0 +1,9 @@
+/* Based on PHX border utility classes */
+
+.bsth {
+    border-top: 1px solid #c4c6c8!important;
+}
+
+.bsrh {
+    border-right: 1px solid #c4c6c8!important;
+}
