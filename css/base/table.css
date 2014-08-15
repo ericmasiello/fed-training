@@ -1,3 +1,7 @@
+tr {
+    border-color: #d8d8d8;
+}
+
 th, td {
 
     font-weight: 400;
@@ -20,6 +24,14 @@ thead th {
     /* Undoes the ellipsis property */
     white-space: normal;
     text-overflow: clip;
+}
+
+.tbl--borderless tr {
+    border-color: transparent;
+}
+
+.tbl__summary {
+    background-color: #f0f0f0;
 }
 
 .tbl__summary td {
