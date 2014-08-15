@@ -25,7 +25,7 @@
 
 <header>
     <h1 class="app-title">
-        <a href="#" title="Product Title"><i></i>Surgical Profitability Compass: <span>Surgeon Manager</span></a>
+        <a href="#" title="Product Title"><i></i>Surgical Profitability Compass: <span class="b">Surgeon Manager</span></a>
     </h1>
     <ul>
         <li><a href="#" class="nav--selected-color">Menu <i></i></a></li>
@@ -52,7 +52,7 @@
             with the selected surgeon.</p>
 
         <form>
-            <ul>
+            <ul class="nowrap">
                 <li>
                     <div class="autocomplete">
                         <input placeholder="Search surgeon names"/>
@@ -79,8 +79,8 @@
             <table id="surgeons">
                 <thead>
                 <tr>
-                    <th>Surgeon</th>
-                    <th>Case Volume</th>
+                    <th class="nowrap">Surgeon</th>
+                    <th class="nowrap">Case Volume</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -153,75 +153,75 @@
                 <col>
                 <col>
                 <thead>
-                <tr>
-                    <th colspan="2">
-                        <span>Managing duplicates for:</span>
+                    <tr>
+                        <th colspan="2">
+                            <span class="is-muted">Managing duplicates for:</span>
 
-                        <div>User 5</div>
-                    </th>
-                    <th>
-                        Display Name
-                    </th>
-                </tr>
+                            <div class="h2  is-default">User 5</div>
+                        </th>
+                        <th class="right  milli  is-default">
+                            Display Name
+                        </th>
+                    </tr>
                 </thead>
                 <tfoot class="tbl__summary">
-                <tr>
-                    <td colspan="3">
-                        <input type="button" class="btn--positive" value="Confirm Duplicates">
-                        <a href="#" class="btn  btn--link">Cancel</a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td colspan="3">
+                            <input type="button" class="btn--positive" value="Confirm Duplicates">
+                            <a href="#" class="btn  btn--link">Cancel</a>
+                        </td>
+                    </tr>
                 </tfoot>
                 <tbody class="tbl--borderless">
-                <tr>
-                    <td>
-                        <a href="#"></a>
-                    </td>
-                    <td>
-                        User 5
-                        <div>
-                            Holy Cross Hospital
-                            <br/>
-                            Case volume: 273
-                        </div>
-                    </td>
-                    <td>
-                        Display Name
-                        <a href="#">Set as Display name</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="#"></a>
-                    </td>
-                    <td>
-                        User 55
-                        <div>
-                            Holy Cross Hospital
-                            <br/>
-                            Case volume: 32
-                        </div>
-                    </td>
-                    <td>
-                        <a href="#">Set as Display name</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="#"></a>
-                    </td>
-                    <td>
-                        User 05
-                        <div>
-                            Holy Cross Hospital
-                            <br/>
-                            Case volume: 12
-                        </div>
-                    </td>
-                    <td>
-                        <a href="#">Set as Display name</a>
-                    </td>
-                </tr>
+                    <tr class="vat">
+                        <td>
+                            <a href="#"></a>
+                        </td>
+                        <td>
+                            User 5
+                            <div class="is-muted">
+                                Holy Cross Hospital
+                                <br/>
+                                Case volume: 273
+                            </div>
+                        </td>
+                        <td class="right milli">
+                            Display Name
+                            <a href="#">Set as Display name</a>
+                        </td>
+                    </tr>
+                    <tr class="vat">
+                        <td>
+                            <a href="#"></a>
+                        </td>
+                        <td>
+                            User 55
+                            <div class="is-muted">
+                                Holy Cross Hospital
+                                <br/>
+                                Case volume: 32
+                            </div>
+                        </td>
+                        <td class="right milli">
+                            <a href="#">Set as Display name</a>
+                        </td>
+                    </tr>
+                    <tr class="vat">
+                        <td>
+                            <a href="#"></a>
+                        </td>
+                        <td>
+                            User 05
+                            <div class="is-muted">
+                                Holy Cross Hospital
+                                <br/>
+                                Case volume: 12
+                            </div>
+                        </td>
+                        <td class="right milli">
+                            <a href="#">Set as Display name</a>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
 
@@ -236,9 +236,9 @@
     <form>
         <h1>My Account</h1>
 
-        <p>All fields required unless marked <em>optional</em>.</p>
+        <p class="is-muted">All fields required unless marked <em>optional</em>.</p>
 
-        <h2>Contact Information</h2>
+        <h2 class="halt2">Contact Information</h2>
         <ul>
             <li>
                 <label for="first-name">First name</label>
@@ -277,7 +277,8 @@
                 </div>
             </li>
         </ul>
-        <h2>Address</h2>
+
+        <h2 class="halt2">Address</h2>
 
         <p>To change your password, enter your current (old) password, then enter and re-enter a new password.</p>
 
@@ -317,7 +318,7 @@
                 </ul>
             </div>
         </div>
-        <h2>Security Questions</h2>
+        <h2 class="halt2">Security Questions</h2>
 
         <p>You will be asked to answer these questions if you forget your password.</p>
         <ul>
