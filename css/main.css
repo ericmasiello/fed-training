@@ -10,8 +10,10 @@
 @import url("components/app-title.css");
 @import url("components/autocomplete.css");
 @import url("components/button.css");
+@import url("components/list.css");
 @import url("components/icon.css");
 @import url("components/nav.css");
+@import url("components/list.css");
 
 @import url("util/alignment.css");
 @import url("util/border.css");

@@ -6,9 +6,19 @@
     background: #fff;
 }
 
+.tbl--accordion tr[data-part=l1] td {
+    padding-bottom: 16px;
+    padding-top: 17px;
+}
+
 .tbl--accordion tr[data-part=l2] {
     border-top-style: dotted;
     background: #FFF;
+}
+
+.tbl--accordion tr[data-part=l2] td {
+    padding-bottom: 11px;
+    padding-top: 12px;
 }
 
 .tbl--accordion tr[data-part=l2] > td:first-child {
