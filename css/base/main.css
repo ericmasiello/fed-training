@@ -21,3 +21,16 @@ a:hover {
     color: #007db1;
     text-decoration: underline;
 }
+
+p {
+    margin-bottom: 5px;
+}
+
+ul {
+    margin: 0 0 10px 25px;
+    padding: 0;
+}
+
+li {
+    padding: 0;
+}

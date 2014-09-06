@@ -1,8 +1,9 @@
 .app-title {
     color: #45525f;
     font-size: 14px;
-    line-height: 25px;
     font-weight: 400;
+    line-height: 25px;
+    margin-right: 10px;
     vertical-align: middle;
 }
 
@@ -16,4 +17,5 @@
     /* We set the background image but why can't we see it yet??? */
     background: transparent url(../../img/app-title__logo.png) 0 center no-repeat;
     border-right: 1px solid #c4c6c8;
+    margin-right: 10px;
 }
