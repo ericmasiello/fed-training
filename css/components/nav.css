@@ -8,10 +8,19 @@
 
 .section-header {
     border-bottom: 1px solid #d1d1d1;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.section-nav {
+    margin: 0;
+    padding: 0;
 }
 
 .section-nav > li {
-
+    margin-right: 10px;
+    margin-left: 10px;
     line-height: 28px;
 }
 
@@ -25,4 +34,8 @@
 .section-nav > li > a:hover {
     border-bottom-style: solid;
     border-bottom-color: #007db1;
+}
+
+.section-header .section-nav>li {
+    margin-bottom: -1px;
 }

@@ -11,6 +11,10 @@
     padding-top: 17px;
 }
 
+.tbl--accordion tr[data-part=l1]>td:first-child:before {
+    margin-right: 5px;
+}
+
 .tbl--accordion tr[data-part=l2] {
     border-top-style: dotted;
     background: #FFF;
@@ -23,4 +27,8 @@
 
 .tbl--accordion tr[data-part=l2] > td:first-child {
     background: transparent url(../../img/accordion_l2-indent.png) 0 0 repeat-y;
+}
+
+.tbl--accordion tr[data-part=l2] > td:first-child:before {
+    margin-right: 5px;
 }

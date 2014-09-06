@@ -9,6 +9,8 @@ button {
     font-size: 12px;
     font-weight: 300;
     line-height: 16px;
+    margin: 0;
+    padding: 6px 9px;
     text-align: center;
     vertical-align: middle;
 }
