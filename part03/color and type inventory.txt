@@ -3,6 +3,7 @@ Link: #007DB1
 Muted: #868686
 Success: #74982F
 Error: #CD1126
+App title: #45525F
 
 App Title: 14px
 

@@ -1,5 +1,10 @@
 @import "reset.css";
 
+*, :after, :before {
+
+  box-sizing: border-box;
+}
+
 html {
 
     color: #363636;
@@ -99,8 +104,27 @@ td, th {
 }
 
 /*
+ * App header
+ */
+
+.app-header {
+
+  border-top: 2px solid #ce1126;
+  padding: 10px 15px;
+}
+
+/*
  * App title
  */
+
+.app-title {
+
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 25px;
+  margin-right: 10px;
+  float: left;
+}
 
 .app-title,
 .app-title a {
@@ -111,6 +135,14 @@ td, th {
 .app-title a:hover {
 
   text-decoration: none;
+}
+
+/*
+ * Global nav
+ */
+
+.global-nav-trigger {
+
 }
 
 /*
