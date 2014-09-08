@@ -6,6 +6,10 @@ html {
     font-size: 12px;
 }
 
+/*
+  Some font proprties do not inherit properly on form elements.
+  this forces them.
+ */
 html, input, select, textarea, button {
 
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
