@@ -122,7 +122,7 @@
                     <td><i></i> User 3</td>
                     <td>74</td>
                     <td>
-                        <span><i></i> Added</span>
+                        <span class="is-success"><i></i> Added</span>
                     </td>
                 </tr>
                 </tbody>
@@ -151,8 +151,7 @@
                 <tr>
                     <th colspan="2">
                         <span>Managing duplicates for:</span>
-
-                        <div>User 5</div>
+                        <div class="is-default">User 5</div>
                     </th>
                     <th>
                         Display Name
@@ -174,7 +173,7 @@
                     </td>
                     <td>
                         User 5
-                        <div>
+                        <div class="is-muted">
                             Holy Cross Hospital
                             <br/>
                             Case volume: 273
@@ -191,7 +190,7 @@
                     </td>
                     <td>
                         User 55
-                        <div>
+                        <div class="is-muted">
                             Holy Cross Hospital
                             <br/>
                             Case volume: 32
@@ -207,7 +206,7 @@
                     </td>
                     <td>
                         User 05
-                        <div>
+                        <div class="is-muted">
                             Holy Cross Hospital
                             <br/>
                             Case volume: 12
@@ -231,7 +230,7 @@
     <form>
         <h1>My Account</h1>
 
-        <p>All fields required unless marked <em>optional</em>.</p>
+        <p class="is-muted">All fields required unless marked <em>optional</em>.</p>
 
         <h2>Contact Information</h2>
         <ul>
@@ -248,8 +247,9 @@
                 <input id="job-title" type="text">
             </li>
             <li>
-                <label for="email-address">Email address</label>
-                <input id="email-address" type="email">
+                <label for="email-address" class="is-error">Email address</label>
+                <input id="email-address" type="email"> <i></i>
+	              <div class="is-error">Required field</div>
             </li>
             <li>
                 <label for="cell-number-1">Cell number</label>

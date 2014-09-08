@@ -1,6 +1,7 @@
 @import "reset.css";
 
 html {
+
     color: #363636;
     font-size: 12px;
 }
@@ -11,16 +12,19 @@ html, input, select, textarea, button {
 }
 
 body, input, select, textarea, button {
+
     font-size: 12px;
     line-height: 16px;
 }
 
 h1 {
+
     font-size: 24px;
     line-height: 28px;
 }
 
 h2 {
+
     font-size: 18px;
     line-height: 22px;
 }
@@ -36,16 +40,19 @@ h4 {
 }
 
 small {
+
     font-size: 11px;
     line-height: 15px;
 }
 
 a {
+
     color: #007db1;
     text-decoration: none;
 }
 
 a:hover {
+
     text-decoration: underline;
 }
 
@@ -55,4 +62,38 @@ input[type="reset"],
 button {
 
     font-size: 13px;
+}
+
+/*
+ * Tables
+ */
+
+thead td,
+thead th {
+
+  color: #868686;
+}
+
+/*
+ * State
+ */
+
+.is-default {
+
+  color: #363636;
+}
+
+.is-muted {
+
+  color: #868686;
+}
+
+.is-success {
+
+  color: #74982F;
+}
+
+.is-error {
+
+  color: #CD1126;
 }
