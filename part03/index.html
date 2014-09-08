@@ -23,11 +23,11 @@
 <div id="app">
 
 <header>
-    <h1>
-        <a href="#" title="Product Title"><i></i>Surgical Profitability Compass: <span>Surgeon Manager</span></a>
+    <h1 class="h4">
+        <a href="#" class="default" title="Product Title"><i></i>Surgical Profitability Compass: <span class="strong">Surgeon Manager</span></a>
     </h1>
     <ul>
-        <li><a href="#">Menu <i></i></a></li>
+        <li><a href="#" class="default">Menu <i></i></a></li>
     </ul>
 </header>
 
@@ -41,7 +41,7 @@
 <section id="manager">
     <div>
 
-        <h1>Manage Duplicate Surgeons</h1>
+        <h1 class="h2">Manage Duplicate Surgeons</h1>
 
         <p>Find and select a surgeon from the list to manage duplicates. Then add or remove duplicate names to merge
             with the selected surgeon.</p>
@@ -73,68 +73,67 @@
 
             <table id="surgeons">
                 <thead>
-                <tr>
-                    <th>Surgeon</th>
-                    <th>Case Volume</th>
-                    <th></th>
-                </tr>
+	                <tr>
+	                    <th>Surgeon</th>
+	                    <th class="right">Case Volume</th>
+	                    <th></th>
+	                </tr>
                 </thead>
 
                 <tbody>
-                <tr>
-                    <td><i></i> User 1</td>
-                    <td>349</td>
-                    <td>
-                        <a href="#"> <i></i> Manage Duplicates</a>
-                    </td>
-                </tr>
+	                <tr>
+	                    <td><i></i> <span class="h4">User 1</span></td>
+	                    <td class="right">349</td>
+	                    <td class="right">
+	                        <a href="#"> <i></i> Manage Duplicates</a>
+	                    </td>
+	                </tr>
 
-                <tr>
-                    <td>User 11</td>
-                    <td>72</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>User 111</td>
-                    <td>5</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>User 01</td>
-                    <td>22</td>
-                    <td></td>
-                </tr>
-
+	                <tr>
+	                    <td>User 11</td>
+	                    <td class="right">72</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>User 111</td>
+	                    <td class="right">5</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>User 01</td>
+	                    <td class="right">22</td>
+	                    <td></td>
+	                </tr>
                 </tbody>
 
                 <tbody>
-                <tr>
-                    <td><i></i> User 2</td>
-                    <td>116</td>
-                    <td>
-                        <span><i></i> Selected</span>
-                    </td>
-                </tr>
+	                <tr>
+	                    <td><i></i> <span class="h4">User 2</span></td>
+	                    <td class="right">116</td>
+	                    <td class="right">
+	                        <span><i></i> Selected</span>
+	                    </td>
+	                </tr>
                 </tbody>
 
                 <tbody>
-                <tr>
-                    <td><i></i> User 3</td>
-                    <td>74</td>
-                    <td>
-                        <span class="is-success"><i></i> Added</span>
-                    </td>
-                </tr>
+	                <tr>
+	                    <td><i></i> <span class="h4">User 3</span></td>
+	                    <td class="right">74</td>
+	                    <td class="right">
+	                        <span class="is-success"><i></i> Added</span>
+	                    </td>
+	                </tr>
                 </tbody>
 
                 <tbody>
-                <tr>
-                    <td><i></i> User 4</td>
-                    <td>82</td>
-                    <td>
-                        <a href="#"><i></i> Add to List</a>
-                    </td>
-                </tr>
+	                <tr>
+	                    <td><i></i> <span class="h4">User 4</span></td>
+	                    <td class="right">82</td>
+	                    <td class="right">
+	                        <a href="#"><i></i> Add to List</a>
+	                    </td>
+	                </tr>
                 </tbody>
 
             </table>
@@ -148,74 +147,74 @@
                 <col>
                 <col>
                 <thead>
-                <tr>
-                    <th colspan="2">
-                        <span>Managing duplicates for:</span>
-                        <div class="is-default">User 5</div>
-                    </th>
-                    <th>
-                        Display Name
-                    </th>
-                </tr>
+	                <tr>
+	                    <th colspan="2">
+	                        <span>Managing duplicates for:</span>
+	                        <div class="default  h3">User 5</div>
+	                    </th>
+	                    <th class="right">
+	                        Display Name
+	                    </th>
+	                </tr>
                 </thead>
                 <tfoot>
-                <tr>
-                    <td colspan="3">
-                        <input type="button" value="Confirm Duplicates">
-                        <a href="#">Cancel</a>
-                    </td>
-                </tr>
+	                <tr>
+	                    <td colspan="3">
+	                        <input type="button" value="Confirm Duplicates">
+	                        <a href="#">Cancel</a>
+	                    </td>
+	                </tr>
                 </tfoot>
                 <tbody>
-                <tr>
-                    <td>
-                        <a href="#"></a>
-                    </td>
-                    <td>
-                        User 5
-                        <div class="is-muted">
-                            Holy Cross Hospital
-                            <br/>
-                            Case volume: 273
-                        </div>
-                    </td>
-                    <td>
-                        Display Name
-                        <a href="#">Set as Display name</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="#"></a>
-                    </td>
-                    <td>
-                        User 55
-                        <div class="is-muted">
-                            Holy Cross Hospital
-                            <br/>
-                            Case volume: 32
-                        </div>
-                    </td>
-                    <td>
-                        <a href="#">Set as Display name</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="#"></a>
-                    </td>
-                    <td>
-                        User 05
-                        <div class="is-muted">
-                            Holy Cross Hospital
-                            <br/>
-                            Case volume: 12
-                        </div>
-                    </td>
-                    <td>
-                        <a href="#">Set as Display name</a>
-                    </td>
-                </tr>
+	                <tr>
+	                    <td>
+	                        <a href="#"></a>
+	                    </td>
+	                    <td>
+	                        User 5
+	                        <div class="muted">
+	                            Holy Cross Hospital
+	                            <br/>
+	                            Case volume: 273
+	                        </div>
+	                    </td>
+	                    <td class="right">
+	                        Display Name
+	                        <a href="#">Set as Display name</a>
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td>
+	                        <a href="#"></a>
+	                    </td>
+	                    <td>
+	                        User 55
+	                        <div class="muted">
+	                            Holy Cross Hospital
+	                            <br/>
+	                            Case volume: 32
+	                        </div>
+	                    </td>
+	                    <td class="right">
+	                        <a href="#">Set as Display name</a>
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td>
+	                        <a href="#"></a>
+	                    </td>
+	                    <td>
+	                        User 05
+	                        <div class="muted">
+	                            Holy Cross Hospital
+	                            <br/>
+	                            Case volume: 12
+	                        </div>
+	                    </td>
+	                    <td class="right">
+	                        <a href="#">Set as Display name</a>
+	                    </td>
+	                </tr>
                 </tbody>
             </table>
 
@@ -228,11 +227,11 @@
 <section id="account">
 
     <form>
-        <h1>My Account</h1>
+        <h1 class="h2">My Account</h1>
 
-        <p class="is-muted">All fields required unless marked <em>optional</em>.</p>
+        <p class="muted">All fields required unless marked <em>optional</em>.</p>
 
-        <h2>Contact Information</h2>
+        <h2 class="h3">Contact Information</h2>
         <ul>
             <li>
                 <label for="first-name">First name</label>
@@ -272,7 +271,7 @@
                 </div>
             </li>
         </ul>
-        <h2>Address</h2>
+        <h2 class="h3">Address</h2>
 
         <p>To change your password, enter your current (old) password, then enter and re-enter a new password.</p>
 
@@ -302,7 +301,7 @@
                 </ul>
             </div>
             <div>
-                <h3>Password Rules</h3>
+                <h3 class="h4">Password Rules</h3>
                 <ul>
                     <li>8 characters minimum</li>
                     <li>Must contain lower and uppercase characters</li>
@@ -312,7 +311,7 @@
                 </ul>
             </div>
         </div>
-        <h2>Security Questions</h2>
+        <h2 class="h3">Security Questions</h2>
 
         <p>You will be asked to answer these questions if you forget your password.</p>
         <ul>
