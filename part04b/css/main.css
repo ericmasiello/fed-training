@@ -70,6 +70,49 @@ a:hover {
     text-decoration: underline;
 }
 
+p {
+
+  margin-bottom: 5px;
+}
+
+/*
+ * Form Elements
+ */
+
+[type="email"],
+[type="number"],
+[type="password"],
+[type="phone"],
+[type="text"],
+[type="url"],
+textarea {
+
+  background-color: #fff;
+  border: 1px solid #C4C6C8;
+  line-height: 22px;
+  margin: 0;
+  padding: 3px;
+  width: 300px;
+}
+
+[type="email"]:hover,
+[type="number"]:hover,
+[type="password"]:hover,
+[type="phone"]:hover,
+[type="text"]:hover,
+[type="url"]:hover,
+textarea:hover,
+[type="email"]:focus,
+[type="number"]:focus,
+[type="password"]:focus,
+[type="phone"]:focus,
+[type="text"]:focus,
+[type="url"]:focus,
+textarea:focus{
+
+  border-color: #007DB1;
+}
+
 /*
  * Buttons
  */
@@ -165,6 +208,20 @@ td, th {
 }
 
 /*
+ * Lists
+ */
+
+/*ul*/.form-list > li {
+
+  margin-top: 20px;
+}
+
+.form-list > li:first-child {
+
+  margin-top: 0;
+}
+
+/*
  * Color utility classes
  */
 
@@ -190,6 +247,33 @@ td, th {
 .right {
 
   text-align: right;
+}
+
+/*
+ * Display utility classes
+ */
+
+.block {
+
+  display: block;
+}
+
+/*
+ * Width utitlity classes
+ */
+
+.width-50 {
+
+  width: 50px;
+}
+
+/*
+ * Spacing utiltiy classes
+ */
+
+.mbs {
+
+  margin-bottom: 5px;
 }
 
 /*
