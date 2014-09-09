@@ -328,6 +328,11 @@ ol.decorated-list {
   padding-right: 20px;
 }
 
+.pbl {
+
+  padding-bottom: 20px;
+}
+
 .mts {
 
   margin-top: 5px;
@@ -348,6 +353,10 @@ ol.decorated-list {
   margin-top: 20px;
 }
 
+.mtxl {
+
+  margin-top: 40px;
+}
 
 .mbs {
 
