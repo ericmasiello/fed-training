@@ -31,6 +31,14 @@ strong, .strong {
   font-weight: 600;
 }
 
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4 {
+
+  margin-bottom: 10px;
+}
+
 h1, .h1 {
 
     font-size: 24px;
@@ -79,6 +87,14 @@ p {
  * Form Elements
  */
 
+input,
+select,
+textarea,
+button {
+
+  margin: 0;
+}
+
 [type="email"],
 [type="number"],
 [type="password"],
@@ -90,7 +106,6 @@ textarea {
   background-color: #fff;
   border: 1px solid #C4C6C8;
   line-height: 22px;
-  margin: 0;
   padding: 3px;
   width: 300px;
 }
@@ -113,6 +128,28 @@ textarea:focus{
   border-color: #007DB1;
 }
 
+[type="email"]:disabled,
+[type="number"]:disabled,
+[type="password"]:disabled,
+[type="phone"]:disabled,
+[type="text"]:disabled,
+[type="url"]:disabled,
+textarea:disabled {
+
+  background-color: #F8F8F8;
+  border-color: #D1D1D1;
+}
+
+/*
+ * Radio, Checkboxes
+ */
+
+[type="radio"],
+[type="checkbox"]{
+
+  margin-right: 5px;
+}
+
 /*
  * Buttons
  */
@@ -128,7 +165,6 @@ button {
   color: #fff;
   cursor: pointer;
   font-size: 13px;
-  margin: 0;
   padding: 6px 9px;
   text-align: center;
   vertical-align: middle;
@@ -153,7 +189,6 @@ button:disabled {
 
   border: 1px solid #bababa;
   background-color: #f5f5f5;
-  color: #868686;
   cursor: default;
 }
 
@@ -221,6 +256,22 @@ td, th {
   margin-top: 0;
 }
 
+.decorated-list {
+
+  margin: 0 0 10px 25px;
+  padding: 0;
+}
+
+ul.decorated-list {
+
+  list-style-type: disc;
+}
+
+ol.decorated-list {
+
+  list-style-type: decimal;
+}
+
 /*
  * Color utility classes
  */
@@ -230,7 +281,7 @@ td, th {
   color: #363636;
 }
 
-.muted {
+.muted, :disabled {
 
   color: #868686;
 }
@@ -271,9 +322,51 @@ td, th {
  * Spacing utiltiy classes
  */
 
+.phl {
+
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.mts {
+
+  margin-top: 5px;
+}
+
+.mtm {
+
+  margin-top: 10px;
+}
+
+.mtml {
+
+  margin-top: 15px;
+}
+
+.mtl {
+
+  margin-top: 20px;
+}
+
+
 .mbs {
 
   margin-bottom: 5px;
+}
+
+.mbm {
+
+  margin-bottom: 10px;
+}
+
+.mbml {
+
+  margin-bottom: 15px;
+}
+
+.mbl {
+
+  margin-bottom: 20px;
 }
 
 /*
@@ -288,4 +381,15 @@ td, th {
 .is-error {
 
   color: #CD1126;
+}
+
+[type="email"].is-error,
+[type="number"].is-error,
+[type="password"].is-error,
+[type="phone"].is-error,
+[type="text"].is-error,
+[type="url"].is-error,
+textarea.is-error {
+
+  border-color: #CD1126;
 }

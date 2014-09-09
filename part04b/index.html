@@ -38,7 +38,7 @@
     </ul>
 </nav>
 
-<section id="manager">
+<section id="manager" style="display: none">
     <div>
 
         <h1 class="h2">Manage Duplicate Surgeons</h1>
@@ -224,15 +224,15 @@
     </div>
 </section><!-- /#manager -->
 
-<section id="account">
+<section id="account" class="phl">
 
     <form>
-        <h1 class="h2">My Account</h1>
+        <h1 class="h2  mbml">My Account</h1>
 
-        <p class="muted">All fields required unless marked <em>optional</em>.</p>
+        <p class="muted  mbl">All fields required unless marked <em>optional</em>.</p>
 
         <h2 class="h3">Contact Information</h2>
-        <ul class="form-list">
+        <ul class="form-list  mbl">
             <li>
                 <label class="block  mbs" for="first-name">First name</label>
                 <input id="first-name" type="text">
@@ -246,9 +246,9 @@
                 <input id="job-title" type="text">
             </li>
             <li>
-                <label class="block  mbs" for="email-address" class="is-error">Email address</label>
-                <input id="email-address" type="email"> <i></i>
-	              <div class="is-error">Required field</div>
+                <label class="block  mbs  is-error" for="email-address">Email address</label>
+                <input id="email-address" type="email" class="is-error"> <i></i>
+	              <div class="mts  is-error">Required field</div>
             </li>
             <li>
                 <label class="block  mbs" for="cell-number-1">Cell number</label>
@@ -260,17 +260,18 @@
             </li>
             <li>
                 <label class="block  mbs" for="home-number-1">Home number</label>
-                <input class="width-50" id="home-number-1" type="text" maxlength="3">
-                <input class="width-50" id="home-number-2" type="text" maxlength="3">
-                <input class="width-50" id="home-number-3" type="text" maxlength="4">
+                <input class="width-50" id="home-number-1" type="text" maxlength="3" value="123" disabled>
+                <input class="width-50" id="home-number-2" type="text" maxlength="3" value="456" disabled>
+                <input class="width-50" id="home-number-3" type="text" maxlength="4" value="7890" disabled>
                 <label for="home-number-ext">Ext</label>
-                <input class="width-50" id="home-number-ext" type="text" maxlength="5">
+                <input class="width-50" id="home-number-ext" type="text" maxlength="5" disabled>
 
-                <div>
-                    <label><input type="checkbox" value="same"/><i></i>Same as Cell number</label>
+                <div class="mtm">
+                    <label><input type="checkbox" checked value="same"/><i></i>Same as Cell number</label>
                 </div>
             </li>
         </ul>
+
         <h2 class="h3">Address</h2>
 
         <p>To change your password, enter your current (old) password, then enter and re-enter a new password.</p>
@@ -279,10 +280,10 @@
             <div>
                 <ul class="form-list">
                     <li>
-                        <label class="block  mbs" for="password">Password</label>
-                        <input id="password" type="password">
+                        <label class="block  mbs  is-error" for="password">Password</label>
+                        <input id="password" type="password" class="is-error">
 
-                        <div>
+                        <div class="is-error  mts">
                             Your password does not match your previously saved password.
                         </div>
                     </li>
@@ -291,18 +292,18 @@
                         <input id="new-password" type="password">
                     </li>
                     <li>
-                        <label class="block  mbs" for="new-password-2">Re-enter new password</label>
-                        <input id="new-password-2" type="password">
+                        <label class="block  mbs  is-error" for="new-password-2">Re-enter new password</label>
+                        <input id="new-password-2" type="password" class="is-error">
 
-                        <div>
+                        <div class="is-error  mts">
                             Your new password does not match
                         </div>
                     </li>
                 </ul>
             </div>
             <div>
-                <h3 class="h4">Password Rules</h3>
-                <ul>
+                <h3 class="h4  mbs">Password Rules</h3>
+                <ul class="decorated-list">
                     <li>8 characters minimum</li>
                     <li>Must contain lower and uppercase characters</li>
                     <li>Must contain at least 1 number and 1 symbol (ex ! # $ %)</li>
