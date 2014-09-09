@@ -101,13 +101,20 @@ button {
 [type="phone"],
 [type="text"],
 [type="url"],
-textarea {
+textarea,
+select {
 
   background-color: #fff;
   border: 1px solid #C4C6C8;
   line-height: 22px;
   padding: 3px;
   width: 300px;
+}
+
+select {
+
+  background-image: none; /* Used to remove styles from Firefox */
+  height: 30px; /* Forces height in Firefox */
 }
 
 [type="email"]:hover,
@@ -196,7 +203,7 @@ button:disabled {
  * Webkit Select
  */
 
-@media screen and (-webkit-min-device-pixel-ratio:0){
+@media screen and ( -webkit-min-device-pixel-ratio: 0 ) {
 
   .select {
 
@@ -228,6 +235,8 @@ button:disabled {
     position: relative;
     width: 100%;
     z-index: 2;
+
+    /* removes default styling for webkit */
     -webkit-appearance: none;
   }
 }
