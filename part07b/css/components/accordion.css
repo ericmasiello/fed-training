@@ -19,5 +19,78 @@
 .tbl--accordion tbody tr:first-child td,
 .tbl--accordion tbody tr:first-child th {
 
+  border-left: none;
   border-bottom: 1px solid #D1D1D1;
+  padding-bottom: 15px;
+  padding-top: 15px;
 }
+
+.tbl--accordion tbody td:first-child {
+
+  border-left: 15px solid #D1D1D1;
+}
+
+/*
+ * Set hover states for collapsed and expanded
+ * containers
+ */
+/*tbody*/.tbl--accordion__is-collapsed tr:first-child:hover,
+/*tbody*/.tbl--accordion__is-expanded tr:first-child:hover{
+
+  background-color: #E5F2F7;
+  cursor: pointer;
+}
+
+/*tbody*/.tbl--accordion__is-collapsed .i-toggle {
+
+  background-image: url("../../img/right-arrow.svg");
+  bottom: 0; /* overwrite the -1px on [class*="i-"] */
+  height: 10px;
+  width: 6px;
+}
+
+/*
+ * Hide all rows in collapsed container
+ */
+/*tbody*/.tbl--accordion__is-collapsed tr {
+
+  display: none;
+}
+
+/*
+ * Show only the first row (parent row) of a collapsed container
+ */
+/*tbody*/.tbl--accordion__is-collapsed tr:first-child {
+
+  display: table-row;
+}
+
+/*tbody*/.tbl--accordion__is-expanded .i-toggle {
+
+  background-image: url("../../img/down-arrow.svg");
+  height: 6px;
+  width: 10px;
+}
+
+/*
+ * In an expanded row, make background gray
+ */
+/*tbody*/.tbl--accordion__is-expanded tr:first-child {
+
+  background-color: #F9F9F9;
+}
+
+/*
+ * In an expanded row, mute the color of the first cell's text of the first row
+ */
+/*tbody*/.tbl--accordion__is-expanded tr:first-child > /*td, th*/:first-child {
+
+  color: #888;
+}
+
+/* get the i-down-arrow realigned properly */
+/*tbody*/.tbl--accordion__is-expanded .i-toggle {
+
+  top: -2px;
+}
+

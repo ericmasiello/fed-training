@@ -67,11 +67,11 @@
 
     </div>
 
-    <div class="clearfix">
-        <div class="fl  two-thirds">
+    <div class="clearfix  table-header-offset">
+        <div class="fl  two-thirds  bsrh">
             <!-- Left Column -->
 
-            <table id="surgeons" class="tbl--accordion">
+            <table id="surgeons" class="tbl--accordion  table-header-offset__content">
                 <thead>
 	                <tr>
 	                    <th>Surgeon</th>
@@ -80,12 +80,12 @@
 	                </tr>
                 </thead>
 
-                <tbody>
+                <tbody class="tbl--accordion__is-expanded">
 	                <tr>
-	                    <td><i></i> <span class="h4">User 1</span></td>
+	                    <td><i class="i-toggle"></i> <span class="h4">User 1</span></td>
 	                    <td class="right">349</td>
 	                    <td class="right">
-	                        <a href="#"> <i></i> Manage Duplicates</a>
+	                        <a href="#">Manage Duplicates  <i class="i-move-right"></i></a>
 	                    </td>
 	                </tr>
 
@@ -106,9 +106,35 @@
 	                </tr>
                 </tbody>
 
+		            <tbody class="tbl--accordion__is-collapsed">
+			            <tr>
+				            <td><i class="i-toggle"></i> <span class="h4">User 11</span></td>
+				            <td class="right">349</td>
+				            <td class="right">
+					            <a href="#">Manage Duplicates <i class="i-move-right"></i></a>
+				            </td>
+			            </tr>
+
+			            <tr>
+				            <td>User 101</td>
+				            <td class="right">72</td>
+				            <td></td>
+			            </tr>
+			            <tr>
+				            <td>User 1111</td>
+				            <td class="right">5</td>
+				            <td></td>
+			            </tr>
+			            <tr>
+				            <td>User 101</td>
+				            <td class="right">22</td>
+				            <td></td>
+			            </tr>
+		            </tbody>
+
                 <tbody>
 	                <tr>
-	                    <td><i></i> <span class="h4">User 2</span></td>
+	                    <td><span class="h4">User 2</span></td>
 	                    <td class="right">116</td>
 	                    <td class="right">
 	                        <span><i></i> Selected</span>
@@ -118,23 +144,44 @@
 
                 <tbody>
 	                <tr>
-	                    <td><i></i> <span class="h4">User 3</span></td>
+	                    <td><i class="i-error"></i> <span class="h4">User 3</span></td>
 	                    <td class="right">74</td>
 	                    <td class="right">
-	                        <span class="is-success"><i></i> Added</span>
+		                    <a href="#"><i class="i-plus"></i> Add to List</a>
 	                    </td>
 	                </tr>
                 </tbody>
 
+		            <tbody>
+			            <tr>
+				            <td><i class="i-error"></i> <span class="h4">User 33</span></td>
+				            <td class="right">74</td>
+				            <td class="right">
+					            <a href="#"><i class="i-plus"></i> Add to List</a>
+				            </td>
+			            </tr>
+		            </tbody>
+
+
                 <tbody>
 	                <tr>
-	                    <td><i></i> <span class="h4">User 4</span></td>
-	                    <td class="right">82</td>
-	                    <td class="right">
-	                        <a href="#"><i></i> Add to List</a>
-	                    </td>
+                    <td><span class="h4">User 4</span></td>
+                    <td class="right">82</td>
+                    <td class="right">
+                        <a href="#"><i class="i-plus"></i> Add to List</a>
+                    </td>
 	                </tr>
                 </tbody>
+
+		            <tbody>
+			            <tr>
+				            <td><span class="h4">User 5</span></td>
+				            <td class="right">74</td>
+				            <td class="right">
+					            <span class="is-success"><i class="i-check"></i> Added</span>
+				            </td>
+			            </tr>
+		            </tbody>
 
             </table>
 
@@ -142,7 +189,7 @@
         <div class="fl  one-third">
             <!-- Right Column -->
 
-            <table>
+            <table class="bsth">
                 <col>
                 <col>
                 <col>
@@ -217,7 +264,7 @@
                 </tbody>
             </table>
 
-            <div>Select a surgeon from the list to manage duplicate names.</div>
+            <div class="bsth  phl  pvl">Select a surgeon from the list to manage duplicate names.</div>
 
         </div>
     </div>
