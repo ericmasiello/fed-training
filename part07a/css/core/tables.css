@@ -4,10 +4,11 @@
 
 table {
 
-  /*
-   * Although width properties aren't part of this module, its much easier to see the effects of
-   * changing text-align properties if this is at 100%
+	/*
+	 * Needed to address a Chrome bug with colspans
+   * http://stackoverflow.com/questions/7725110/double-dotted-border-while-using-colspan
    */
+	border-collapse: separate;
   width: 100%;
 }
 
@@ -26,7 +27,17 @@ thead th {
 
 td, th {
 
-	padding: 7px 10px 6px;
+	padding: 20px 10px 10px;
   text-align: left;
 	vertical-align: top;
+}
+
+td:first-child, th:first-child {
+
+	padding-left: 20px;
+}
+
+td:last-child, th:last-child {
+
+	padding-right: 20px;
 }

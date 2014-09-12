@@ -39,3 +39,8 @@ button:disabled {
   background-color: #f5f5f5;
   cursor: default;
 }
+
+.button-bar {
+
+	background-color: #EEEFEE;
+}
