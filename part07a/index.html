@@ -38,7 +38,7 @@
     </ul>
 </nav>
 
-<section id="manager" style="display: none">
+<section id="manager">
     <div>
 
         <h1 class="h2">Manage Duplicate Surgeons</h1>
@@ -67,11 +67,11 @@
 
     </div>
 
-    <div>
-        <div>
+    <div class="clearfix">
+        <div class="fl  two-thirds">
             <!-- Left Column -->
 
-            <table id="surgeons">
+            <table id="surgeons" style="visibility: hidden">
                 <thead>
 	                <tr>
 	                    <th>Surgeon</th>
@@ -139,7 +139,7 @@
             </table>
 
         </div>
-        <div>
+        <div class="fl  one-third">
             <!-- Right Column -->
 
             <table>
@@ -180,12 +180,11 @@
 	                    </td>
 	                    <td class="right">
 	                        Display Name
-	                        <a href="#">Set as Display name</a>
 	                    </td>
 	                </tr>
 	                <tr>
 	                    <td>
-	                        <a href="#"></a>
+	                        <a href="#"><i class="i-remove"></i></a>
 	                    </td>
 	                    <td>
 	                        User 55
@@ -201,7 +200,7 @@
 	                </tr>
 	                <tr>
 	                    <td>
-	                        <a href="#"></a>
+	                        <a href="#"><i class="i-remove"></i></a>
 	                    </td>
 	                    <td>
 	                        User 05
@@ -224,7 +223,7 @@
     </div>
 </section><!-- /#manager -->
 
-<section id="account" class="phl  pbl">
+<section id="account" class="phl  pbl" style="display: none">
 
     <form>
         <h1 class="h2  mbml">My Account</h1>

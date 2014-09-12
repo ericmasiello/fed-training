@@ -25,3 +25,14 @@
   height: 14px;
   width: 14px;
 }
+
+.i-remove {
+	background-image: url("../../img/x-box.svg");
+	height: 15px;
+	width: 15px;
+}
+
+.i-remove:hover {
+
+	background-image: url("../../img/x-box-hover.svg");
+}
