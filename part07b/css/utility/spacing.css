@@ -1,0 +1,90 @@
+/*
+ * Spacing utiltiy classes
+ */
+
+.phl {
+
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.prn {
+
+	padding-right: 0;
+}
+
+.pvm {
+
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.pbl {
+
+  padding-bottom: 20px;
+}
+
+.mts {
+
+  margin-top: 5px;
+}
+
+.mtm {
+
+  margin-top: 10px;
+}
+
+.mtml {
+
+  margin-top: 15px;
+}
+
+.mtl {
+
+  margin-top: 20px;
+}
+
+.mtxl {
+
+  margin-top: 40px;
+}
+
+.mbs {
+
+  margin-bottom: 5px;
+}
+
+.mbm {
+
+  margin-bottom: 10px;
+}
+
+.mbml {
+
+  margin-bottom: 15px;
+}
+
+.mbl {
+
+  margin-bottom: 20px;
+}
+
+.mls {
+
+  margin-left: 5px;
+}
+
+.mlm {
+
+  margin-left: 10px;
+}
+
+.mlml {
+
+  margin-left: 15px;
+}
+
+.mll {
+
+  margin-left: 20px;
+}

@@ -1,0 +1,23 @@
+.tbl--accordion tr {
+
+
+}
+
+.tbl--accordion thead tr:last-child td,
+.tbl--accordion thead tr:last-child th {
+
+  border-bottom-color: #D1D1D1;
+  border-bottom-style: solid;
+}
+
+.tbl--accordion tbody td,
+.tbl--accordion tbody th {
+
+  border-bottom: 1px dotted #D1D1D1;
+}
+
+.tbl--accordion tbody tr:first-child td,
+.tbl--accordion tbody tr:first-child th {
+
+  border-bottom: 1px solid #D1D1D1;
+}

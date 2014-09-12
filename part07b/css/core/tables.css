@@ -4,18 +4,18 @@
 
 table {
 
-  /*
-   * Needed to address a Chrome bug with colspans
+	/*
+	 * Needed to address a Chrome bug with colspans
    * http://stackoverflow.com/questions/7725110/double-dotted-border-while-using-colspan
    */
-  border-collapse: separate;
+	border-collapse: separate;
   width: 100%;
 }
 
 thead tr:last-child td,
 thead tr:last-child th {
 
-  border-bottom: 1px dotted #B3B3B3;
+	border-bottom: 1px dotted #B3B3B3;
 }
 
 thead td,
@@ -27,19 +27,19 @@ thead th {
 
 td, th {
 
-  padding: 10px;
+	padding: 10px;
   text-align: left;
-  vertical-align: top;
+	vertical-align: top;
 }
 
 td:first-child, th:first-child {
 
-  padding-left: 20px;
+	padding-left: 20px;
 }
 
 td:last-child, th:last-child {
 
-  padding-right: 20px;
+	padding-right: 20px;
 }
 
 tbody:nth-of-type(1) tr:first-child td,
