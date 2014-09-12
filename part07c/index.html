@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <link rel="stylesheet" href="css/main.min.css">
+    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+</head>
+<body>
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<div id="app">
+
+<header class="app-header  clearfix">
+    <h1 class="h4  app-title  fl">
+        <a href="#" title="Product Title">Surgical Profitability Compass: <span class="strong">Surgeon Manager</span></a>
+    </h1>
+    <ul class="fr">
+        <li><a href="#" class="global-nav-toggle">Menu <i class="i-menu"></i></a></li>
+    </ul>
+</header>
+
+<nav>
+    <ul class="section-nav  clearfix">
+        <li><a href="#!/manager">Manage Duplicate Surgeons</a></li>
+        <li><a href="#!/account" class="is-selected">My Account</a></li>
+    </ul>
+</nav>
+
+<section id="manager">
+    <div>
+
+        <h1 class="h2">Manage Duplicate Surgeons</h1>
+
+        <p>Find and select a surgeon from the list to manage duplicates. Then add or remove duplicate names to merge
+            with the selected surgeon.</p>
+
+        <form>
+            <ul>
+                <li>
+                    <div>
+                        <input placeholder="Search surgeon names"/>
+                    </div>
+                </li>
+                <li>
+                    <label><input type="radio" name="filter" value="all" checked /><i></i>All Surgeons ()</label>
+                </li>
+                <li>
+                    <label><input type="radio" name="filter" value="possible"/><i></i>Possible Duplicates ()</label>
+                </li>
+                <li>
+                    <label><input type="radio" name="filter" value="merged"/><i></i>Merged Surgeons ()</label>
+                </li>
+            </ul>
+        </form>
+
+    </div>
+
+    <div class="clearfix  table-header-offset">
+        <div class="fl  two-thirds  bsrh">
+            <!-- Left Column -->
+
+            <table id="surgeons" class="tbl--accordion  table-header-offset__content">
+                <thead>
+	                <tr>
+	                    <th>Surgeon</th>
+	                    <th class="right">Case Volume</th>
+	                    <th></th>
+	                </tr>
+                </thead>
+
+                <tbody class="tbl--accordion__is-expanded">
+	                <tr>
+	                    <td><i class="i-toggle"></i> <span class="h4">User 1</span></td>
+	                    <td class="right">349</td>
+	                    <td class="right">
+	                        <a href="#">Manage Duplicates  <i class="i-move-right"></i></a>
+	                    </td>
+	                </tr>
+
+	                <tr>
+	                    <td>User 11</td>
+	                    <td class="right">72</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>User 111</td>
+	                    <td class="right">5</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>User 01</td>
+	                    <td class="right">22</td>
+	                    <td></td>
+	                </tr>
+                </tbody>
+
+		            <tbody class="tbl--accordion__is-collapsed">
+			            <tr>
+				            <td><i class="i-toggle"></i> <span class="h4">User 11</span></td>
+				            <td class="right">349</td>
+				            <td class="right">
+					            <a href="#">Manage Duplicates <i class="i-move-right"></i></a>
+				            </td>
+			            </tr>
+
+			            <tr>
+				            <td>User 101</td>
+				            <td class="right">72</td>
+				            <td></td>
+			            </tr>
+			            <tr>
+				            <td>User 1111</td>
+				            <td class="right">5</td>
+				            <td></td>
+			            </tr>
+			            <tr>
+				            <td>User 101</td>
+				            <td class="right">22</td>
+				            <td></td>
+			            </tr>
+		            </tbody>
+
+                <tbody>
+	                <tr>
+	                    <td><span class="h4">User 2</span></td>
+	                    <td class="right">116</td>
+	                    <td class="right">
+	                        <span><i></i> Selected</span>
+	                    </td>
+	                </tr>
+                </tbody>
+
+                <tbody>
+	                <tr>
+	                    <td><i class="i-error"></i> <span class="h4">User 3</span></td>
+	                    <td class="right">74</td>
+	                    <td class="right">
+		                    <a href="#"><i class="i-plus"></i> Add to List</a>
+	                    </td>
+	                </tr>
+                </tbody>
+
+		            <tbody>
+			            <tr>
+				            <td><i class="i-error"></i> <span class="h4">User 33</span></td>
+				            <td class="right">74</td>
+				            <td class="right">
+					            <a href="#"><i class="i-plus"></i> Add to List</a>
+				            </td>
+			            </tr>
+		            </tbody>
+
+
+                <tbody>
+	                <tr>
+                    <td><span class="h4">User 4</span></td>
+                    <td class="right">82</td>
+                    <td class="right">
+                        <a href="#"><i class="i-plus"></i> Add to List</a>
+                    </td>
+	                </tr>
+                </tbody>
+
+		            <tbody>
+			            <tr>
+				            <td><span class="h4">User 5</span></td>
+				            <td class="right">74</td>
+				            <td class="right">
+					            <span class="is-success"><i class="i-check"></i> Added</span>
+				            </td>
+			            </tr>
+		            </tbody>
+
+            </table>
+
+        </div>
+        <div class="fl  one-third">
+            <!-- Right Column -->
+
+            <table class="bsth">
+                <col>
+                <col>
+                <col>
+                <thead>
+	                <tr>
+	                    <th colspan="2">
+	                        <span>Managing duplicates for:</span>
+	                        <div class="default  h3">User 5</div>
+	                    </th>
+	                    <th class="right  default">
+	                        Display Name
+	                    </th>
+	                </tr>
+                </thead>
+                <tfoot>
+	                <tr>
+	                    <td colspan="3" class="button-bar  pvm">
+	                        <input type="button" value="Confirm Duplicates">
+	                        <a href="#">Cancel</a>
+	                    </td>
+	                </tr>
+                </tfoot>
+                <tbody>
+	                <tr>
+	                    <td class="prn">
+	                        <a href="#"></a>
+	                    </td>
+	                    <td>
+	                        User 5
+	                        <div class="muted">
+	                            Holy Cross Hospital
+	                            <br/>
+	                            Case volume: 273
+	                        </div>
+	                    </td>
+	                    <td class="right">
+	                        Display Name
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td class="prn">
+	                        <a href="#"><i class="i-remove"></i></a>
+	                    </td>
+	                    <td>
+	                        User 55
+	                        <div class="muted">
+	                            Holy Cross Hospital
+	                            <br/>
+	                            Case volume: 32
+	                        </div>
+	                    </td>
+	                    <td class="right">
+	                        <a href="#">Set as Display name</a>
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td class="prn">
+	                        <a href="#"><i class="i-remove"></i></a>
+	                    </td>
+	                    <td>
+	                        User 05
+	                        <div class="muted">
+	                            Holy Cross Hospital
+	                            <br/>
+	                            Case volume: 12
+	                        </div>
+	                    </td>
+	                    <td class="right">
+	                        <a href="#">Set as Display name</a>
+	                    </td>
+	                </tr>
+                </tbody>
+            </table>
+
+            <div class="bsth  phl  pvl">Select a surgeon from the list to manage duplicate names.</div>
+
+        </div>
+    </div>
+</section><!-- /#manager -->
+
+<section id="account" class="phl  pbl" style="display: none">
+
+    <form>
+        <h1 class="h2  mbml">My Account</h1>
+
+        <p class="muted  mbl">All fields required unless marked <em>optional</em>.</p>
+
+        <h2 class="h3">Contact Information</h2>
+        <ul class="form-list  mbl">
+            <li>
+                <label class="block  mbs" for="first-name">First name</label>
+                <input id="first-name" type="text">
+            </li>
+            <li>
+                <label class="block  mbs" for="last-name">Last name</label>
+                <input id="last-name" type="text">
+            </li>
+            <li>
+                <label class="block  mbs" for="job-title">Job title</label>
+                <input id="job-title" type="text">
+            </li>
+            <li>
+                <label class="block  mbs  is-error" for="email-address">Email address</label>
+                <input id="email-address" type="email" class="is-error"> <i class="i-error"></i>
+	              <div class="mts  is-error">Required field</div>
+            </li>
+            <li>
+                <label class="block  mbs" for="cell-number-1">Cell number</label>
+                <input class="width-50" id="cell-number-1" type="text" maxlength="3">
+                <input class="width-50" id="cell-number-2" type="text" maxlength="3">
+                <input class="width-50" id="cell-number-3" type="text" maxlength="4">
+                <label for="cell-number-ext">Ext</label>
+                <input class="width-50" id="cell-number-ext" type="text" maxlength="5">
+            </li>
+            <li>
+                <label class="block  mbs" for="home-number-1">Home number</label>
+                <input class="width-50" id="home-number-1" type="text" maxlength="3" value="123" disabled>
+                <input class="width-50" id="home-number-2" type="text" maxlength="3" value="456" disabled>
+                <input class="width-50" id="home-number-3" type="text" maxlength="4" value="7890" disabled>
+                <label for="home-number-ext">Ext</label>
+                <input class="width-50" id="home-number-ext" type="text" maxlength="5" disabled>
+
+                <div class="mtm">
+                    <label><input type="checkbox" checked value="same"/><i></i>Same as Cell number</label>
+                </div>
+            </li>
+        </ul>
+
+        <h2 class="h3">Address</h2>
+
+        <p>To change your password, enter your current (old) password, then enter and re-enter a new password.</p>
+
+        <div class="clearfix  mbl">
+            <div class="fl  six-twelfths">
+                <ul class="form-list">
+                    <li>
+                        <label class="block  mbs  is-error" for="password">Password</label>
+                        <input id="password" type="password" class="is-error"> <i class="i-error"></i>
+
+                        <div class="is-error  mts">
+                            Your password does not match your previously saved password.
+                        </div>
+                    </li>
+                    <li>
+                        <label class="block  mbs" for="new-password">New password</label>
+                        <input id="new-password" type="password">
+                    </li>
+                    <li>
+                        <label class="block  mbs  is-error" for="new-password-2">Re-enter new password</label>
+                        <input id="new-password-2" type="password" class="is-error"> <i class="i-error"></i>
+
+                        <div class="is-error  mts">
+                            Your new password does not match
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="fl  six-twelfths  phl">
+                <h3 class="h4  mbs">Password Rules</h3>
+                <ul class="decorated-list">
+                    <li>8 characters minimum</li>
+                    <li>Must contain lower and uppercase characters</li>
+                    <li>Must contain at least 1 number and 1 symbol (ex ! # $ %)</li>
+                    <li>Cannot repeat previous 12 passwords</li>
+                    <li>May not contain any portion of the registered email address</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="h3">Security Questions</h2>
+
+        <p>You will be asked to answer these questions if you forget your password.</p>
+        <ul class="form-list  mtl">
+            <li>
+	              <span class="select">
+	                <select id="security-question-1">
+	                    <option value="">Select a security question</option>
+	                    <option value="Name of your cat">Name of your cat</option>
+	                    <option value="Name of your spouse">Name of your spouse</option>
+	                    <option value="Name of your favorite Disney character">Name of your favorite Disney character</option>
+	                </select>
+		            </span>
+                <label for="answer-1" class="mll">Answer 1</label>
+                <input id="answer-1" type="text"/>
+            </li>
+            <li>
+	              <span class="select">
+	                <select id="security-question-2">
+	                    <option value="">Select a security question</option>
+	                    <option value="Name of your cat">Name of your cat</option>
+	                    <option value="Name of your spouse">Name of your spouse</option>
+	                    <option value="Name of your favorite Disney character">Name of your favorite Disney character</option>
+	                </select>
+		            </span>
+
+                <label for="answer-2" class="mll">Answer 2</label>
+                <input id="answer-2" type="text"/>
+            </li>
+            <li>
+	              <span class="select">
+	                <select id="security-question-3">
+	                    <option value="">Select a security question</option>
+	                    <option value="Name of your cat">Name of your cat</option>
+	                    <option value="Name of your spouse">Name of your spouse</option>
+	                    <option value="Name of your favorite Disney character">Name of your favorite Disney character</option>
+	                </select>
+                </span>
+		            <label for="answer-3" class="mll">Answer 3</label>
+                <input id="answer-3" type="text"/>
+            </li>
+        </ul>
+        <div class="mtxl">
+            <button disabled>Complete Registration</button>
+        </div>
+    </form>
+
+</section><!-- /#account -->
+
+</div><!--/#app -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+        e.src='//www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X');ga('send','pageview');
+</script>
+</body>
+</html>
