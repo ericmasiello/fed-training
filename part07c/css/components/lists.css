@@ -2,6 +2,17 @@
  * Lists
  */
 
+/*ul, ol*/.flat-list > li {
+
+  display: inline-block;
+  padding-left: 20px;
+}
+
+.flat-list > li:first-child {
+
+  padding-left: 0;
+}
+
 /*ul*/.form-list > li {
 
   margin-top: 20px;
