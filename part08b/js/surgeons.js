@@ -28,7 +28,8 @@ function loadSurgeonsDoneCallback(resp){
 		//Draw results by looping through data
 		for( var i = 0; i < resp.data.length; i++ ){
 
-			html += '<tbody><tr><td><span class="h4">' + resp.data[i].name + '</span></td>';
+			//Example: Can use $('#surgeons').find('tbody:first').find('tr').data('obj') to grab entire data object
+			html += '<tbody><tr data-obj=\'' + JSON.stringify(resp.data[i]) + '\'><td><span class="h4">' + resp.data[i].name + '</span></td>';
 			html += '<td class="right">' + resp.data[i].caseVolume + '</td>';
 			html += '<td class="right"><a href="#">Manage Duplicates <i class="i-move-right"></i></a></td></tr></tbody>';
 		}
