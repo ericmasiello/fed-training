@@ -27,9 +27,22 @@ var account = (function (){
 	});
 
 	publicAPI.sameAsCell = ko.observable(false);
-	publicAPI.newPassword = ko.observable();
-	publicAPI.newPassword2 = ko.observable();
+	publicAPI.passwordMatch = ko.observable('');
+	publicAPI.newPassword = ko.observable('');
+	publicAPI.newPassword2 = ko.observable('');
+	publicAPI.securityQuestions = ko.observableArray(['Name of your cat', 'Name of your spouse', 'Name of your favorite Disney character']);
 
+	var isOriginalPasswordMismatch = function(){
+
+		var misMatch = false;
+
+		if( publicAPI.passwordMatch() !== '' && publicAPI.passwordMatch() !== publicAPI.password() ){
+
+			misMatch = true;
+		}
+
+		return misMatch;
+	};
 
 	//Private method
 	var isPasswordMismatch = function(){
@@ -83,6 +96,7 @@ var account = (function (){
 		$.get('sampleuser.json', loadAccountDoneCallback);
 	};
 
+	publicAPI.isOriginalPasswordMismatch = ko.computed( isOriginalPasswordMismatch );
 	/*
 	 * Automatically check whenever newPassword or newPassword2 changes
 	 */
