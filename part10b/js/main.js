@@ -11,7 +11,7 @@ var app = (function(account, surgeons){
 
 	var publicAPI = {
 		surgeons: surgeons,
-		account: account,
+		account: ko.observable(account),
 		currentTab: ko.observable('manager')
 	};
 
@@ -36,8 +36,6 @@ var app = (function(account, surgeons){
 			this.get('#!/account', function () {
 
 				publicAPI.currentTab('account');
-				account.init();
-
 			});
 		})).run();
 	};
