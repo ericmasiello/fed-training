@@ -60,13 +60,16 @@ var app = (function(account, surgeons){
 	var init = function(){
 
 		routePage();
+		return this;
 	};
 
 	return {
 
-		init: init
+		init: init,
+		surgeons: surgeons,
+		account: account
 	};
 
 })(account, surgeons);
 
-$(document).ready(app.init);
+ko.applyBindings( app.init(), document.getElementById('app') );

@@ -68,10 +68,10 @@
     </div>
 
     <div class="clearfix  table-header-offset">
-        <div class="fl  two-thirds  bsrh">
+        <div class="fl  two-thirds  bsrh" data-bind="with: surgeons">
             <!-- Left Column -->
 
-            <table id="surgeons" class="tbl--accordion  table-header-offset__content">
+            <table class="tbl--accordion  table-header-offset__content">
                 <thead>
 	                <tr>
 	                    <th>Surgeon</th>
@@ -79,115 +79,22 @@
 	                    <th></th>
 	                </tr>
                 </thead>
-
-	            <!--
-                <tbody class="tbl--accordion__is-expanded">
-	                <tr>
-	                    <td><i class="i-toggle"></i> <span class="h4">User 1</span></td>
-	                    <td class="right">349</td>
-	                    <td class="right">
-	                        <a href="#">Manage Duplicates  <i class="i-move-right"></i></a>
-	                    </td>
-	                </tr>
-
-	                <tr>
-	                    <td>User 11</td>
-	                    <td class="right">72</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>User 111</td>
-	                    <td class="right">5</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>User 01</td>
-	                    <td class="right">22</td>
-	                    <td></td>
-	                </tr>
-                </tbody>
-
-		            <tbody class="tbl--accordion__is-collapsed">
-			            <tr>
-				            <td><i class="i-toggle"></i> <span class="h4">User 11</span></td>
-				            <td class="right">349</td>
-				            <td class="right">
-					            <a href="#">Manage Duplicates <i class="i-move-right"></i></a>
-				            </td>
-			            </tr>
-
-			            <tr>
-				            <td>User 101</td>
-				            <td class="right">72</td>
-				            <td></td>
-			            </tr>
-			            <tr>
-				            <td>User 1111</td>
-				            <td class="right">5</td>
-				            <td></td>
-			            </tr>
-			            <tr>
-				            <td>User 101</td>
-				            <td class="right">22</td>
-				            <td></td>
-			            </tr>
-		            </tbody>
-
-                <tbody>
-	                <tr>
-	                    <td><span class="h4">User 2</span></td>
-	                    <td class="right">116</td>
-	                    <td class="right">
-	                        <span><i></i> Selected</span>
-	                    </td>
-	                </tr>
-                </tbody>
-
-                <tbody>
-	                <tr>
-	                    <td><i class="i-error"></i> <span class="h4">User 3</span></td>
-	                    <td class="right">74</td>
-	                    <td class="right">
-		                    <a href="#"><i class="i-plus"></i> Add to List</a>
-	                    </td>
-	                </tr>
-                </tbody>
-
-		            <tbody>
-			            <tr>
-				            <td><i class="i-error"></i> <span class="h4">User 33</span></td>
-				            <td class="right">74</td>
-				            <td class="right">
-					            <a href="#"><i class="i-plus"></i> Add to List</a>
-				            </td>
-			            </tr>
-		            </tbody>
-
-
-                <tbody>
-	                <tr>
-                    <td><span class="h4">User 4</span></td>
-                    <td class="right">82</td>
-                    <td class="right">
-                        <a href="#"><i class="i-plus"></i> Add to List</a>
-                    </td>
-	                </tr>
-                </tbody>
-
-		            <tbody>
-			            <tr>
-				            <td><span class="h4">User 5</span></td>
-				            <td class="right">74</td>
-				            <td class="right">
-					            <span class="is-success"><i class="i-check"></i> Added</span>
-				            </td>
-			            </tr>
-		            </tbody>
-		            -->
-
+	            <!-- ko foreach: records -->
+	            <tbody>
+		            <tr>
+			            <td><span class="h4" data-bind="text: name"></span></td>
+			            <td class="right" data-bind="text: caseVolume">74</td>
+			            <td class="right">
+				            <a href="#">Manage Duplicates <i class="i-move-right"></i></a>
+			            </td>
+		            </tr>
+	            </tbody>
+	            <!-- /ko -->
             </table>
 
-	          <p class="phl  pvl  is-warning" id="no-results" style="display: none">Sorry. There are no records matching your criteria.</p>
+	        <!-- ko if: records().length === 0 -->
+	        <p class="phl  pvl  is-warning">Sorry. There are no records matching your criteria.</p>
+	        <!-- /ko -->
 
         </div>
         <div class="fl  one-third">
@@ -417,6 +324,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
 <script src="js/plugins.js"></script>
+<script src="js/vendor/knockout.js"></script>
 <script src="js/vendor/sammy.js"></script>
 <script src="js/vendor/jquery-1.10.2.min.js"></script>
 <script src="js/surgeons.js"></script>
@@ -434,3 +342,108 @@
 </script>
 </body>
 </html>
+
+<!--
+							<tbody class="tbl--accordion__is-expanded">
+								<tr>
+										<td><i class="i-toggle"></i> <span class="h4">User 1</span></td>
+										<td class="right">349</td>
+										<td class="right">
+												<a href="#">Manage Duplicates  <i class="i-move-right"></i></a>
+										</td>
+								</tr>
+
+								<tr>
+										<td>User 11</td>
+										<td class="right">72</td>
+										<td></td>
+								</tr>
+								<tr>
+										<td>User 111</td>
+										<td class="right">5</td>
+										<td></td>
+								</tr>
+								<tr>
+										<td>User 01</td>
+										<td class="right">22</td>
+										<td></td>
+								</tr>
+							</tbody>
+
+							<tbody class="tbl--accordion__is-collapsed">
+								<tr>
+									<td><i class="i-toggle"></i> <span class="h4">User 11</span></td>
+									<td class="right">349</td>
+									<td class="right">
+										<a href="#">Manage Duplicates <i class="i-move-right"></i></a>
+									</td>
+								</tr>
+
+								<tr>
+									<td>User 101</td>
+									<td class="right">72</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>User 1111</td>
+									<td class="right">5</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>User 101</td>
+									<td class="right">22</td>
+									<td></td>
+								</tr>
+							</tbody>
+
+							<tbody>
+								<tr>
+										<td><span class="h4">User 2</span></td>
+										<td class="right">116</td>
+										<td class="right">
+												<span><i></i> Selected</span>
+										</td>
+								</tr>
+							</tbody>
+
+							<tbody>
+								<tr>
+										<td><i class="i-error"></i> <span class="h4">User 3</span></td>
+										<td class="right">74</td>
+										<td class="right">
+											<a href="#"><i class="i-plus"></i> Add to List</a>
+										</td>
+								</tr>
+							</tbody>
+
+							<tbody>
+								<tr>
+									<td><i class="i-error"></i> <span class="h4">User 33</span></td>
+									<td class="right">74</td>
+									<td class="right">
+										<a href="#"><i class="i-plus"></i> Add to List</a>
+									</td>
+								</tr>
+							</tbody>
+
+
+							<tbody>
+								<tr>
+									<td><span class="h4">User 4</span></td>
+									<td class="right">82</td>
+									<td class="right">
+											<a href="#"><i class="i-plus"></i> Add to List</a>
+									</td>
+								</tr>
+							</tbody>
+
+							<tbody>
+								<tr>
+									<td><span class="h4">User 5</span></td>
+									<td class="right">74</td>
+									<td class="right">
+										<span class="is-success"><i class="i-check"></i> Added</span>
+									</td>
+								</tr>
+							</tbody>
+							-->
