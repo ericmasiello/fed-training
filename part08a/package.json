@@ -2,6 +2,7 @@
   "name": "FED-Training",
   "devDependencies": {
     "grunt-contrib-cssmin": "^0.10.0",
+    "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-watch": "^0.6.1"
   }
 }

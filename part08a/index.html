@@ -32,9 +32,9 @@
 </header>
 
 <nav>
-    <ul class="section-nav  clearfix">
-        <li><a href="#!/manager">Manage Duplicate Surgeons</a></li>
-        <li><a href="#!/account" class="is-selected">My Account</a></li>
+    <ul class="section-nav  clearfix" id="main-nav">
+        <li><a href="#!/manager" data-val="manager" class="is-selected">Manage Duplicate Surgeons</a></li>
+        <li><a href="#!/account" data-val="account">My Account</a></li>
     </ul>
 </nav>
 
@@ -313,7 +313,7 @@
                 <input class="width-50" id="home-number-ext" type="text" maxlength="5" disabled>
 
                 <div class="mtm">
-                    <label><input type="checkbox" checked value="same"/><i></i>Same as Cell number</label>
+                    <label><input type="checkbox" value="same" id="same-as-cell"/><i></i>Same as Cell number</label>
                 </div>
             </li>
         </ul>
@@ -413,6 +413,8 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
 <script src="js/plugins.js"></script>
+<script src="js/vendor/jquery-1.10.2.min.js"></script>
+<script src="js/account.js"></script>
 <script src="js/main.js"></script>
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
