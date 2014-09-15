@@ -23,7 +23,6 @@
     "ko": false,
     "$": false,
     "jQuery": false,
-    "Sammy": false,
-		"apitizer": false
+    "Sammy": false
   }
 }
