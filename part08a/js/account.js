@@ -1,9 +1,5 @@
 'use strict';
 
-function isRegistrationComplete(){
-
-}
-
 function isPasswordMatch(){
 
 }
