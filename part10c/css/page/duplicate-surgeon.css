@@ -1,0 +1,9 @@
+.table-header-offset {
+
+  margin-top: 36px;
+}
+
+.table-header-offset__content {
+
+  margin-top: -36px;
+}

@@ -1,6 +1,9 @@
 (function(){
 	'use strict';
 
+	var securityQuestions = ['Name of your cat', 'Name of your spouse', 'Name of your favorite Disney character'];
+	var securityAnswers = ['one', 'two', 'three'];
+
 	var nameGenerator = function( prefix, isEmail ){
 		var counter = 1;
 		return function(){
@@ -213,12 +216,12 @@
 		homePhoneExt: phoneGenerator('ext'),
 		jobTitle: jobTitleGenerator(),
 		password: '1234',
-		securityQuestion1: window.SPC.SecurityQuestions[0],
-		securityQuestion2: window.SPC.SecurityQuestions[1],
-		securityQuestion3: window.SPC.SecurityQuestions[2],
-		securityAnswer1: window.SPC.SecurityAnswers[0],
-		securityAnswer2: window.SPC.SecurityAnswers[1],
-		securityAnswer3: window.SPC.SecurityAnswers[2]
+		securityQuestion1: securityQuestions[0],
+		securityQuestion2: securityQuestions[1],
+		securityQuestion3: securityQuestions[2],
+		securityAnswer1: securityAnswers[0],
+		securityAnswer2: securityAnswers[1],
+		securityAnswer3: securityAnswers[2]
 	});
 
 	apitizer.fixture.resource('/surgeons', surgeonStore);
