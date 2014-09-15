@@ -9,25 +9,10 @@ var surgeons = (surgeons) ? surgeons : {};
 
 var app = (function(account, surgeons){
 
-	var toggleTabs = function (tab){
-
-		var $tabs = $('#main-nav').find('a');
-		var $selectedTab = $tabs.filter('[data-val="' + tab + '"]');
-		var $otherTab = $tabs.not($selectedTab);
-
-		$selectedTab.addClass('is-selected');
-		$otherTab.removeClass('is-selected');
-
-		if( tab === 'manager'){
-
-			$('#manager').show();
-			$('#account').hide();
-
-		} else {
-
-			$('#manager').hide();
-			$('#account').show();
-		}
+	var publicAPI = {
+		surgeons: surgeons,
+		account: account,
+		currentTab: ko.observable('manager')
 	};
 
 	var routePage = function(){
@@ -43,32 +28,27 @@ var app = (function(account, surgeons){
 
 			this.get('#!/manager', function () {
 
-				toggleTabs('manager');
+				publicAPI.currentTab('manager');
 				surgeons.init();
 
 			});
 
 			this.get('#!/account', function () {
 
-				toggleTabs('account');
+				publicAPI.currentTab('account');
 				account.init();
 
 			});
 		})).run();
 	};
 
-	var init = function(){
+	publicAPI.init = function(){
 
 		routePage();
 		return this;
 	};
 
-	return {
-
-		init: init,
-		surgeons: surgeons,
-		account: account
-	};
+	return publicAPI;
 
 })(account, surgeons);
 

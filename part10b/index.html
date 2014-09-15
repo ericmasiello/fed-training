@@ -33,12 +33,12 @@
 
 <nav>
     <ul class="section-nav  clearfix" id="main-nav">
-        <li><a href="#!/manager" data-val="manager" class="is-selected">Manage Duplicate Surgeons</a></li>
-        <li><a href="#!/account" data-val="account">My Account</a></li>
+        <li><a href="#!/manager" class="is-selected" data-bind="css: {'is-selected': (currentTab() === 'manager') }">Manage Duplicate Surgeons</a></li>
+        <li><a href="#!/account" data-bind="css: {'is-selected': (currentTab() === 'account') }">My Account</a></li>
     </ul>
 </nav>
 
-<section id="manager">
+<section id="manager" data-bind="visible: (currentTab() === 'manager')">
     <div class="phl  pbl">
 
         <h1 class="h2">Manage Duplicate Surgeons</h1>
@@ -181,9 +181,9 @@
     </div>
 </section><!-- /#manager -->
 
-<section id="account" class="phl  pbl" style="display: none">
+<section id="account" class="phl  pbl" style="display: none" data-bind="visible: (currentTab() === 'account')">
 
-    <form>
+    <form data-bind="with: account">
         <h1 class="h2  mbml">My Account</h1>
 
         <p class="muted  mbl">All fields required unless marked <em>optional</em>.</p>
@@ -209,22 +209,22 @@
             </li>
             <li>
                 <label class="block  mbs" for="cell-number-1">Cell number</label>
-                <input class="width-50" id="cell-number-1" type="text" maxlength="3">
-                <input class="width-50" id="cell-number-2" type="text" maxlength="3">
-                <input class="width-50" id="cell-number-3" type="text" maxlength="4">
+                <input class="width-50" id="cell-number-1" type="text" maxlength="3" data-bind="value: homeNumber1">
+                <input class="width-50" id="cell-number-2" type="text" maxlength="3" data-bind="value: homeNumber2">
+                <input class="width-50" id="cell-number-3" type="text" maxlength="4" data-bind="value: homeNumber3">
                 <label for="cell-number-ext">Ext</label>
-                <input class="width-50" id="cell-number-ext" type="text" maxlength="5">
+                <input class="width-50" id="cell-number-ext" type="text" maxlength="5" data-bind="value: homeNumberExt">
             </li>
             <li>
                 <label class="block  mbs" for="home-number-1">Home number</label>
-                <input class="width-50" id="home-number-1" type="text" maxlength="3">
-                <input class="width-50" id="home-number-2" type="text" maxlength="3">
-                <input class="width-50" id="home-number-3" type="text" maxlength="4">
+                <input class="width-50" id="home-number-1" type="text" maxlength="3" data-bind="value: cellNumber1, disable: sameAsCell">
+                <input class="width-50" id="home-number-2" type="text" maxlength="3" data-bind="value: cellNumber2, disable: sameAsCell">
+                <input class="width-50" id="home-number-3" type="text" maxlength="4" data-bind="value: cellNumber3, disable: sameAsCell">
                 <label for="home-number-ext">Ext</label>
-                <input class="width-50" id="home-number-ext" type="text" maxlength="5">
+                <input class="width-50" id="home-number-ext" type="text" maxlength="5" data-bind="value: cellNumberExt, disable: sameAsCell">
 
                 <div class="mtm">
-                    <label><input type="checkbox" value="same" id="same-as-cell"/><i></i>Same as Cell number</label>
+                    <label><input type="checkbox" value="same" data-bind="checked: sameAsCell"/><i></i>Same as Cell number</label>
                 </div>
             </li>
         </ul>
@@ -246,15 +246,18 @@
                     </li>
                     <li>
                         <label class="block  mbs" for="new-password">New password</label>
-                        <input id="new-password" type="password">
+                        <input id="new-password" type="password" data-bind="value: newPassword">
                     </li>
                     <li>
-                        <label class="block  mbs" for="new-password-2">Re-enter new password</label>
-                        <input id="new-password-2" type="password"> <i class="i-error" style="display: none"></i>
+                        <label class="block  mbs" for="new-password-2" data-bind="css: {'is-error': isPasswordMismatch}">Re-enter new password</label>
+                        <input id="new-password-2" type="password" data-bind="value: newPassword2, css: {'is-error': isPasswordMismatch}">
+	                      <!-- ko if: isPasswordMismatch -->
+		                      <i class="i-error"></i>
 
-                        <div class="is-error  mts" style="display: none">
-                            Your new password does not match
-                        </div>
+	                        <div class="is-error  mts">
+	                            Your new password does not match
+	                        </div>
+	                      <!-- /ko -->
                     </li>
                 </ul>
             </div>
