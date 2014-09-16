@@ -81,7 +81,7 @@
                 </thead>
 	            <!-- ko foreach: records -->
 							<tbody data-bind="css: $parent.parentRowStyle($data)">
-		            <tr data-bind="click: $parent.expand">
+		            <tr data-bind="click: $parent.toggle">
 			            <td>
 				            <!-- ko if: (childRecords.length > 0) --><i class="i-toggle"></i><!-- /ko -->
 				            <!-- ko if: possibleDuplicate --><i class="i-error"></i><!--/ko -->

@@ -34,7 +34,7 @@ var surgeons = (function(){
 		}
 	};
 
-	publicAPI.expand = function( data ){
+	publicAPI.toggle = function( data ){
 
 		//check to see if we can expand it
 

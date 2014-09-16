@@ -42,10 +42,7 @@ var merger = (function(){
 
 		var displaySurgeon = this.displaySurgeon();
 		var records = this.records();
-//		var surgeons = this.surgeons();
 		var surgeonsToMerge = [];
-//		var newSurgeonList = [];
-//		var matchIndex = -1;
 		var mergeCount = 0;
 
 		for( var i = 0; i < records.length; i++ ){
