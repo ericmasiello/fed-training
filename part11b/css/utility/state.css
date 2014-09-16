@@ -33,7 +33,25 @@ textarea.is-error {
   display: none;
 }
 
+.is-visible {
+
+  display: block;
+}
+
 .is-invisible {
 
   visibility: hidden;
+}
+
+@media (min-width: 900px) {
+
+  .med-is-hidden {
+
+    display: none;
+  }
+
+  .med-is-visible {
+
+    display: block;
+  }
 }

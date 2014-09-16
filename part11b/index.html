@@ -73,7 +73,7 @@
 		</div>
 
 		<div class="clearfix  table-header-offset  is-invisible" data-bind="css: {'is-invisible': !surgeons.isLoaded()}">
-        <div class="fl  two-thirds  bsrh" data-bind="with: surgeons">
+        <div class="fl  one-whole  med-two-thirds  bsrh" data-bind="with: surgeons">
             <!-- Left Column -->
 
             <table class="tbl--accordion  table-header-offset__content">
@@ -134,7 +134,7 @@
 
         </div>
 
-        <div class="fl  one-third" data-bind="with: merger">
+        <div class="fl  one-whole  med-one-third" data-bind="with: merger">
 					<!-- Right Column -->
 
 	        <!-- ko if: records().length > 0 -->
@@ -249,7 +249,7 @@
         <p>To change your password, enter your current (old) password, then enter and re-enter a new password.</p>
 
         <div class="clearfix  mbl">
-            <div class="fl  six-twelfths">
+            <div class="fl  one-whole  med-one-half">
                 <ul class="form-list">
                     <li>
                         <label class="block  mbs" for="password" data-bind="css: {'is-error': isOriginalPasswordMismatch}">Password</label>
@@ -278,7 +278,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="fl  six-twelfths  phl">
+            <div class="fl  med-one-half  is-hidden  med-is-visible  phl">
                 <h3 class="h4  mbs">Password Rules</h3>
                 <ul class="decorated-list">
                     <li>8 characters minimum</li>
@@ -298,23 +298,42 @@
 	              <span class="select">
 	                <select id="security-question-1" data-bind="options: securityQuestions, optionsCaption: 'Select a security question', value: securityQuestion1"></select>
 		            </span>
-                <label for="answer-1" class="mll">Answer 1</label>
-                <input id="answer-1" type="text" data-bind="value: securityAnswer1" />
+	              <div class="mtm  med-is-hidden">
+		              <label for="answer-1" class="block">Answer 1</label>
+		              <input id="answer-1" type="text" data-bind="value: securityAnswer1" />
+	              </div>
+	              <span class="is-hidden  med-inline">
+		              <label for="answer-1" class="mll">Answer 1</label>
+                  <input id="answer-1" type="text" data-bind="value: securityAnswer1" />
+	              </span>
+
             </li>
             <li>
 	              <span class="select">
 	                <select id="security-question-2" data-bind="options: securityQuestions, optionsCaption: 'Select a security question', value: securityQuestion2"></select>
 		            </span>
 
-                <label for="answer-2" class="mll">Answer 2</label>
-                <input id="answer-2" type="text" data-bind="value: securityAnswer2"/>
+	              <div class="mtm  med-is-hidden">
+		              <label for="answer-2" class="block">Answer 2</label>
+		              <input id="answer-2" type="text" data-bind="value: securityAnswer2"/>
+		            </div>
+	              <span class="is-hidden  med-inline">
+		              <label for="answer-2" class="mll">Answer 2</label>
+                  <input id="answer-2" type="text" data-bind="value: securityAnswer2"/>
+		            </span>
             </li>
             <li>
 	              <span class="select">
 	                <select id="security-question-3"  data-bind="options: securityQuestions, optionsCaption: 'Select a security question', value: securityQuestion3"></select>
                 </span>
-		            <label for="answer-3" class="mll">Answer 3</label>
-                <input id="answer-3" type="text" data-bind="value: securityAnswer3"/>
+		            <div class="mtm  med-is-hidden">
+			            <label for="answer-3" class="block">Answer 3</label>
+			            <input id="answer-3" type="text" data-bind="value: securityAnswer3"/>
+		            </div>
+	              <span class="is-hidden  med-inline">
+		              <label for="answer-3" class="mll">Answer 3</label>
+                  <input id="answer-3" type="text" data-bind="value: securityAnswer3"/>
+		            </span>
             </li>
         </ul>
         <div class="mtxl">
