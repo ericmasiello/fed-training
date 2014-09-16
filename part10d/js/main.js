@@ -6,12 +6,14 @@
  */
 var account = (account) ? account : {};
 var surgeons = (surgeons) ? surgeons : {};
+var merger = (merger) ? merger : {};
 
-var app = (function(account, surgeons){
+var app = (function(account, surgeons, merger){
 
 	var publicAPI = {
 		surgeons: surgeons,
 		account: ko.observable(account),
+		merger: ko.observable(merger),
 		currentTab: ko.observable('manager')
 	};
 
@@ -50,6 +52,6 @@ var app = (function(account, surgeons){
 
 	return publicAPI;
 
-})(account, surgeons);
+})(account, surgeons, merger);
 
 ko.applyBindings( app.init(), document.getElementById('app') );
