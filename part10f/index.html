@@ -161,7 +161,9 @@
               <tbody data-bind="foreach: records">
                 <tr>
                     <td class="prn">
-                        <a href="#"></a>
+	                      <!-- ko if: ( $data.id !== $parent.displaySurgeon().id ) -->
+                        <a href="#" class="i-remove" data-bind="click: $parent.remove"></a>
+	                      <!-- /ko -->
                     </td>
                     <td>
 	                    <!-- ko text: name --><!--/ko -->

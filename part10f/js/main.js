@@ -66,6 +66,11 @@ var app = (function(account, surgeons, merger){
 			surgeons.resetMerge();
 		});
 
+		PubSub.subscribe('spc/merger/remove', function(e, data){
+
+			surgeons.removeFromMergeList(data);
+		});
+
 		return this;
 	};
 

@@ -4,6 +4,13 @@ var merger = (function(){
 
 	var publicAPI = {};
 	var isInitialized = false;
+	var mergeRecordsDoneCallback = function( data ){
+
+		publicAPI.records.removeAll();
+		publicAPI.displaySurgeon(null);
+
+		PubSub.publish('spc/merger/merged-record', data );
+	};
 
 	//List of surgeons we want to merge
 	publicAPI.records = ko.observableArray();
@@ -30,31 +37,17 @@ var merger = (function(){
 		PubSub.publish('spc/merger/set-display-surgeon', data );
 	};
 
-
-	var mergeRecordsDoneCallback = function( data ){
-
-		publicAPI.records.removeAll();
-		publicAPI.displaySurgeon(null);
-
-		PubSub.publish('spc/merger/merged-record', data );
-	};
-
 	publicAPI.mergeRecords = function(){
 
 		var displaySurgeon = this.displaySurgeon();
 		var records = this.records();
-		var surgeonsToMerge = [];
-		var mergeCount = 0;
+		var surgeonsToMerge = records.filter(function( item ){
 
-		for( var i = 0; i < records.length; i++ ){
+			if( item.id !== displaySurgeon.id ){
 
-			if( records[i].id !== displaySurgeon.id ){
-
-				surgeonsToMerge.push( records[i] );
+				return item;
 			}
-		}
-
-		mergeCount = surgeonsToMerge.length;
+		});
 
 		displaySurgeon.childRecords = surgeonsToMerge;
 
@@ -72,17 +65,18 @@ var merger = (function(){
 
 	publicAPI.cancelMerge = function(){
 
-		this.records.removeAll();
+		publicAPI.records.removeAll();
 		PubSub.publish('spc/merger/cancel');
 	};
 
-	publicAPI.init = function(){
+	publicAPI.remove = function( data ){
 
-		if( isInitialized === false ){
-			//do stuff
-		}
+		publicAPI.records.remove(function(item) {
 
-		isInitialized = true;
+			return item.id === data.id;
+		});
+
+		PubSub.publish('spc/merger/remove', data);
 	};
 
 	return publicAPI;

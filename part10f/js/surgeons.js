@@ -47,6 +47,14 @@ var surgeons = (function(){
 			}
 		},
 
+		removeFromMergeList: function( data ){
+
+			beingMerged.remove(function(item) {
+
+				return item.id === data.id;
+			});
+		},
+
 		recordIsBeingMerged: function( selectedData ){
 
 			var result = beingMerged().filter(function(currentData){
