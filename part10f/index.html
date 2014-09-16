@@ -46,7 +46,7 @@
         <p>Find and select a surgeon from the list to manage duplicates. Then add or remove duplicate names to merge
             with the selected surgeon.</p>
 
-        <form>
+        <form data-bind="with: surgeons">
             <ul class="flat-list">
                 <li>
                     <div class="search  width-250">
@@ -57,10 +57,10 @@
                     <label><input type="radio" name="filter" value="all" checked />All Surgeons ()</label>
                 </li>
                 <li>
-                    <label><input type="radio" name="filter" value="possible"/><i></i>Possible Duplicates ()</label>
+                    <label><input type="radio" name="filter" value="possible"/>Possible Duplicates ()</label>
                 </li>
                 <li>
-                    <label><input type="radio" name="filter" value="merged"/><i></i>Merged Surgeons ()</label>
+                    <label><input type="radio" name="filter" value="merged"/>Merged Surgeons ()</label>
                 </li>
             </ul>
         </form>
