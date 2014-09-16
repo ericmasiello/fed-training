@@ -27,6 +27,7 @@ var merger = (function(){
 	publicAPI.setSurgeon = function( data ){
 
 		publicAPI.displaySurgeon( data );
+		PubSub.publish('spc/merger/set-display-surgeon', data );
 	};
 
 
@@ -42,10 +43,7 @@ var merger = (function(){
 
 		var displaySurgeon = this.displaySurgeon();
 		var records = this.records();
-//		var surgeons = this.surgeons();
 		var surgeonsToMerge = [];
-//		var newSurgeonList = [];
-//		var matchIndex = -1;
 		var mergeCount = 0;
 
 		for( var i = 0; i < records.length; i++ ){
@@ -75,6 +73,7 @@ var merger = (function(){
 	publicAPI.cancelMerge = function(){
 
 		this.records.removeAll();
+		PubSub.publish('spc/merger/cancel');
 	};
 
 	publicAPI.init = function(){

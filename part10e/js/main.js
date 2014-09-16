@@ -49,6 +49,7 @@ var app = (function(account, surgeons, merger){
 		routePage();
 
 		//Delegate events
+
 		PubSub.subscribe('spc/surgeon/add-record', function( e, data ){
 
 			merger.add(data);
@@ -57,7 +58,18 @@ var app = (function(account, surgeons, merger){
 		PubSub.subscribe('spc/merger/merged-record', function( e, data ){
 
 			//surgeons.
+			surgeons.resetMerge();
 			surgeons.loadSurgeons(true);
+		});
+
+		PubSub.subscribe('spc/merger/set-display-surgeon', function(e, data){
+
+			surgeons.selectedSurgeon(data);
+		});
+
+		PubSub.subscribe('spc/merger/cancel', function(){
+
+			surgeons.resetMerge();
 		});
 
 		return this;

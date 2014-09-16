@@ -53,11 +53,16 @@
   width: 6px;
 }
 
-.i-move-right {
+.i-move-right, .i-move-right-dark {
 
   background-image: url("../../img/right-arrow-thin.svg");
   height: 10px;
   width: 6px;
+}
+
+.i-move-right-dark {
+
+  background-image: url("../../img/right-arrow-thin-dark.svg");
 }
 
 .i-check {
