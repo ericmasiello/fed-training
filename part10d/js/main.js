@@ -31,7 +31,7 @@ var app = (function(account, surgeons, merger){
 			this.get('#!/manager', function () {
 
 				publicAPI.currentTab('manager');
-				surgeons.init();
+				surgeons.loadSurgeons();
 
 			});
 
@@ -47,6 +47,19 @@ var app = (function(account, surgeons, merger){
 	publicAPI.init = function(){
 
 		routePage();
+
+		//Delegate events
+		PubSub.subscribe('spc/surgeon/add-record', function( e, data ){
+
+			merger.add(data);
+		});
+
+		PubSub.subscribe('spc/merger/merged-record', function( e, data ){
+
+			//surgeons.
+			surgeons.loadSurgeons(true);
+		});
+
 		return this;
 	};
 

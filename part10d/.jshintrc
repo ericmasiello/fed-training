@@ -23,6 +23,7 @@
     "ko": false,
     "$": false,
     "jQuery": false,
-    "Sammy": false
+    "Sammy": false,
+		"PubSub": false
   }
 }

@@ -85,7 +85,7 @@
 			            <td><span class="h4" data-bind="text: name"></span></td>
 			            <td class="right" data-bind="text: caseVolume">74</td>
 			            <td class="right">
-				            <a href="#">Manage Duplicates <i class="i-move-right"></i></a>
+				            <a href="#" data-bind="click: $parent.add.bind($parent, $data)">Manage Duplicates <i class="i-move-right"></i></a>
 			            </td>
 		            </tr>
 	            </tbody>
@@ -101,7 +101,7 @@
         <div class="fl  one-third" data-bind="with: merger">
 					<!-- Right Column -->
 
-	        <pre data-bind="text: ko.toJSON($data, null, 2)"></pre>
+	        <!-- <pre data-bind="text: ko.toJSON($data, null, 2)"></pre> -->
 	        <!-- ko if: records().length > 0 -->
           <table class="bsth">
               <col>
@@ -291,6 +291,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
 <script src="js/plugins.js"></script>
+<script src="js/vendor/pubsub.js"></script>
 <script src="js/vendor/knockout.js"></script>
 <script src="js/vendor/knockout.mappings-latest.js"></script>
 <script src="js/vendor/sammy.js"></script>

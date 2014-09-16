@@ -3,7 +3,6 @@
 var surgeons = (function(){
 
 	var publicAPI = {};
-	var isInitialized = false;
 	var surgeons = ko.observableArray();
 
 	/*
@@ -15,6 +14,11 @@ var surgeons = (function(){
 		return surgeons();
 	});
 
+	publicAPI.add = function( data ){
+
+		PubSub.publish('spc/surgeon/add-record', data );
+	};
+
 	var loadSurgeonsDoneCallback = function(resp){
 
 		if( jQuery.isPlainObject( resp ) === true && jQuery.isArray( resp.data ) === true ) {
@@ -23,25 +27,28 @@ var surgeons = (function(){
 		}
 	};
 
-	var loadSurgeons = function(){
+	publicAPI.loadSurgeons = function( fetchDifferentData ){
+
+		var url = 'sampledata.json';
+
+		/*
+		 * Kludge we use for demo purposes so that we can fetch
+		 * data from a different URL. We do this since we don't have
+		 * an actual backend API that supports updating the data
+		 * and retreiving the updated records back
+		 */
+		if( fetchDifferentData === true ){
+
+			url = 'sampledata2.json';
+		}
 
 		$.ajax({
-			'url': 'sampledata.json',
+			'url': url,
 			'type': 'get'
 		}).done( loadSurgeonsDoneCallback );
 
 		//Alternative ...
 		//$.get('sampledata.json', loadSurgeonsDoneCallback);
-	};
-
-	publicAPI.init = function(){
-
-		if( isInitialized === false ){
-
-			loadSurgeons();
-		}
-
-		isInitialized = true;
 	};
 
 	return publicAPI;
