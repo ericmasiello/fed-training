@@ -2,27 +2,32 @@
 
 var surgeons = (function(){
 
-	var publicAPI = {};
 	var surgeons = ko.observableArray();
 
 	var beingMerged = ko.observableArray();
-	publicAPI.isMerging = ko.computed(function(){
+	var isMerging = ko.computed(function(){
 
 		return ( beingMerged().length > 0 );
 	});
 
-	publicAPI.selectedSurgeon = ko.observable({});
+  //Tracks the selected surgeon in merger module
+	var selectedSurgeon = ko.observable({});
 
 	/*
 	 * Placeholder method, this will be modified
 	 * once we start to add filter capabilities
 	 */
-	publicAPI.records = ko.computed(function(){
+	var records = ko.computed(function(){
 
 		return surgeons();
 	});
 
-	publicAPI.parentRowStyle = function( data ){
+  /*
+   * Determines if the the <tbody> should have
+   * the accordion style based on the
+   * childRecord array length
+   */
+	var parentRowStyle = function( data ){
 
 		if( data.childRecords.length > 0 ){
 
@@ -34,7 +39,11 @@ var surgeons = (function(){
 		}
 	};
 
-	publicAPI.toggle = function( data ){
+  /*
+   * Method for toggling accordion rows
+   * between their open and closed states
+   */
+	var toggle = function( data ){
 
 		//check to see if we can expand it
 
@@ -45,8 +54,9 @@ var surgeons = (function(){
 		}
 	};
 
-	publicAPI.recordIsBeingMerged = function( selectedData ){
 
+  //Tracks if the current record is being merged
+	var recordIsBeingMerged = function( selectedData ){
 
 		var result = beingMerged().filter(function(currentData){
 
@@ -59,18 +69,27 @@ var surgeons = (function(){
 		return( result.length > 0 );
 	};
 
-	publicAPI.add = function( data ){
+  /*
+   * Method for adding current record to
+   * the merger module
+   */
+	var add = function( data ){
 
 		beingMerged.push(data);
 		PubSub.publish('spc/surgeon/add-record', data );
 	};
 
-	publicAPI.resetMerge = function(){
+  // Resets the merge state in response to merger module
+	var resetMerge = function(){
 
 		beingMerged.removeAll();
-		publicAPI.selectedSurgeon({});
+		selectedSurgeon({});
 	};
 
+  /*
+   * Callback method after successfully loading
+   * the surgeons data
+   */
 	var loadSurgeonsDoneCallback = function(resp){
 
 		if( jQuery.isPlainObject( resp ) === true && jQuery.isArray( resp.data ) === true ) {
@@ -79,7 +98,10 @@ var surgeons = (function(){
 		}
 	};
 
-	publicAPI.loadSurgeons = function( fetchDifferentData ){
+  /*
+   * Makes ajax request to load surgeons
+   */
+	var loadSurgeons = function( fetchDifferentData ){
 
 		var url = 'sampledata.json';
 
@@ -103,6 +125,17 @@ var surgeons = (function(){
 		//$.get('sampledata.json', loadSurgeonsDoneCallback);
 	};
 
-	return publicAPI;
+  return {
+
+    add: add,
+    loadSurgeons: loadSurgeons,
+    records: records,
+    isMerging: isMerging,
+    selectedSurgeon: selectedSurgeon,
+    parentRowStyle: parentRowStyle,
+    toggle: toggle,
+    recordIsBeingMerged: recordIsBeingMerged,
+    resetMerge: resetMerge
+  };
 
 })();

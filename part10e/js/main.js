@@ -10,14 +10,12 @@ var merger = (merger) ? merger : {};
 
 var app = (function(account, surgeons, merger){
 
-	var publicAPI = {
-		surgeons: surgeons,
-		account: account,
-		merger: merger,
-		currentTab: ko.observable('manager')
-	};
+  var currentTab = ko.observable('manager');
 
-	var routePage = function(){
+  /*
+   * Handles routing
+   */
+  var routePage = function(){
 
 		(new Sammy(function () {
 
@@ -30,21 +28,24 @@ var app = (function(account, surgeons, merger){
 
 			this.get('#!/manager', function () {
 
-				publicAPI.currentTab('manager');
+				currentTab('manager');
 				surgeons.loadSurgeons();
 
 			});
 
 			this.get('#!/account', function () {
 
-				publicAPI.currentTab('account');
+				currentTab('account');
 				account.init();
 
 			});
 		})).run();
 	};
 
-	publicAPI.init = function(){
+  /*
+   * Initialize the application
+   */
+  var init = function(){
 
 		routePage();
 
@@ -75,7 +76,12 @@ var app = (function(account, surgeons, merger){
 		return this;
 	};
 
-	return publicAPI;
+  return {
+    surgeons: surgeons,
+    account: account,
+    currentTab: currentTab,
+    init: init
+  };
 
 })(account, surgeons, merger);
 

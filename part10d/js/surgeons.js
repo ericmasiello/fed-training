@@ -13,6 +13,10 @@ var surgeons = (function(){
 		return surgeons();
 	});
 
+  /*
+   * Method for adding current record to
+   * the merger module
+   */
 	var add = function( data ){
 
 		PubSub.publish('spc/surgeon/add-record', data );

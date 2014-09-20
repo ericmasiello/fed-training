@@ -3,9 +3,7 @@
 var account = (function (){
 
 	var isInitialized = false;
-  /*
-   * Defines public API
-   */
+  // Defines public API
   var publicAPI = ko.mapping.fromJS({
     id: '',
     firstName: '',

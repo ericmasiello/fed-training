@@ -2,8 +2,6 @@
 
 var merger = (function(){
 
-	var isInitialized = false;
-
 	//List of surgeons we want to merge
 	var records = ko.observableArray();
 

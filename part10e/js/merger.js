@@ -2,49 +2,46 @@
 
 var merger = (function(){
 
-	var publicAPI = {};
-	var isInitialized = false;
+  //List of surgeons we want to merge
+  var records = ko.observableArray();
 
-	//List of surgeons we want to merge
-	publicAPI.records = ko.observableArray();
+  //The current surgeon selected as the display name
+  var displaySurgeon = ko.observable();
 
-	//The current surgeon selected as the display name
-	publicAPI.displaySurgeon = ko.observable();
-
-	//Public method for adding a new record to the list of surgeons
-	publicAPI.add = function( data ){
+  //Public method for adding a new record to the list of surgeons
+  var add = function( data ){
 
 		//If this is the first record being added, we make him/her the display record
-		if( publicAPI.records().length === 0 ){
+		if( records().length === 0 ){
 
-			publicAPI.setSurgeon( data );
+			setSurgeon( data );
 		}
 
-		publicAPI.records.push( data );
+		records.push( data );
 	};
 
-	//Public method for setting the dispaly surgeon
-	publicAPI.setSurgeon = function( data ){
+  //Public method for setting the dispaly surgeon
+  var setSurgeon = function( data ){
 
-		publicAPI.displaySurgeon( data );
+		displaySurgeon( data );
 		PubSub.publish('spc/merger/set-display-surgeon', data );
 	};
 
+  //Callback from merging records
+  var mergeRecordsDoneCallback = function( data ){
 
-	var mergeRecordsDoneCallback = function( data ){
-
-		publicAPI.records.removeAll();
-		publicAPI.displaySurgeon(null);
+		records.removeAll();
+		displaySurgeon(null);
 
 		PubSub.publish('spc/merger/merged-record', data );
 	};
 
-	publicAPI.mergeRecords = function(){
+  //merge records, saves records to faux api
+  var mergeRecords = function(){
 
 		var displaySurgeon = this.displaySurgeon();
 		var records = this.records();
 		var surgeonsToMerge = [];
-		var mergeCount = 0;
 
 		for( var i = 0; i < records.length; i++ ){
 
@@ -53,8 +50,6 @@ var merger = (function(){
 				surgeonsToMerge.push( records[i] );
 			}
 		}
-
-		mergeCount = surgeonsToMerge.length;
 
 		displaySurgeon.childRecords = surgeonsToMerge;
 
@@ -70,21 +65,19 @@ var merger = (function(){
 		mergeRecordsDoneCallback( displaySurgeon );
 	};
 
-	publicAPI.cancelMerge = function(){
+  var cancelMerge = function(){
 
 		this.records.removeAll();
 		PubSub.publish('spc/merger/cancel');
 	};
 
-	publicAPI.init = function(){
-
-		if( isInitialized === false ){
-			//do stuff
-		}
-
-		isInitialized = true;
-	};
-
-	return publicAPI;
+  return {
+    records: records,
+    displaySurgeon: displaySurgeon,
+    add: add,
+    setSurgeon: setSurgeon,
+    mergeRecords: mergeRecords,
+    cancelMerge: cancelMerge
+  };
 
 })();
