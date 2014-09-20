@@ -9,6 +9,9 @@ var surgeons = (surgeons) ? surgeons : {};
 
 var app = (function(account, surgeons){
 
+  /*
+   * Toggles different views in the application
+   */
 	var toggleTabs = function (tab){
 
 		var $tabs = $('#main-nav').find('a');
@@ -30,6 +33,9 @@ var app = (function(account, surgeons){
 		}
 	};
 
+  /*
+   * Handles routing
+   */
 	var routePage = function(){
 
 		(new Sammy(function () {
@@ -57,6 +63,9 @@ var app = (function(account, surgeons){
 		})).run();
 	};
 
+  /*
+   * Initialize the application
+   */
 	var init = function(){
 
 		routePage();

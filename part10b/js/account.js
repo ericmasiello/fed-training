@@ -2,6 +2,9 @@
 
 var account = (function (){
 
+  /*
+   * Defines public API
+   */
 	var publicAPI = {
 		homeNumber1: ko.observable(),
 		homeNumber2: ko.observable(),
@@ -16,7 +19,10 @@ var account = (function (){
 		newPassword2: ko.observable('')
 	};
 
-	//Private method
+	/*
+   * Private method,
+   * verifies if the new-passowrd and new-password-2 field match
+	 */
 	var isPasswordMismatch = function(){
 
 		var misMatch = false;
@@ -29,7 +35,10 @@ var account = (function (){
 		return misMatch;
 	};
 
-	//Private method
+  /*
+   * Private method
+   * Copies the cell phone into the home number fields
+   */
 	var sameAsCellChanged = function(checked){
 
 		if( checked === true ){

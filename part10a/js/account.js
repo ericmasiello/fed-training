@@ -4,6 +4,9 @@ var account = (function(){
 
 	var isInitialized = false;
 
+  /*
+   * Verifies if the new-passowrd and new-password-2 field match
+   */
 	var isPasswordMatch = function(){
 
 		var $password = $('#new-password');
@@ -21,6 +24,9 @@ var account = (function(){
 			.siblings('div, i').toggle(setError);
 	};
 
+  /*
+   * Copies the cell phone into the home number fields
+   */
 	var toggleSameAsCell = function(){
 
 		var checked = $(this).is(':checked');
@@ -40,6 +46,9 @@ var account = (function(){
 		}
 	};
 
+  /*
+   * Initialize the account module
+   */
 	var init = function(){
 
 		if( isInitialized === false ){

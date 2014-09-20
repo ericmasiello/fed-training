@@ -2,7 +2,6 @@
 
 var surgeons = (function(){
 
-	var publicAPI = {};
 	var isInitialized = false;
 	var surgeons = ko.observableArray();
 
@@ -10,11 +9,15 @@ var surgeons = (function(){
 	 * Placeholder method, this will be modified
 	 * once we start to add filter capabilities
 	 */
-	publicAPI.records = ko.computed(function(){
+	var records = ko.computed(function(){
 
 		return surgeons();
 	});
 
+  /*
+   * Callback method after successfully loading
+   * the surgeons data
+   */
 	var loadSurgeonsDoneCallback = function(resp){
 
 		if( jQuery.isPlainObject( resp ) === true && jQuery.isArray( resp.data ) === true ) {
@@ -23,6 +26,9 @@ var surgeons = (function(){
 		}
 	};
 
+  /*
+   * Makes ajax request to load surgeons
+   */
 	var loadSurgeons = function(){
 
 		$.ajax({
@@ -34,7 +40,10 @@ var surgeons = (function(){
 		//$.get('sampledata.json', loadSurgeonsDoneCallback);
 	};
 
-	publicAPI.init = function(){
+  /*
+   * Initialize the surgeons module
+   */
+  var init = function(){
 
 		if( isInitialized === false ){
 
@@ -44,6 +53,10 @@ var surgeons = (function(){
 		isInitialized = true;
 	};
 
-	return publicAPI;
+	return {
+
+    records: records,
+    init: init
+  };
 
 })();

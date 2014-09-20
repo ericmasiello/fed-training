@@ -9,12 +9,11 @@ var surgeons = (surgeons) ? surgeons : {};
 
 var app = (function(account, surgeons){
 
-	var publicAPI = {
-		surgeons: surgeons,
-		account: ko.observable(account),
-		currentTab: ko.observable('manager')
-	};
+  var currentTab = ko.observable('manager');
 
+  /*
+   * Handles routing
+   */
 	var routePage = function(){
 
 		(new Sammy(function () {
@@ -28,25 +27,33 @@ var app = (function(account, surgeons){
 
 			this.get('#!/manager', function () {
 
-				publicAPI.currentTab('manager');
+				currentTab('manager');
 				surgeons.init();
 
 			});
 
 			this.get('#!/account', function () {
 
-				publicAPI.currentTab('account');
+				currentTab('account');
 			});
 		})).run();
 	};
 
-	publicAPI.init = function(){
+  /*
+   * Initialize the application
+   */
+	var init = function(){
 
 		routePage();
 		return this;
 	};
 
-	return publicAPI;
+	return {
+    surgeons: surgeons,
+    account: account,
+    currentTab: currentTab,
+    init: init
+  };
 
 })(account, surgeons);
 
