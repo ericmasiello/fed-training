@@ -80,7 +80,7 @@ var account = (function (){
 			publicAPI.cellNumberExt(publicAPI.homeNumberExt());
 		}
 
-		return true; //must return true to allow defualt browser behavior
+		return true; //must return true to allow default browser behavior
 	};
 
   /*

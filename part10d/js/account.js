@@ -3,35 +3,42 @@
 var account = (function (){
 
 	var isInitialized = false;
-	var publicAPI = ko.mapping.fromJS({
-		'id': '',
-		'firstName': '',
-		'lastName': '',
-		'jobTitle': '',
-		'emailAddress': '',
-		'cellNumber1': '',
-		'cellNumber2': '',
-		'cellNumber3': '',
-		'cellNumberExt': '',
-		'homeNumber1': '',
-		'homeNumber2': '',
-		'homeNumber3': '',
-		'homeNumberExt': '',
-		'password': '',
-		'securityQuestion1': '',
-		'securityQuestion2': '',
-		'securityQuestion3': '',
-		'securityAnswer1': '',
-		'securityAnswer2': '',
-		'securityAnswer3': ''
-	});
+  /*
+   * Defines public API
+   */
+  var publicAPI = ko.mapping.fromJS({
+    id: '',
+    firstName: '',
+    lastName: '',
+    jobTitle: '',
+    emailAddress: '',
+    cellNumber1: '',
+    cellNumber2: '',
+    cellNumber3: '',
+    cellNumberExt: '',
+    homeNumber1: '',
+    homeNumber2: '',
+    homeNumber3: '',
+    homeNumberExt: '',
+    password: '',
+    securityQuestion1: '',
+    securityQuestion2: '',
+    securityQuestion3: '',
+    securityAnswer1: '',
+    securityAnswer2: '',
+    securityAnswer3: '',
+    sameAsCell: false,
+    passwordMatch: '',
+    newPassword: '',
+    newPassword2: '',
+    securityQuestions: ['Name of your cat', 'Name of your spouse', 'Name of your favorite Disney character']
+  });
 
-	publicAPI.sameAsCell = ko.observable(false);
-	publicAPI.passwordMatch = ko.observable('');
-	publicAPI.newPassword = ko.observable('');
-	publicAPI.newPassword2 = ko.observable('');
-	publicAPI.securityQuestions = ko.observableArray(['Name of your cat', 'Name of your spouse', 'Name of your favorite Disney character']);
-
+  /*
+   * Private method,
+   * Verifies the password typed by user matches the password fetched
+   * via the Ajax request
+   */
 	var isOriginalPasswordMismatch = function(){
 
 		var misMatch = false;
@@ -44,7 +51,10 @@ var account = (function (){
 		return misMatch;
 	};
 
-	//Private method
+  /*
+   * Private method,
+   * verifies if the new-passowrd and new-password-2 field match
+   */
 	var isPasswordMismatch = function(){
 
 		var misMatch = false;
@@ -57,7 +67,10 @@ var account = (function (){
 		return misMatch;
 	};
 
-	//Private method
+  /*
+   * Private method
+   * Copies the cell phone into the home number fields
+   */
 	var sameAsCellChanged = function(checked){
 
 		if( checked === true ){
@@ -67,9 +80,14 @@ var account = (function (){
 			publicAPI.cellNumberExt(publicAPI.homeNumberExt());
 		}
 
-		return true; //must return true to allow defualt browser behavior
+		return true; //must return true to allow default browser behavior
 	};
 
+  /*
+   * Private method called after loading the data from the API.
+   * It will check the sameAsCell() checkbox if home phone matches
+   * the cell phone
+   */
 	var initializeStateOfSameAsCell = function(){
 
 		if( publicAPI.homeNumber1() === publicAPI.cellNumber1() &&
@@ -85,12 +103,18 @@ var account = (function (){
 		}
 	};
 
+  /*
+   * Done callback from loading account data
+   */
 	var loadAccountDoneCallback = function(data){
 
 		ko.mapping.fromJS(data, publicAPI);
 		initializeStateOfSameAsCell();
 	};
 
+  /*
+   * Loads account data
+   */
 	var loadAccount = function(){
 
 		$.get('sampleuser.json', loadAccountDoneCallback);

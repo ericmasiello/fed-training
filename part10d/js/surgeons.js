@@ -2,23 +2,26 @@
 
 var surgeons = (function(){
 
-	var publicAPI = {};
 	var surgeons = ko.observableArray();
 
-	/*
-	 * Placeholder method, this will be modified
-	 * once we start to add filter capabilities
-	 */
-	publicAPI.records = ko.computed(function(){
+  /*
+   * Placeholder method, this will be modified
+   * once we start to add filter capabilities
+   */
+  var records = ko.computed(function(){
 
 		return surgeons();
 	});
 
-	publicAPI.add = function( data ){
+	var add = function( data ){
 
 		PubSub.publish('spc/surgeon/add-record', data );
 	};
 
+  /*
+   * Callback method after successfully loading
+   * the surgeons data
+   */
 	var loadSurgeonsDoneCallback = function(resp){
 
 		if( jQuery.isPlainObject( resp ) === true && jQuery.isArray( resp.data ) === true ) {
@@ -27,7 +30,10 @@ var surgeons = (function(){
 		}
 	};
 
-	publicAPI.loadSurgeons = function( fetchDifferentData ){
+  /*
+   * Makes ajax request to load surgeons
+   */
+	var loadSurgeons = function( fetchDifferentData ){
 
 		var url = 'sampledata.json';
 
@@ -51,6 +57,11 @@ var surgeons = (function(){
 		//$.get('sampledata.json', loadSurgeonsDoneCallback);
 	};
 
-	return publicAPI;
+  return {
+
+    add: add,
+    loadSurgeons: loadSurgeons,
+    records: records
+  };
 
 })();
