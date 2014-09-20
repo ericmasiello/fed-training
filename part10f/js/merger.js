@@ -1,3 +1,5 @@
+define([], function(){
+
 'use strict';
 
 var merger = (function(){
@@ -90,3 +92,8 @@ var merger = (function(){
   };
 
 })();
+
+
+  return merger;
+
+});

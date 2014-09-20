@@ -1,3 +1,4 @@
+define([], function(){
 'use strict';
 
 var account = (function (){
@@ -142,3 +143,7 @@ var account = (function (){
 	return publicAPI;
 
 })();
+
+return account;
+
+});
