@@ -12,8 +12,8 @@ var app = (function(account, surgeons, merger){
 
 	var publicAPI = {
 		surgeons: surgeons,
-		account: ko.observable(account),
-		merger: ko.observable(merger),
+		account: account,
+		merger: merger,
 		currentTab: ko.observable('manager')
 	};
 

@@ -77,8 +77,8 @@ var app = (function(account, surgeons, merger){
 	return {
 
 		surgeons: surgeons,
-		account: ko.observable(account),
-		merger: ko.observable(merger),
+		account: account,
+		merger: merger,
 		currentTab: currentTab,
 		init: init
 	};
