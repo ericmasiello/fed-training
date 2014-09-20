@@ -2,7 +2,6 @@
 
 var surgeons = (function(){
 
-	var publicAPI = {};
 	var isInitialized = false;
 	var surgeons = ko.observableArray();
 
