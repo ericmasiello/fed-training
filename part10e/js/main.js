@@ -79,6 +79,7 @@ var app = (function(account, surgeons, merger){
   return {
     surgeons: surgeons,
     account: account,
+    merger: merger,
     currentTab: currentTab,
     init: init
   };
