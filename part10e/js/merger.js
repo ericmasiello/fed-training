@@ -67,7 +67,7 @@ var merger = (function(){
 
   var cancelMerge = function(){
 
-		this.records.removeAll();
+		records.removeAll();
 		PubSub.publish('spc/merger/cancel');
 	};
 

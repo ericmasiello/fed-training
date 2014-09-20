@@ -66,7 +66,7 @@ var merger = (function(){
 
 	var cancelMerge = function(){
 
-		this.records.removeAll();
+		records.removeAll();
 	};
 
 	return {

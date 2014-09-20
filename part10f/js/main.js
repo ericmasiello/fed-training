@@ -11,7 +11,10 @@ var merger = (merger) ? merger : {};
 var app = (function(account, surgeons, merger){
 
 	var currentTab = ko.observable('manager');
-	var routePage = function(){
+  /*
+   * Handles routing
+   */
+  var routePage = function(){
 
 		(new Sammy(function () {
 
@@ -38,7 +41,10 @@ var app = (function(account, surgeons, merger){
 		})).run();
 	};
 
-	var init = function(){
+  /*
+   * Initialize the application
+   */
+  var init = function(){
 
 		routePage();
 
@@ -75,7 +81,6 @@ var app = (function(account, surgeons, merger){
 	};
 
 	return {
-
 		surgeons: surgeons,
 		account: account,
 		merger: merger,
