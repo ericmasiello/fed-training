@@ -1,16 +1,9 @@
 'use strict';
 
-/*
- * Verify that account and surgeon are loaded
- * If not, set them to empty objects
- */
-var account = (account) ? account : {};
-var surgeons = (surgeons) ? surgeons : {};
-var merger = (merger) ? merger : {};
-
-var app = (function(account, surgeons, merger){
+var app = (function(account, Surgeons, merger){
 
 	var currentTab = ko.observable('manager');
+  var surgeons = Object.create(Surgeons).init();
   /*
    * Handles routing
    */
@@ -88,6 +81,6 @@ var app = (function(account, surgeons, merger){
 		init: init
 	};
 
-})(account, surgeons, merger);
+})(account, Surgeons, merger);
 
 ko.applyBindings( app.init(), document.getElementById('app') );
