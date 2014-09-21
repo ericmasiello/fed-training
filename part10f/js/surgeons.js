@@ -34,6 +34,11 @@ define([],
         // Tracks the selected surgeon in merger module
         this.selectedSurgeon = ko.observable({});
 
+        // Bound to search text box
+        this.searchTerm = ko.observable('');
+        // Bound to selected radio filter option
+        this.filter = ko.observable('all');
+
         /*
          * Binds the "this" context to the instance
          * for these private methods
@@ -41,12 +46,26 @@ define([],
         loadSurgeonsDoneCallback = loadSurgeonsDoneCallback.bind(this);
 
         /*
-         * Placeholder method, this will be modified
-         * once we start to add filter capabilities
+         * Computed that publicly exposes the the correct records
+         * from the private surgeons observable based on the currently
+         * selected filter
          */
         this.records = ko.computed(function(){
 
-          return surgeons();
+          switch( this.filter() ){
+
+            case 'all':
+
+              return this.allSurgeons();
+
+            case 'possible':
+
+              return this.possibleDuplicateSurgeons();
+
+            case 'merged':
+
+              return this.mergedSurgeons();
+          }
         }, this);
 
         this.isMerging = ko.computed(function(){
@@ -142,6 +161,42 @@ define([],
 
         beingMerged.removeAll();
         this.selectedSurgeon({});
+      },
+
+      // Removes the surgeon from the beingMerged list
+      removeFromMergeList: function( data ){
+
+        beingMerged.remove(function(item) {
+
+          return item.id === data.id;
+        });
+      },
+
+      allSurgeons: function() {
+
+        var searchTerm = typeof this.searchTerm() === 'string' ? this.searchTerm().toLowerCase() : '';
+
+        return ko.utils.arrayFilter( surgeons(), function(data) {
+          return ( data.name.toLowerCase().indexOf( searchTerm ) > -1 );
+        });
+      },
+
+      possibleDuplicateSurgeons: function() {
+
+        var searchTerm = typeof this.searchTerm() === 'string' ? this.searchTerm().toLowerCase() : '';
+
+        return ko.utils.arrayFilter( surgeons(), function(data) {
+          return ( data.possibleDuplicate === true && data.name.toLowerCase().indexOf( searchTerm ) > -1 );
+        });
+      },
+
+      mergedSurgeons: function() {
+
+        var searchTerm = typeof this.searchTerm() === 'string' ? this.searchTerm().toLowerCase() : '';
+
+        return ko.utils.arrayFilter( surgeons(), function(data) {
+          return ( data.childRecords.length > 0 && data.name.toLowerCase().indexOf( searchTerm ) > -1 );
+        });
       }
     };
 

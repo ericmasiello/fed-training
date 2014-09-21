@@ -63,6 +63,11 @@ require(['account', 'surgeons', 'merger'],
         this.surgeons.resetMerge();
       }.bind(this));
 
+      PubSub.subscribe('spc/merger/remove', function(e, data){
+
+        this.surgeons.removeFromMergeList(data);
+      }.bind(this));
+
     };
 
     /*

@@ -30,6 +30,7 @@ define([],
         //Set "this" context
         mergeRecordsDoneCallback = mergeRecordsDoneCallback.bind(this);
         this.setSurgeon = this.setSurgeon.bind(this);
+        this.remove = this.remove.bind(this);
 
         return this;
       },
@@ -92,6 +93,17 @@ define([],
 
         this.records.removeAll();
         PubSub.publish('spc/merger/cancel');
+      },
+
+      // removes the surgeon from the list
+      remove: function( data ){
+
+        this.records.remove(function(item) {
+
+          return item.id === data.id;
+        });
+
+        PubSub.publish('spc/merger/remove', data);
       }
     };
 
