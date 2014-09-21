@@ -192,20 +192,19 @@
     <ul class="form-list  mbl">
       <li>
         <label class="block  mbs" for="first-name">First name</label>
-        <input id="first-name" type="text">
+        <input id="first-name" type="text" data-bind="value: firstName">
       </li>
       <li>
         <label class="block  mbs" for="last-name">Last name</label>
-        <input id="last-name" type="text">
+        <input id="last-name" type="text" data-bind="value: lastName">
       </li>
       <li>
         <label class="block  mbs" for="job-title">Job title</label>
-        <input id="job-title" type="text">
+        <input id="job-title" type="text" data-bind="value: jobTitle">
       </li>
       <li>
         <label class="block  mbs" for="email-address">Email address</label>
-        <input id="email-address" type="email"> <i class="i-error" style="display: none"></i>
-        <div class="mts  is-error" style="display: none">Required field</div>
+        <input id="email-address" type="email" data-bind="value: emailAddress">
       </li>
       <li>
         <label class="block  mbs" for="cell-number-1">Cell number</label>
@@ -237,12 +236,14 @@
       <div class="fl  six-twelfths">
         <ul class="form-list">
           <li>
-            <label class="block  mbs" for="password">Password</label>
-            <input id="password" type="password"> <i class="i-error" style="display: none"></i>
-
-            <div class="is-error  mts" style="display: none">
+            <label class="block  mbs" for="password" data-bind="css: {'is-error': isOriginalPasswordMismatch}">Password</label>
+            <input id="password" type="password"  data-bind="value: passwordMatch, css: {'is-error': isOriginalPasswordMismatch}">
+            <!-- ko if: isOriginalPasswordMismatch -->
+            <i class="i-error"></i>
+            <div class="is-error  mts">
               Your password does not match your previously saved password.
             </div>
+            <!-- /ko -->
           </li>
           <li>
             <label class="block  mbs" for="new-password">New password</label>
@@ -279,40 +280,25 @@
     <ul class="form-list  mtl">
       <li>
 	              <span class="select">
-	                <select id="security-question-1">
-                    <option value="">Select a security question</option>
-                    <option value="Name of your cat">Name of your cat</option>
-                    <option value="Name of your spouse">Name of your spouse</option>
-                    <option value="Name of your favorite Disney character">Name of your favorite Disney character</option>
-                  </select>
+	                <select id="security-question-1" data-bind="options: securityQuestions, optionsCaption: 'Select a security question', value: securityQuestion1"></select>
 		            </span>
         <label for="answer-1" class="mll">Answer 1</label>
-        <input id="answer-1" type="text"/>
+        <input id="answer-1" type="text" data-bind="value: securityAnswer1" />
       </li>
       <li>
 	              <span class="select">
-	                <select id="security-question-2">
-                    <option value="">Select a security question</option>
-                    <option value="Name of your cat">Name of your cat</option>
-                    <option value="Name of your spouse">Name of your spouse</option>
-                    <option value="Name of your favorite Disney character">Name of your favorite Disney character</option>
-                  </select>
+	                <select id="security-question-2" data-bind="options: securityQuestions, optionsCaption: 'Select a security question', value: securityQuestion2"></select>
 		            </span>
 
         <label for="answer-2" class="mll">Answer 2</label>
-        <input id="answer-2" type="text"/>
+        <input id="answer-2" type="text" data-bind="value: securityAnswer2"/>
       </li>
       <li>
 	              <span class="select">
-	                <select id="security-question-3">
-                    <option value="">Select a security question</option>
-                    <option value="Name of your cat">Name of your cat</option>
-                    <option value="Name of your spouse">Name of your spouse</option>
-                    <option value="Name of your favorite Disney character">Name of your favorite Disney character</option>
-                  </select>
+	                <select id="security-question-3"  data-bind="options: securityQuestions, optionsCaption: 'Select a security question', value: securityQuestion3"></select>
                 </span>
         <label for="answer-3" class="mll">Answer 3</label>
-        <input id="answer-3" type="text"/>
+        <input id="answer-3" type="text" data-bind="value: securityAnswer3"/>
       </li>
     </ul>
     <div class="mtxl">
@@ -328,6 +314,7 @@
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
 <script src="js/plugins.js"></script>
 <script src="js/vendor/knockout.js"></script>
+<script src="js/vendor/knockout.mappings-latest.js"></script>
 <script src="js/vendor/sammy.js"></script>
 <script src="js/vendor/jquery-1.10.2.min.js"></script>
 <script src="js/vendor/require.js" data-main="js/main"></script>

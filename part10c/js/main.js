@@ -32,6 +32,7 @@ require(['account', 'surgeons'],
         this.get('#!/account', function () {
 
           self.currentTab('account');
+          self.account.loadAccount();
 
         });
       })).run();
