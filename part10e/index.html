@@ -80,14 +80,45 @@
         </tr>
         </thead>
         <!-- ko foreach: records -->
-        <tbody>
-        <tr>
-          <td><span class="h4" data-bind="text: name"></span></td>
-          <td class="right" data-bind="text: caseVolume">74</td>
+        <tbody data-bind="css: $parent.parentRowStyle($data)">
+        <tr data-bind="click: $parent.toggle">
+          <td>
+            <!-- ko if: (childRecords.length > 0) --><i class="i-toggle"></i><!-- /ko -->
+            <!-- ko if: possibleDuplicate --><i class="i-error"></i><!--/ko -->
+            <span class="h4" data-bind="text: name"></span>
+          </td>
+          <td class="right" data-bind="text: caseVolume"></td>
           <td class="right">
-            <a href="#" data-bind="click: $parent.add">Manage Duplicates <i class="i-move-right"></i></a>
+
+            <!-- ko ifnot: $parent.isMerging -->
+            <a href="#" data-bind="click: $parent.add, clickBubble: false">Manage Duplicates <i class="i-move-right"></i></a>
+            <!-- /ko -->
+
+            <!-- ko if: $parent.isMerging -->
+
+            <!-- ko if: $parent.selectedSurgeon().id === $data.id -->
+            Selected <i class="i-move-right-dark"></i>
+            <!-- /ko -->
+
+            <!-- ko if: ( ($parent.selectedSurgeon().id !== $data.id) && ($parent.recordIsBeingMerged($data) === true)) -->
+            <span class="is-success"><i class="i-check"></i> Added</span>
+            <!-- /ko -->
+
+            <!-- ko if: (($parent.selectedSurgeon().id !== $data.id) && ($parent.recordIsBeingMerged($data) === false) ) -->
+            <a href="#" data-bind="click: $parent.add, clickBubble: false">Add to List <i class="i-plus-circle"></i></a>
+            <!-- /ko -->
+
+            <!-- /ko -->
+
           </td>
         </tr>
+        <!-- ko foreach: childRecords -->
+        <tr>
+          <td data-bind="text: name"></td>
+          <td class="right" data-bind="text: caseVolume"></td>
+          <td></td>
+        </tr>
+        <!-- /ko -->
         </tbody>
         <!-- /ko -->
       </table>
@@ -101,6 +132,7 @@
     <div class="fl  one-third" data-bind="with: merger">
       <!-- Right Column -->
 
+      <!-- <pre data-bind="text: ko.toJSON($data, null, 2)"></pre> -->
       <!-- ko if: records().length > 0 -->
       <table class="bsth">
         <col>

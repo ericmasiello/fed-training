@@ -38,6 +38,7 @@ define([],
       setSurgeon: function( data ){
 
         this.displaySurgeon( data );
+        PubSub.publish('spc/merger/set-display-surgeon', data );
       },
 
       // Method for adding a new record to the list of surgeons
@@ -90,6 +91,7 @@ define([],
       cancelMerge: function(){
 
         this.records.removeAll();
+        PubSub.publish('spc/merger/cancel');
       }
     };
 

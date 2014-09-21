@@ -32,7 +32,6 @@ define([],
          * Binds the "this" context to the instance
          * for these private methods
          */
-        surgeons = surgeons.bind(this);
         loadSurgeonsDoneCallback = loadSurgeonsDoneCallback.bind(this);
 
         /*
