@@ -4,17 +4,17 @@
 
 .is-success {
 
-  color: #74982F;
+	color: #74982F;
 }
 
 .is-error {
 
-  color: #CD1126;
+	color: #CD1126;
 }
 
 .is-warning {
 
-  color: #D5801D;
+	color: #D5801D;
 }
 
 [type="email"].is-error,
@@ -25,5 +25,15 @@
 [type="url"].is-error,
 textarea.is-error {
 
-  border-color: #CD1126;
+	border-color: #CD1126;
+}
+
+.is-hidden {
+
+	display: none;
+}
+
+.is-invisible {
+
+	visibility: hidden;
 }

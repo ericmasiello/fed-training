@@ -47,7 +47,6 @@
       with the selected surgeon.</p>
 
     <form data-bind="with: surgeons">
-      <!--<pre data-bind="text: ko.toJSON($data, null, 2)"></pre>-->
 
       <ul class="flat-list">
         <li>
@@ -69,7 +68,11 @@
 
   </div>
 
-  <div class="clearfix  table-header-offset">
+  <div class="table-header-offset  phl" data-bind="css: { 'is-hidden': surgeons.isLoaded }">
+    Loading&hellip;
+  </div>
+
+  <div class="clearfix  table-header-offset  is-invisible" data-bind="css: {'is-invisible': !surgeons.isLoaded()}">
     <div class="fl  two-thirds  bsrh" data-bind="with: surgeons">
       <!-- Left Column -->
 
@@ -136,7 +139,7 @@
 
       <!-- ko if: records().length > 0 -->
       <table class="bsth">
-        <col>
+        <col class="width-40">
         <col>
         <col>
         <thead>
@@ -191,6 +194,7 @@
 
     </div>
   </div>
+
 </section><!-- /#manager -->
 
 <section id="account" class="phl  pbl" style="display: none" data-bind="visible: (currentTab() === 'account')">
