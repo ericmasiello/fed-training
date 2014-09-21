@@ -1,0 +1,116 @@
+/*
+ * Form Elements
+ */
+
+input,
+select,
+textarea,
+button {
+
+  margin: 0;
+}
+
+[type="email"],
+[type="number"],
+[type="password"],
+[type="phone"],
+[type="text"],
+[type="url"],
+textarea,
+select {
+
+  background-color: #fff;
+  border: 1px solid #C4C6C8;
+  line-height: 22px;
+  padding: 3px;
+  width: 100%;
+  max-width: 300px;
+}
+
+select {
+
+  background-image: none; /* Used to remove styles from Firefox */
+  height: 30px; /* Forces height in Firefox */
+}
+
+/*
+ * Webkit Select
+ */
+
+@media screen and ( -webkit-min-device-pixel-ratio: 0 ) {
+
+  .select {
+
+    background-color: #fff;
+    border: 1px solid #C4C6C8;
+    display: inline-block;
+    position: relative;
+    width: 300px;
+  }
+
+  .select::after {
+
+    content: "";
+    background: url("../../img/down-arrow.svg") no-repeat 0 center transparent;
+    height: 28px;
+    position: absolute;
+    right: 3px;
+    top: 0;
+    width: 10px;
+    z-index: 1;
+  }
+
+  .select select {
+
+    border: none;
+    background-color: transparent;
+    line-height: 22px;
+    padding: 3px 20px 3px 3px;
+    position: relative;
+    width: 100%;
+    z-index: 2;
+
+    /* removes default styling for webkit */
+    -webkit-appearance: none;
+  }
+}
+
+[type="email"]:hover,
+[type="number"]:hover,
+[type="password"]:hover,
+[type="phone"]:hover,
+[type="text"]:hover,
+[type="url"]:hover,
+textarea:hover,
+[type="email"]:focus,
+[type="number"]:focus,
+[type="password"]:focus,
+[type="phone"]:focus,
+[type="text"]:focus,
+[type="url"]:focus,
+textarea:focus{
+
+  border-color: #007DB1;
+}
+
+[type="email"]:disabled,
+[type="number"]:disabled,
+[type="password"]:disabled,
+[type="phone"]:disabled,
+[type="text"]:disabled,
+[type="url"]:disabled,
+textarea:disabled {
+
+  background-color: #F8F8F8;
+  border-color: #D1D1D1;
+}
+
+/*
+ * Radio, Checkboxes
+ */
+
+[type="radio"],
+[type="checkbox"]{
+
+  margin-right: 5px;
+}

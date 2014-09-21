@@ -1,0 +1,24 @@
+/*
+ * State
+ */
+
+.is-success {
+
+  color: #74982F;
+}
+
+.is-error {
+
+  color: #CD1126;
+}
+
+[type="email"].is-error,
+[type="number"].is-error,
+[type="password"].is-error,
+[type="phone"].is-error,
+[type="text"].is-error,
+[type="url"].is-error,
+textarea.is-error {
+
+  border-color: #CD1126;
+}

@@ -1,0 +1,17 @@
+Color : #363636
+Link: #007DB1
+Muted: #868686
+Success: #74982F
+Error: #CD1126
+App title: #45525F
+
+App Title: 14px
+
+Base Text: 12/16
+H1: 24/28
+H2: 18/22
+H3: 16/20
+H4: 14/18
+
+Small: 11/15px
+Button: 13px

@@ -1,0 +1,38 @@
+/*
+ * Icons
+ */
+
+[class*="i-"] {
+
+  bottom: -1px;
+  display: inline-block;
+  background-color: transparent;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.i-menu {
+
+  background-image: url("../../img/menu.svg");
+  height: 11px;
+  width: 12px;
+}
+
+.i-error {
+
+  background-image: url("../../img/error.svg");
+  height: 14px;
+  width: 14px;
+}
+
+.i-remove {
+	background-image: url("../../img/x-box.svg");
+	height: 15px;
+	width: 15px;
+}
+
+.i-remove:hover {
+
+	background-image: url("../../img/x-box-hover.svg");
+}

@@ -1,0 +1,29 @@
+/*
+ * Lists
+ */
+
+/*ul*/.form-list > li {
+
+  margin-top: 20px;
+}
+
+.form-list > li:first-child {
+
+  margin-top: 0;
+}
+
+.decorated-list {
+
+  margin: 0 0 10px 25px;
+  padding: 0;
+}
+
+ul.decorated-list {
+
+  list-style-type: disc;
+}
+
+ol.decorated-list {
+
+  list-style-type: decimal;
+}

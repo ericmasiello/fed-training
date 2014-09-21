@@ -1,0 +1,25 @@
+@import "core/reset.css";
+@import "core/main.css";
+@import "core/headings.css";
+@import "core/forms.css";
+@import "core/buttons.css";
+@import "core/tables.css";
+
+@import "components/accordion.css";
+@import "components/grid.css";
+@import "components/app-header.css";
+@import "components/app-title.css";
+@import "components/lists.css";
+@import "components/nav.css";
+@import "components/icons.css";
+
+@import "utility/border.css";
+@import "utility/color.css";
+@import "utility/layout.css";
+@import "utility/text.css";
+@import "utility/display.css";
+@import "utility/width.css";
+@import "utility/spacing.css";
+@import "utility/state.css";
+
+@import "page/duplicate-surgeon.css";

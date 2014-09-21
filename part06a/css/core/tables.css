@@ -1,0 +1,24 @@
+/*
+ * Tables
+ */
+
+table {
+
+  /*
+   * Although width properties aren't part of this module, its much easier to see the effects of
+   * changing text-align properties if this is at 100%
+   */
+  width: 100%;
+}
+
+thead td,
+thead th {
+
+  color: #868686;
+  vertical-align: bottom;
+}
+
+td, th {
+
+  text-align: left;
+}
