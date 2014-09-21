@@ -1,57 +1,68 @@
-'use strict';
+define([],
+  function() {
 
-var account = (function (){
+    'use strict';
 
-	var publicAPI = {
-		homeNumber1: ko.observable(),
-		homeNumber2: ko.observable(),
-		homeNumber3: ko.observable(),
-		homeNumberExt: ko.observable(),
-		sameAsCell: ko.observable(false),
-		cellNumber1: ko.observable(),
-		cellNumber2: ko.observable(),
-		cellNumber3: ko.observable(),
-		cellNumberExt: ko.observable(),
-		newPassword: ko.observable(''),
-		newPassword2: ko.observable('')
-	};
+    /*
+     * Private variables
+     * & methods
+     */
 
-	//Private method
-	var isPasswordMismatch = function(){
+    // Verifies if the new-password and new-password-2 field match
+    var isPasswordMismatch = function(){
 
-		var misMatch = false;
+      var misMatch = false;
 
-		if( publicAPI.newPassword() !== '' && publicAPI.newPassword2() !== '' && publicAPI.newPassword() !== publicAPI.newPassword2() ){
+      if( this.newPassword() !== '' && this.newPassword2() !== '' && this.newPassword() !== this.newPassword2() ){
 
-			misMatch = true;
-		}
+        misMatch = true;
+      }
 
-		return misMatch;
-	};
+      return misMatch;
+    };
 
-	//Private method
-	var sameAsCellChanged = function(checked){
+    // Copies the cell phone into the home number fields
+    var sameAsCellChanged = function(checked){
 
-		if( checked === true ){
-			publicAPI.cellNumber1(publicAPI.homeNumber1());
-			publicAPI.cellNumber2(publicAPI.homeNumber2());
-			publicAPI.cellNumber3(publicAPI.homeNumber3());
-			publicAPI.cellNumberExt(publicAPI.homeNumberExt());
-		}
+      if( checked === true ){
+        this.cellNumber1(this.homeNumber1());
+        this.cellNumber2(this.homeNumber2());
+        this.cellNumber3(this.homeNumber3());
+        this.cellNumberExt(this.homeNumberExt());
+      }
 
-		return true; //must return true to allow defualt browser behavior
-	};
+      return true; //must return true to allow defualt browser behavior
+    };
 
-	/*
-	 * Automatically check whenever newPassword or newPassword2 changes
-	 */
-	publicAPI.isPasswordMismatch = ko.computed( isPasswordMismatch );
+    /*
+     * Account module that is returned publicly
+     */
+    var Account = {
 
-	/*
-	 * Sets up subscription to changes on sameAsCell observbale
-	 */
-	publicAPI.sameAsCell.subscribe(sameAsCellChanged);
+      init: function(){
 
-	return publicAPI;
+        this.homeNumber1 = ko.observable();
+        this.homeNumber2 = ko.observable();
+        this.homeNumber3 = ko.observable();
+        this.homeNumberExt = ko.observable();
+        this.sameAsCell = ko.observable(false);
+        this.cellNumber1 = ko.observable();
+        this.cellNumber2 = ko.observable();
+        this.cellNumber3 = ko.observable();
+        this.cellNumberExt = ko.observable();
+        this.newPassword = ko.observable('');
+        this.newPassword2 = ko.observable('');
 
-})();
+        // Automatically check whenever newPassword or newPassword2 changes
+        this.isPasswordMismatch = ko.computed( isPasswordMismatch, this );
+
+        // Sets up subscription to changes on sameAsCell observbale
+        this.sameAsCell.subscribe( sameAsCellChanged.bind( this ) );
+
+        return this;
+      }
+    };
+
+    return Account;
+  }
+);

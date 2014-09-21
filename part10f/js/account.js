@@ -1,122 +1,141 @@
-'use strict';
+define([],
+  function() {
 
-var account = (function (){
+    'use strict';
 
-	var isInitialized = false;
-	var publicAPI = ko.mapping.fromJS({
-		'id': '',
-		'firstName': '',
-		'lastName': '',
-		'jobTitle': '',
-		'emailAddress': '',
-		'cellNumber1': '',
-		'cellNumber2': '',
-		'cellNumber3': '',
-		'cellNumberExt': '',
-		'homeNumber1': '',
-		'homeNumber2': '',
-		'homeNumber3': '',
-		'homeNumberExt': '',
-		'password': '',
-		'securityQuestion1': '',
-		'securityQuestion2': '',
-		'securityQuestion3': '',
-		'securityAnswer1': '',
-		'securityAnswer2': '',
-		'securityAnswer3': ''
-	});
+    /*
+     * Private variables
+     * & methods
+     */
 
-	publicAPI.sameAsCell = ko.observable(false);
-	publicAPI.passwordMatch = ko.observable('');
-	publicAPI.newPassword = ko.observable('');
-	publicAPI.newPassword2 = ko.observable('');
-	publicAPI.securityQuestions = ko.observableArray(['Name of your cat', 'Name of your spouse', 'Name of your favorite Disney character']);
+    // Verifies if the new-password and new-password-2 field match
+    var isPasswordMismatch = function(){
 
-	var isOriginalPasswordMismatch = function(){
+      var misMatch = false;
 
-		var misMatch = false;
+      if( this.newPassword() !== '' && this.newPassword2() !== '' && this.newPassword() !== this.newPassword2() ){
 
-		if( publicAPI.passwordMatch() !== '' && publicAPI.passwordMatch() !== publicAPI.password() ){
+        misMatch = true;
+      }
 
-			misMatch = true;
-		}
+      return misMatch;
+    };
 
-		return misMatch;
-	};
+    // Copies the cell phone into the home number fields
+    var sameAsCellChanged = function(checked){
 
-	//Private method
-	var isPasswordMismatch = function(){
+      if( checked === true ){
+        this.cellNumber1(this.homeNumber1());
+        this.cellNumber2(this.homeNumber2());
+        this.cellNumber3(this.homeNumber3());
+        this.cellNumberExt(this.homeNumberExt());
+      }
 
-		var misMatch = false;
+      return true; //must return true to allow defualt browser behavior
+    };
 
-		if( publicAPI.newPassword() !== '' && publicAPI.newPassword2() !== '' && publicAPI.newPassword() !== publicAPI.newPassword2() ){
+    // Verifies the password typed by user matches the password fetched via the Ajax request
+    var isOriginalPasswordMismatch = function(){
 
-			misMatch = true;
-		}
+      var misMatch = false;
 
-		return misMatch;
-	};
+      if( this.passwordMatch() !== '' && this.passwordMatch() !== this.password() ){
 
-	//Private method
-	var sameAsCellChanged = function(checked){
+        misMatch = true;
+      }
 
-		if( checked === true ){
-			publicAPI.cellNumber1(publicAPI.homeNumber1());
-			publicAPI.cellNumber2(publicAPI.homeNumber2());
-			publicAPI.cellNumber3(publicAPI.homeNumber3());
-			publicAPI.cellNumberExt(publicAPI.homeNumberExt());
-		}
+      return misMatch;
+    };
 
-		return true; //must return true to allow defualt browser behavior
-	};
+    /*
+     * Called after loading the data from the API.
+     * It will check the sameAsCell() checkbox if home phone matches
+     * the cell phone
+     */
+    var initializeStateOfSameAsCell = function(){
 
-	var initializeStateOfSameAsCell = function(){
+      if( this.homeNumber1() === this.cellNumber1() &&
+        this.homeNumber2() === this.cellNumber2() &&
+        this.homeNumber3() === this.cellNumber3() &&
+        this.homeNumberExt() === this.cellNumberExt() ){
 
-		if( publicAPI.homeNumber1() === publicAPI.cellNumber1() &&
-			publicAPI.homeNumber2() === publicAPI.cellNumber2() &&
-			publicAPI.homeNumber3() === publicAPI.cellNumber3() &&
-			publicAPI.homeNumberExt() === publicAPI.cellNumberExt() ){
+        this.sameAsCell(true);
 
-			publicAPI.sameAsCell(true);
+      } else {
 
-		} else {
+        this.sameAsCell(false);
+      }
+    };
 
-			publicAPI.sameAsCell(false);
-		}
-	};
+    // Done callback from loading account data
+    var loadAccountDoneCallback = function(data){
 
-	var loadAccountDoneCallback = function(data){
+      ko.mapping.fromJS(data, this);
+      initializeStateOfSameAsCell.call(this);
+    };
 
-		ko.mapping.fromJS(data, publicAPI);
-		initializeStateOfSameAsCell();
-	};
+    /*
+     * Account module that is returned publicly
+     */
+    var Account = {
 
-	var loadAccount = function(){
+      init: function(){
 
-		$.get('sampleuser.json', loadAccountDoneCallback);
-	};
+        /*
+         * Use ko.mappings to create observables based on the
+         * object below. Then Use jQuery.extend() to copy all those
+         * observables onto the "this" object
+         */
+        jQuery.extend(this, ko.mapping.fromJS({
+          id: '',
+          firstName: '',
+          lastName: '',
+          jobTitle: '',
+          emailAddress: '',
+          cellNumber1: '',
+          cellNumber2: '',
+          cellNumber3: '',
+          cellNumberExt: '',
+          homeNumber1: '',
+          homeNumber2: '',
+          homeNumber3: '',
+          homeNumberExt: '',
+          password: '',
+          securityQuestion1: '',
+          securityQuestion2: '',
+          securityQuestion3: '',
+          securityAnswer1: '',
+          securityAnswer2: '',
+          securityAnswer3: '',
+          sameAsCell: false,
+          passwordMatch: '',
+          newPassword: '',
+          newPassword2: '',
+          securityQuestions: ['Name of your cat', 'Name of your spouse', 'Name of your favorite Disney character']
+        }));
 
-	publicAPI.isOriginalPasswordMismatch = ko.computed( isOriginalPasswordMismatch );
-	/*
-	 * Automatically check whenever newPassword or newPassword2 changes
-	 */
-	publicAPI.isPasswordMismatch = ko.computed( isPasswordMismatch );
+        // Automatically check whenever newPassword or newPassword2 changes
+        this.isPasswordMismatch = ko.computed( isPasswordMismatch, this );
 
-	/*
-	 * Sets up subscription to changes on sameAsCell observbale
-	 */
-	publicAPI.sameAsCell.subscribe(sameAsCellChanged);
+        // Checks if password stored in API matches the one the user entered
+        this.isOriginalPasswordMismatch = ko.computed( isOriginalPasswordMismatch, this );
 
-	publicAPI.init = function accountInit(){
+        // Sets up subscription to changes on sameAsCell observable
+        this.sameAsCell.subscribe( sameAsCellChanged.bind( this ) );
 
-		if( isInitialized === false ){
+        // Keep this binding context correct
+        loadAccountDoneCallback = loadAccountDoneCallback.bind( this );
 
-			loadAccount();
-		}
+        return this;
+      },
 
-		isInitialized = true;
-	};
+      // loads the account data
+      loadAccount: function(){
 
-	return publicAPI;
+        $.get('sampleuser.json', loadAccountDoneCallback);
+      }
+    };
 
-})();
+    return Account;
+  }
+);

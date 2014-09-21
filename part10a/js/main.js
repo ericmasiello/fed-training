@@ -1,75 +1,78 @@
-'use strict';
+require(['account', 'surgeons'],
 
-/*
- * Verify that account and surgeon are loaded
- * If not, set them to empty objects
- */
-var account = (account) ? account : {};
-var surgeons = (surgeons) ? surgeons : {};
+  function(Account, Surgeons){
 
-var app = (function(account, surgeons){
+    'use strict';
 
-	var toggleTabs = function (tab){
+    /*
+     * Private methods
+     */
 
-		var $tabs = $('#main-nav').find('a');
-		var $selectedTab = $tabs.filter('[data-val="' + tab + '"]');
-		var $otherTab = $tabs.not($selectedTab);
+    // Toggles different views in the application
+    var toggleTabs = function (tab){
 
-		$selectedTab.addClass('is-selected');
-		$otherTab.removeClass('is-selected');
+      var $tabs = $('#main-nav').find('a');
+      var $selectedTab = $tabs.filter('[data-val="' + tab + '"]');
+      var $otherTab = $tabs.not($selectedTab);
 
-		if( tab === 'manager'){
+      $selectedTab.addClass('is-selected');
+      $otherTab.removeClass('is-selected');
 
-			$('#manager').show();
-			$('#account').hide();
+      if( tab === 'manager'){
 
-		} else {
+        $('#manager').show();
+        $('#account').hide();
 
-			$('#manager').hide();
-			$('#account').show();
-		}
-	};
+      } else {
 
-	var routePage = function(){
+        $('#manager').hide();
+        $('#account').show();
+      }
+    };
 
-		(new Sammy(function () {
+    // Handles routing
+    var routePage = function(){
 
-			// If no matching path is found
-			this.notFound = function (){
+      var self = this;
 
-				// Will reroute to the manager tab
-				document.location.href = '#!/manager';
-			};
+      (new Sammy(function () {
 
-			this.get('#!/manager', function () {
+        // If no matching path is found
+        this.notFound = function (){
 
-				toggleTabs('manager');
-				surgeons.init();
+          // Will reroute to the manager tab
+          document.location.href = '#!/manager';
+        };
 
-			});
+        this.get('#!/manager', function () {
 
-			this.get('#!/account', function () {
+          toggleTabs('manager');
+          self.surgeons.loadSurgeons();
 
-				toggleTabs('account');
-				account.init();
+        });
 
-			});
-		})).run();
-	};
+        this.get('#!/account', function () {
 
-	var init = function(){
+          toggleTabs('account');
+          Account.init();
 
-		routePage();
-		return this;
-	};
+        });
+      })).run();
+    };
 
-	return {
+    /*
+     * Public object
+     */
+    var App = {
 
-		init: init,
-		surgeons: surgeons,
-		account: account
-	};
+      init: function(){
 
-})(account, surgeons);
+        this.surgeons = Object.create(Surgeons).init();
+        routePage.call(this);
+        return this;
+      }
+    };
 
-ko.applyBindings( app.init(), document.getElementById('app') );
+    ko.applyBindings( Object.create(App).init(), document.getElementById('app') );
+  }
+);

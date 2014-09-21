@@ -1,88 +1,93 @@
-'use strict';
+require(['account', 'surgeons', 'merger'],
 
-/*
- * Verify that account and surgeon are loaded
- * If not, set them to empty objects
- */
-var account = (account) ? account : {};
-var surgeons = (surgeons) ? surgeons : {};
-var merger = (merger) ? merger : {};
+  function(Account, Surgeons, Merger){
 
-var app = (function(account, surgeons, merger){
+    'use strict';
 
-	var currentTab = ko.observable('manager');
-	var routePage = function(){
+    /*
+     * Private methods
+     */
 
-		(new Sammy(function () {
+    // Handles routing
+    var routePage = function(){
 
-			// If no matching path is found
-			this.notFound = function (){
+      var self = this;
 
-				// Will reroute to the manager tab
-				document.location.href = '#!/manager';
-			};
+      (new Sammy(function () {
 
-			this.get('#!/manager', function () {
+        // If no matching path is found
+        this.notFound = function (){
 
-				currentTab('manager');
-				surgeons.loadSurgeons();
+          // Will reroute to the manager tab
+          document.location.href = '#!/manager';
+        };
 
-			});
+        this.get('#!/manager', function () {
 
-			this.get('#!/account', function () {
+          self.currentTab('manager');
+          self.surgeons.loadSurgeons();
 
-				currentTab('account');
-				account.init();
+        });
 
-			});
-		})).run();
-	};
+        this.get('#!/account', function () {
 
-	var init = function(){
+          self.currentTab('account');
+          self.account.loadAccount();
 
-		routePage();
+        });
+      })).run();
+    };
 
-		//Delegate events
+    var bindEvents = function(){
 
-		PubSub.subscribe('spc/surgeon/add-record', function( e, data ){
+      //Delegate events
+      PubSub.subscribe('spc/surgeon/add-record', function( e, data ){
 
-			merger.add(data);
-		});
+        this.merger.add(data);
+      }.bind(this));
 
-		PubSub.subscribe('spc/merger/merged-record', function( e, data ){
+      PubSub.subscribe('spc/merger/merged-record', function( e, data ){
 
-			//surgeons.
-			surgeons.resetMerge();
-			surgeons.loadSurgeons(true);
-		});
+        //surgeons.
+        this.surgeons.resetMerge();
+        this.surgeons.loadSurgeons(true);
+      }.bind(this));
 
-		PubSub.subscribe('spc/merger/set-display-surgeon', function(e, data){
+      PubSub.subscribe('spc/merger/set-display-surgeon', function(e, data){
 
-			surgeons.selectedSurgeon(data);
-		});
+        this.surgeons.selectedSurgeon(data);
+      }.bind(this));
 
-		PubSub.subscribe('spc/merger/cancel', function(){
+      PubSub.subscribe('spc/merger/cancel', function(){
 
-			surgeons.resetMerge();
-		});
+        this.surgeons.resetMerge();
+      }.bind(this));
 
-		PubSub.subscribe('spc/merger/remove', function(e, data){
+      PubSub.subscribe('spc/merger/remove', function(e, data){
 
-			surgeons.removeFromMergeList(data);
-		});
+        this.surgeons.removeFromMergeList(data);
+      }.bind(this));
 
-		return this;
-	};
+    };
 
-	return {
+    /*
+     * Public object
+     */
+    var App = {
 
-		surgeons: surgeons,
-		account: account,
-		merger: merger,
-		currentTab: currentTab,
-		init: init
-	};
+      init: function(){
 
-})(account, surgeons, merger);
+        this.currentTab = ko.observable('manager');
+        this.surgeons = Object.create(Surgeons).init();
+        this.account = Object.create(Account).init();
+        this.merger = Object.create(Merger).init();
 
-ko.applyBindings( app.init(), document.getElementById('app') );
+        bindEvents.call(this);
+        routePage.call(this);
+        return this;
+      }
+    };
+
+    ko.applyBindings( Object.create(App).init(), document.getElementById('app') );
+  }
+);

@@ -1,49 +1,67 @@
-'use strict';
+define([],
+  function() {
 
-var surgeons = (function(){
+    'use strict';
 
-	var publicAPI = {};
-	var isInitialized = false;
-	var surgeons = ko.observableArray();
+    /*
+     * Private variables
+     * & methods
+     */
 
-	/*
-	 * Placeholder method, this will be modified
-	 * once we start to add filter capabilities
-	 */
-	publicAPI.records = ko.computed(function(){
+    // Holds surgeon records
+    var surgeons = ko.observableArray();
 
-		return surgeons();
-	});
+    // Private callback method
+    var loadSurgeonsDoneCallback = function(resp){
 
-	var loadSurgeonsDoneCallback = function(resp){
+      if( jQuery.isPlainObject( resp ) === true &&
+        jQuery.isArray( resp.data ) === true ) {
 
-		if( jQuery.isPlainObject( resp ) === true && jQuery.isArray( resp.data ) === true ) {
+        surgeons(resp.data);
+      }
+    };
 
-			surgeons(resp.data);
-		}
-	};
+    /*
+     * Surgeon module that is returned publicly
+     */
+    var Surgeons = {
 
-	var loadSurgeons = function(){
+      init: function(){
 
-		$.ajax({
-			'url': 'sampledata.json',
-			'type': 'get'
-		}).done( loadSurgeonsDoneCallback );
+        /*
+         * Binds the "this" context to the instance
+         * for these private methods
+         */
+        loadSurgeonsDoneCallback = loadSurgeonsDoneCallback.bind(this);
 
-		//Alternative ...
-		//$.get('sampledata.json', loadSurgeonsDoneCallback);
-	};
+        /*
+         * Placeholder method, this will be modified
+         * once we start to add filter capabilities
+         */
+        this.records = ko.computed(function(){
 
-	publicAPI.init = function(){
+          return surgeons();
 
-		if( isInitialized === false ){
+        }, this);
 
-			loadSurgeons();
-		}
+        return this;
+      },
 
-		isInitialized = true;
-	};
+      /*
+       * Loads the surgeon data
+       */
+      loadSurgeons: function(){
 
-	return publicAPI;
+        $.ajax({
+          'url': 'sampledata.json',
+          'type': 'get',
+        }).done( loadSurgeonsDoneCallback );
 
-})();
+        //Alternative ...
+        //$.get('sampledata.json', loadSurgeonsDoneCallback);
+      }
+    };
+
+    return Surgeons;
+  }
+);

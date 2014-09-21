@@ -23,6 +23,8 @@
     "ko": false,
     "$": false,
     "jQuery": false,
-    "Sammy": false
+    "Sammy": false,
+    "require": false,
+    "define": false
   }
 }

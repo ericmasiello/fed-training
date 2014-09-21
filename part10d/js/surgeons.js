@@ -1,56 +1,86 @@
-'use strict';
+define([],
+  function() {
 
-var surgeons = (function(){
+    'use strict';
 
-	var publicAPI = {};
-	var surgeons = ko.observableArray();
+    /*
+     * Private variables
+     * & methods
+     */
 
-	/*
-	 * Placeholder method, this will be modified
-	 * once we start to add filter capabilities
-	 */
-	publicAPI.records = ko.computed(function(){
+    // Holds surgeon records
+    var surgeons = ko.observableArray();
 
-		return surgeons();
-	});
+    // Private callback method
+    var loadSurgeonsDoneCallback = function(resp){
 
-	publicAPI.add = function( data ){
+      if( jQuery.isPlainObject( resp ) === true &&
+        jQuery.isArray( resp.data ) === true ) {
 
-		PubSub.publish('spc/surgeon/add-record', data );
-	};
+        surgeons(resp.data);
+      }
+    };
 
-	var loadSurgeonsDoneCallback = function(resp){
+    /*
+     * Surgeon module that is returned publicly
+     */
+    var Surgeons = {
 
-		if( jQuery.isPlainObject( resp ) === true && jQuery.isArray( resp.data ) === true ) {
+      init: function(){
 
-			surgeons(resp.data);
-		}
-	};
+        /*
+         * Binds the "this" context to the instance
+         * for these private methods
+         */
+        loadSurgeonsDoneCallback = loadSurgeonsDoneCallback.bind(this);
 
-	publicAPI.loadSurgeons = function( fetchDifferentData ){
+        /*
+         * Placeholder method, this will be modified
+         * once we start to add filter capabilities
+         */
+        this.records = ko.computed(function(){
 
-		var url = 'sampledata.json';
+          return surgeons();
 
-		/*
-		 * Kludge we use for demo purposes so that we can fetch
-		 * data from a different URL. We do this since we don't have
-		 * an actual backend API that supports updating the data
-		 * and retreiving the updated records back
-		 */
-		if( fetchDifferentData === true ){
+        }, this);
 
-			url = 'sampledata2.json';
-		}
+        return this;
+      },
 
-		$.ajax({
-			'url': url,
-			'type': 'get'
-		}).done( loadSurgeonsDoneCallback );
+      /*
+       * Loads the surgeon data
+       */
+      loadSurgeons: function( fetchDifferentData ){
 
-		//Alternative ...
-		//$.get('sampledata.json', loadSurgeonsDoneCallback);
-	};
+        var url = 'sampledata.json';
 
-	return publicAPI;
+        /*
+         * Kludge we use for demo purposes so that we can fetch
+         * data from a different URL. We do this since we don't have
+         * an actual backend API that supports updating the data
+         * and retreiving the updated records back
+         */
+        if( fetchDifferentData === true ){
 
-})();
+          url = 'sampledata2.json';
+        }
+
+        $.ajax({
+          'url': url,
+          'type': 'get',
+        }).done( loadSurgeonsDoneCallback );
+      },
+
+      /*
+       * Method for adding current record to
+       * the merger module
+       */
+      add: function( data ){
+
+        PubSub.publish('spc/surgeon/add-record', data );
+      }
+    };
+
+    return Surgeons;
+  }
+);

@@ -1,72 +1,70 @@
-'use strict';
+require(['account', 'surgeons'],
 
-/*
- * Verify that account and surgeon are loaded
- * If not, set them to empty objects
- */
-var account = (account) ? account : {};
-var surgeons = (surgeons) ? surgeons : {};
+  function(Account, Surgeons){
 
-var app = (function(account, surgeons){
+    'use strict';
 
-	var toggleTabs = function (tab){
+    var App = {
 
-		var $tabs = $('#main-nav').find('a');
-		var $selectedTab = $tabs.filter('[data-val="' + tab + '"]');
-		var $otherTab = $tabs.not($selectedTab);
+      toggleTabs: function (tab){
 
-		$selectedTab.addClass('is-selected');
-		$otherTab.removeClass('is-selected');
+        var $tabs = $('#main-nav').find('a');
+        var $selectedTab = $tabs.filter('[data-val="' + tab + '"]');
+        var $otherTab = $tabs.not($selectedTab);
 
-		if( tab === 'manager'){
+        $selectedTab.addClass('is-selected');
+        $otherTab.removeClass('is-selected');
 
-			$('#manager').show();
-			$('#account').hide();
+        if( tab === 'manager'){
 
-		} else {
+          $('#manager').show();
+          $('#account').hide();
 
-			$('#manager').hide();
-			$('#account').show();
-		}
-	};
+        } else {
 
-	var routePage = function(){
+          $('#manager').hide();
+          $('#account').show();
+        }
+      },
 
-		(new Sammy(function () {
+      routePage: function(){
 
-			// If no matching path is found
-			this.notFound = function (){
+        var self = this;
 
-				// Will reroute to the manager tab
-				document.location.href = '#!/manager';
-			};
+        (new Sammy(function () {
 
-			this.get('#!/manager', function () {
+          // If no matching path is found
+          this.notFound = function (){
 
-				toggleTabs('manager');
-				surgeons.init();
+            // Will reroute to the manager tab
+            document.location.href = '#!/manager';
+          };
 
-			});
+          this.get('#!/manager', function () {
 
-			this.get('#!/account', function () {
+            self.toggleTabs('manager');
+            Surgeons.init();
 
-				toggleTabs('account');
-				account.init();
+          });
 
-			});
-		})).run();
-	};
+          this.get('#!/account', function () {
 
-	var init = function(){
+            self.toggleTabs('account');
+            Account.init();
 
-		routePage();
-	};
+          });
+        })).run();
+      },
 
-	return {
+      init: function(){
 
-		init: init
-	};
+        this.routePage();
+      }
+    };
 
-})(account, surgeons);
+    $(document).ready(function(){
 
-$(document).ready(app.init);
+      App.init();
+    });
+  }
+);

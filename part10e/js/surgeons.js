@@ -1,108 +1,150 @@
-'use strict';
+define([],
+  function() {
 
-var surgeons = (function(){
+    'use strict';
 
-	var publicAPI = {};
-	var surgeons = ko.observableArray();
+    /*
+     * Private variables
+     * & methods
+     */
 
-	var beingMerged = ko.observableArray();
-	publicAPI.isMerging = ko.computed(function(){
+    // keeps track of which records are being merged
+    var beingMerged = ko.observableArray();
 
-		return ( beingMerged().length > 0 );
-	});
+    // Holds surgeon records
+    var surgeons = ko.observableArray();
 
-	publicAPI.selectedSurgeon = ko.observable({});
+    // Private callback method
+    var loadSurgeonsDoneCallback = function(resp){
 
-	/*
-	 * Placeholder method, this will be modified
-	 * once we start to add filter capabilities
-	 */
-	publicAPI.records = ko.computed(function(){
+      if( jQuery.isPlainObject( resp ) === true &&
+        jQuery.isArray( resp.data ) === true ) {
 
-		return surgeons();
-	});
+        surgeons(resp.data);
+      }
+    };
 
-	publicAPI.parentRowStyle = function( data ){
+    /*
+     * Surgeon module that is returned publicly
+     */
+    var Surgeons = {
 
-		if( data.childRecords.length > 0 ){
+      init: function(){
 
-			return 'tbl--accordion__is-collapsed';
+        // Tracks the selected surgeon in merger module
+        this.selectedSurgeon = ko.observable({});
 
-		} else {
+        /*
+         * Binds the "this" context to the instance
+         * for these private methods
+         */
+        loadSurgeonsDoneCallback = loadSurgeonsDoneCallback.bind(this);
 
-			return '';
-		}
-	};
+        /*
+         * Placeholder method, this will be modified
+         * once we start to add filter capabilities
+         */
+        this.records = ko.computed(function(){
 
-	publicAPI.toggle = function( data ){
+          return surgeons();
+        }, this);
 
-		//check to see if we can expand it
+        this.isMerging = ko.computed(function(){
 
-		if( data.childRecords.length > 0 ){
+          return ( beingMerged().length > 0 );
+        }, this);
 
-			var $container = $(arguments[1].toElement).parents('tbody');
-			$container.toggleClass('tbl--accordion__is-expanded').toggleClass('tbl--accordion__is-collapsed');
-		}
-	};
+        return this;
+      },
 
-	publicAPI.recordIsBeingMerged = function( selectedData ){
+      /*
+       * Loads the surgeon data
+       */
+      loadSurgeons: function( fetchDifferentData ){
 
+        var url = 'sampledata.json';
 
-		var result = beingMerged().filter(function(currentData){
+        /*
+         * Kludge we use for demo purposes so that we can fetch
+         * data from a different URL. We do this since we don't have
+         * an actual backend API that supports updating the data
+         * and retreiving the updated records back
+         */
+        if( fetchDifferentData === true ){
 
-			if( currentData.id === selectedData.id ){
+          url = 'sampledata2.json';
+        }
 
-				return currentData;
-			}
-		});
+        $.ajax({
+          'url': url,
+          'type': 'get',
+        }).done( loadSurgeonsDoneCallback );
+      },
 
-		return( result.length > 0 );
-	};
+      /*
+       * Method for adding current record to
+       * the merger module
+       */
+      add: function( data ){
 
-	publicAPI.add = function( data ){
+        beingMerged.push(data);
+        PubSub.publish('spc/surgeon/add-record', data );
+      },
 
-		beingMerged.push(data);
-		PubSub.publish('spc/surgeon/add-record', data );
-	};
+      /*
+       * Determines if the the <tbody> should have
+       * the accordion style based on the
+       * childRecord array length
+       */
+      parentRowStyle: function( data ){
 
-	publicAPI.resetMerge = function(){
+        if( data.childRecords.length > 0 ){
 
-		beingMerged.removeAll();
-		publicAPI.selectedSurgeon({});
-	};
+          return 'tbl--accordion__is-collapsed';
 
-	var loadSurgeonsDoneCallback = function(resp){
+        } else {
 
-		if( jQuery.isPlainObject( resp ) === true && jQuery.isArray( resp.data ) === true ) {
+          return '';
+        }
+      },
 
-			surgeons(resp.data);
-		}
-	};
+      /*
+       * Method for toggling accordion rows
+       * between their open and closed states
+       */
+      toggle: function( data ){
 
-	publicAPI.loadSurgeons = function( fetchDifferentData ){
+        //check to see if we can expand it
 
-		var url = 'sampledata.json';
+        if( data.childRecords.length > 0 ){
 
-		/*
-		 * Kludge we use for demo purposes so that we can fetch
-		 * data from a different URL. We do this since we don't have
-		 * an actual backend API that supports updating the data
-		 * and retreiving the updated records back
-		 */
-		if( fetchDifferentData === true ){
+          var $container = $(arguments[1].toElement).parents('tbody');
+          $container.toggleClass('tbl--accordion__is-expanded').toggleClass('tbl--accordion__is-collapsed');
+        }
+      },
 
-			url = 'sampledata2.json';
-		}
+      //Tracks if the current record is being merged
+      recordIsBeingMerged: function( selectedData ){
 
-		$.ajax({
-			'url': url,
-			'type': 'get'
-		}).done( loadSurgeonsDoneCallback );
+        var result = beingMerged().filter(function(currentData){
 
-		//Alternative ...
-		//$.get('sampledata.json', loadSurgeonsDoneCallback);
-	};
+          if( currentData.id === selectedData.id ){
 
-	return publicAPI;
+            return currentData;
+          }
+        });
 
-})();
+        return( result.length > 0 );
+      },
+
+      // Resets the merge state in response to merger module
+      resetMerge: function(){
+
+        beingMerged.removeAll();
+        this.selectedSurgeon({});
+      }
+    };
+
+    return Surgeons;
+  }
+);

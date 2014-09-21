@@ -1,53 +1,57 @@
-'use strict';
+require(['account', 'surgeons'],
 
-/*
- * Verify that account and surgeon are loaded
- * If not, set them to empty objects
- */
-var account = (account) ? account : {};
-var surgeons = (surgeons) ? surgeons : {};
+  function(Account, Surgeons){
 
-var app = (function(account, surgeons){
+    'use strict';
 
-	var publicAPI = {
-		surgeons: surgeons,
-		account: ko.observable(account),
-		currentTab: ko.observable('manager')
-	};
+    /*
+     * Private methods
+     */
 
-	var routePage = function(){
+    // Handles routing
+    var routePage = function(){
 
-		(new Sammy(function () {
+      var self = this;
 
-			// If no matching path is found
-			this.notFound = function (){
+      (new Sammy(function () {
 
-				// Will reroute to the manager tab
-				document.location.href = '#!/manager';
-			};
+        // If no matching path is found
+        this.notFound = function (){
 
-			this.get('#!/manager', function () {
+          // Will reroute to the manager tab
+          document.location.href = '#!/manager';
+        };
 
-				publicAPI.currentTab('manager');
-				surgeons.init();
+        this.get('#!/manager', function () {
 
-			});
+          self.currentTab('manager');
+          self.surgeons.loadSurgeons();
 
-			this.get('#!/account', function () {
+        });
 
-				publicAPI.currentTab('account');
-			});
-		})).run();
-	};
+        this.get('#!/account', function () {
 
-	publicAPI.init = function(){
+          self.currentTab('account');
 
-		routePage();
-		return this;
-	};
+        });
+      })).run();
+    };
 
-	return publicAPI;
+    /*
+     * Public object
+     */
+    var App = {
 
-})(account, surgeons);
+      init: function(){
 
-ko.applyBindings( app.init(), document.getElementById('app') );
+        this.currentTab = ko.observable('manager');
+        this.surgeons = Object.create(Surgeons).init();
+        this.account = Object.create(Account).init();
+        routePage.call(this);
+        return this;
+      }
+    };
+
+    ko.applyBindings( Object.create(App).init(), document.getElementById('app') );
+  }
+);

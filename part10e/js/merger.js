@@ -1,90 +1,100 @@
-'use strict';
+define([],
+  function() {
 
-var merger = (function(){
+    'use strict';
 
-	var publicAPI = {};
-	var isInitialized = false;
+    /*
+     * Private variables
+     * & methods
+     */
 
-	//List of surgeons we want to merge
-	publicAPI.records = ko.observableArray();
+    //Callback from merging records
+    var mergeRecordsDoneCallback = function( data ){
 
-	//The current surgeon selected as the display name
-	publicAPI.displaySurgeon = ko.observable();
+      this.records.removeAll();
+      this.displaySurgeon(null);
 
-	//Public method for adding a new record to the list of surgeons
-	publicAPI.add = function( data ){
+      PubSub.publish('spc/merger/merged-record', data );
+    };
 
-		//If this is the first record being added, we make him/her the display record
-		if( publicAPI.records().length === 0 ){
+    var Merger = {
 
-			publicAPI.setSurgeon( data );
-		}
+      init: function(){
 
-		publicAPI.records.push( data );
-	};
+        //List of surgeons we want to merge
+        this.records = ko.observableArray();
 
-	//Public method for setting the dispaly surgeon
-	publicAPI.setSurgeon = function( data ){
+        //The current surgeon selected as the display name
+        this.displaySurgeon = ko.observable();
 
-		publicAPI.displaySurgeon( data );
-		PubSub.publish('spc/merger/set-display-surgeon', data );
-	};
+        //Set "this" context
+        mergeRecordsDoneCallback = mergeRecordsDoneCallback.bind(this);
+        this.setSurgeon = this.setSurgeon.bind(this);
 
+        return this;
+      },
 
-	var mergeRecordsDoneCallback = function( data ){
+      // Method for setting the display surgeon
+      setSurgeon: function( data ){
 
-		publicAPI.records.removeAll();
-		publicAPI.displaySurgeon(null);
+        this.displaySurgeon( data );
+        PubSub.publish('spc/merger/set-display-surgeon', data );
+      },
 
-		PubSub.publish('spc/merger/merged-record', data );
-	};
+      // Method for adding a new record to the list of surgeons
+      add: function( data ){
 
-	publicAPI.mergeRecords = function(){
+        //If this is the first record being added, we make him/her the display record
+        if( this.records().length === 0 ){
 
-		var displaySurgeon = this.displaySurgeon();
-		var records = this.records();
-		var surgeonsToMerge = [];
-		var mergeCount = 0;
+          this.setSurgeon( data );
+        }
 
-		for( var i = 0; i < records.length; i++ ){
+        this.records.push( data );
+      },
 
-			if( records[i].id !== displaySurgeon.id ){
+      // merges records, saves records via faux API
+      mergeRecords: function(){
 
-				surgeonsToMerge.push( records[i] );
-			}
-		}
+        var displaySurgeon = this.displaySurgeon();
+        var records = this.records();
 
-		mergeCount = surgeonsToMerge.length;
+        /*
+         * Loops through the records array returning all records
+         * that are not the displaySurgeon's id.
+         *
+         * Uses the ES5 array filter() method. Could easily
+         * be rewritten for ES3 browsers using a for loop
+         */
 
-		displaySurgeon.childRecords = surgeonsToMerge;
+        displaySurgeon.childRecords = records.filter(function( item ){
 
-		//Pretend we make an API call to save this
-//		$.ajax({
-//			'url': 'mergesurgeons/' + displaySurgeon.id,
-//			'type': 'put',
-//			'data': JSON.stringify( displaySurgeon ),
-//			'done': mergeRecordsDoneCallback
-//		});
+          if( item.id !== displaySurgeon.id ){
 
-		//Faux-call response
-		mergeRecordsDoneCallback( displaySurgeon );
-	};
+            return item;
+          }
+        });
 
-	publicAPI.cancelMerge = function(){
+        //Pretend we make an API call to save this
+        //		$.ajax({
+        //			'url': 'mergesurgeons/' + displaySurgeon.id,
+        //			'type': 'put',
+        //			'data': JSON.stringify( displaySurgeon ),
+        //			'done': mergeRecordsDoneCallback
+        //		});
 
-		this.records.removeAll();
-		PubSub.publish('spc/merger/cancel');
-	};
+        //Faux call response
+        mergeRecordsDoneCallback( displaySurgeon );
+      },
 
-	publicAPI.init = function(){
+      // Clears the selection
+      cancelMerge: function(){
 
-		if( isInitialized === false ){
-			//do stuff
-		}
+        this.records.removeAll();
+        PubSub.publish('spc/merger/cancel');
+      }
+    };
 
-		isInitialized = true;
-	};
-
-	return publicAPI;
-
-})();
+    return Merger;
+  }
+);

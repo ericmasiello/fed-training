@@ -1,84 +1,112 @@
-'use strict';
+define([],
+  function() {
 
-var merger = (function(){
+    'use strict';
 
-	var publicAPI = {};
-	var isInitialized = false;
-	var mergeRecordsDoneCallback = function( data ){
+    /*
+     * Private variables
+     * & methods
+     */
 
-		publicAPI.records.removeAll();
-		publicAPI.displaySurgeon(null);
+    //Callback from merging records
+    var mergeRecordsDoneCallback = function( data ){
 
-		PubSub.publish('spc/merger/merged-record', data );
-	};
+      this.records.removeAll();
+      this.displaySurgeon(null);
 
-	//List of surgeons we want to merge
-	publicAPI.records = ko.observableArray();
+      PubSub.publish('spc/merger/merged-record', data );
+    };
 
-	//The current surgeon selected as the display name
-	publicAPI.displaySurgeon = ko.observable();
+    var Merger = {
 
-	//Public method for adding a new record to the list of surgeons
-	publicAPI.add = function( data ){
+      init: function(){
 
-		//If this is the first record being added, we make him/her the display record
-		if( publicAPI.records().length === 0 ){
+        //List of surgeons we want to merge
+        this.records = ko.observableArray();
 
-			publicAPI.setSurgeon( data );
-		}
+        //The current surgeon selected as the display name
+        this.displaySurgeon = ko.observable();
 
-		publicAPI.records.push( data );
-	};
+        //Set "this" context
+        mergeRecordsDoneCallback = mergeRecordsDoneCallback.bind(this);
+        this.setSurgeon = this.setSurgeon.bind(this);
+        this.remove = this.remove.bind(this);
 
-	//Public method for setting the dispaly surgeon
-	publicAPI.setSurgeon = function( data ){
+        return this;
+      },
 
-		publicAPI.displaySurgeon( data );
-		PubSub.publish('spc/merger/set-display-surgeon', data );
-	};
+      // Method for setting the display surgeon
+      setSurgeon: function( data ){
 
-	publicAPI.mergeRecords = function(){
+        this.displaySurgeon( data );
+        PubSub.publish('spc/merger/set-display-surgeon', data );
+      },
 
-		var displaySurgeon = this.displaySurgeon();
-		var records = this.records();
-		var surgeonsToMerge = records.filter(function( item ){
+      // Method for adding a new record to the list of surgeons
+      add: function( data ){
 
-			if( item.id !== displaySurgeon.id ){
+        //If this is the first record being added, we make him/her the display record
+        if( this.records().length === 0 ){
 
-				return item;
-			}
-		});
+          this.setSurgeon( data );
+        }
 
-		displaySurgeon.childRecords = surgeonsToMerge;
+        this.records.push( data );
+      },
 
-		//Pretend we make an API call to save this
-//		$.ajax({
-//			'url': 'mergesurgeons/' + displaySurgeon.id,
-//			'type': 'put',
-//			'data': JSON.stringify( displaySurgeon ),
-//			'done': mergeRecordsDoneCallback
-//		});
+      // merges records, saves records via faux API
+      mergeRecords: function(){
 
-		//Faux-call response
-		mergeRecordsDoneCallback( displaySurgeon );
-	};
+        var displaySurgeon = this.displaySurgeon();
+        var records = this.records();
 
-	publicAPI.cancelMerge = function(){
+        /*
+         * Loops through the records array returning all records
+         * that are not the displaySurgeon's id.
+         *
+         * Uses the ES5 array filter() method. Could easily
+         * be rewritten for ES3 browsers using a for loop
+         */
 
-		publicAPI.records.removeAll();
-		PubSub.publish('spc/merger/cancel');
-	};
+        displaySurgeon.childRecords = records.filter(function( item ){
 
-	publicAPI.remove = function( data ){
+          if( item.id !== displaySurgeon.id ){
 
-		publicAPI.records.remove(function(item) {
+            return item;
+          }
+        });
 
-			return item.id === data.id;
-		});
+        //Pretend we make an API call to save this
+        //		$.ajax({
+        //			'url': 'mergesurgeons/' + displaySurgeon.id,
+        //			'type': 'put',
+        //			'data': JSON.stringify( displaySurgeon ),
+        //			'done': mergeRecordsDoneCallback
+        //		});
 
-		PubSub.publish('spc/merger/remove', data);
-	};
+        //Faux call response
+        mergeRecordsDoneCallback( displaySurgeon );
+      },
 
-	return publicAPI;
+      // Clears the selection
+      cancelMerge: function(){
 
-})();
+        this.records.removeAll();
+        PubSub.publish('spc/merger/cancel');
+      },
+
+      // removes the surgeon from the list
+      remove: function( data ){
+
+        this.records.remove(function(item) {
+
+          return item.id === data.id;
+        });
+
+        PubSub.publish('spc/merger/remove', data);
+      }
+    };
+
+    return Merger;
+  }
+);

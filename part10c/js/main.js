@@ -1,55 +1,58 @@
-'use strict';
+require(['account', 'surgeons'],
 
-/*
- * Verify that account and surgeon are loaded
- * If not, set them to empty objects
- */
-var account = (account) ? account : {};
-var surgeons = (surgeons) ? surgeons : {};
+  function(Account, Surgeons){
 
-var app = (function(account, surgeons){
+    'use strict';
 
-	var publicAPI = {
-		surgeons: surgeons,
-		account: ko.observable(account),
-		currentTab: ko.observable('manager')
-	};
+    /*
+     * Private methods
+     */
 
-	var routePage = function(){
+    // Handles routing
+    var routePage = function(){
 
-		(new Sammy(function () {
+      var self = this;
 
-			// If no matching path is found
-			this.notFound = function (){
+      (new Sammy(function () {
 
-				// Will reroute to the manager tab
-				document.location.href = '#!/manager';
-			};
+        // If no matching path is found
+        this.notFound = function (){
 
-			this.get('#!/manager', function () {
+          // Will reroute to the manager tab
+          document.location.href = '#!/manager';
+        };
 
-				publicAPI.currentTab('manager');
-				surgeons.init();
+        this.get('#!/manager', function () {
 
-			});
+          self.currentTab('manager');
+          self.surgeons.loadSurgeons();
 
-			this.get('#!/account', function () {
+        });
 
-				publicAPI.currentTab('account');
-				account.init();
+        this.get('#!/account', function () {
 
-			});
-		})).run();
-	};
+          self.currentTab('account');
+          self.account.loadAccount();
 
-	publicAPI.init = function(){
+        });
+      })).run();
+    };
 
-		routePage();
-		return this;
-	};
+    /*
+     * Public object
+     */
+    var App = {
 
-	return publicAPI;
+      init: function(){
 
-})(account, surgeons);
+        this.currentTab = ko.observable('manager');
+        this.surgeons = Object.create(Surgeons).init();
+        this.account = Object.create(Account).init();
+        routePage.call(this);
+        return this;
+      }
+    };
 
-ko.applyBindings( app.init(), document.getElementById('app') );
+    ko.applyBindings( Object.create(App).init(), document.getElementById('app') );
+  }
+);

@@ -1,166 +1,205 @@
-'use strict';
+define([],
+  function() {
 
-var surgeons = (function(){
+    'use strict';
 
-	/*
-	 * Private values
-	 */
-	var surgeons = ko.observableArray();
-	var beingMerged = ko.observableArray();
-	var loadSurgeonsDoneCallback = function(resp){
+    /*
+     * Private variables
+     * & methods
+     */
 
-		if( jQuery.isPlainObject( resp ) === true && jQuery.isArray( resp.data ) === true ) {
+    // keeps track of which records are being merged
+    var beingMerged = ko.observableArray();
 
-			surgeons(resp.data);
-		}
-	};
+    // Holds surgeon records
+    var surgeons = ko.observableArray();
 
-	/*
-	 * Public interfaces
-	 */
-	var publicAPI = {
+    // Private callback method
+    var loadSurgeonsDoneCallback = function(resp){
 
-		searchTerm: ko.observable(''),
-		selectedSurgeon: ko.observable({}),
-		filter: ko.observable('all'),
+      if( jQuery.isPlainObject( resp ) === true &&
+        jQuery.isArray( resp.data ) === true ) {
 
-		parentRowStyle: function( data ){
+        surgeons(resp.data);
+      }
+    };
 
-			if( data.childRecords.length > 0 ){
+    /*
+     * Surgeon module that is returned publicly
+     */
+    var Surgeons = {
 
-				return 'tbl--accordion__is-collapsed';
+      init: function(){
 
-			} else {
+        // Tracks the selected surgeon in merger module
+        this.selectedSurgeon = ko.observable({});
 
-				return '';
-			}
-		},
+        // Bound to search text box
+        this.searchTerm = ko.observable('');
+        // Bound to selected radio filter option
+        this.filter = ko.observable('all');
 
-		toggle: function( data ){
+        /*
+         * Binds the "this" context to the instance
+         * for these private methods
+         */
+        loadSurgeonsDoneCallback = loadSurgeonsDoneCallback.bind(this);
 
-			//check to see if we can expand it
+        /*
+         * Computed that publicly exposes the the correct records
+         * from the private surgeons observable based on the currently
+         * selected filter
+         */
+        this.records = ko.computed(function(){
 
-			if( data.childRecords.length > 0 ){
+          switch( this.filter() ){
 
-				var $container = $(arguments[1].toElement).parents('tbody');
-				$container.toggleClass('tbl--accordion__is-expanded').toggleClass('tbl--accordion__is-collapsed');
-			}
-		},
+            case 'all':
 
-		removeFromMergeList: function( data ){
+              return this.allSurgeons();
 
-			beingMerged.remove(function(item) {
+            case 'possible':
 
-				return item.id === data.id;
-			});
-		},
+              return this.possibleDuplicateSurgeons();
 
-		recordIsBeingMerged: function( selectedData ){
+            case 'merged':
 
-			var result = beingMerged().filter(function(currentData){
+              return this.mergedSurgeons();
+          }
+        }, this);
 
-				if( currentData.id === selectedData.id ){
+        this.isMerging = ko.computed(function(){
 
-					return currentData;
-				}
-			});
+          return ( beingMerged().length > 0 );
+        }, this);
 
-			return( result.length > 0 );
-		},
+        return this;
+      },
 
-		add: function( data ){
+      /*
+       * Loads the surgeon data
+       */
+      loadSurgeons: function( fetchDifferentData ){
 
-			beingMerged.push(data);
-			PubSub.publish('spc/surgeon/add-record', data );
-		},
+        var url = 'sampledata.json';
 
-		resetMerge: function(){
+        /*
+         * Kludge we use for demo purposes so that we can fetch
+         * data from a different URL. We do this since we don't have
+         * an actual backend API that supports updating the data
+         * and retreiving the updated records back
+         */
+        if( fetchDifferentData === true ){
 
-			beingMerged.removeAll();
-			publicAPI.selectedSurgeon({});
-		},
+          url = 'sampledata2.json';
+        }
 
-		loadSurgeons: function( fetchDifferentData ){
+        $.ajax({
+          'url': url,
+          'type': 'get',
+        }).done( loadSurgeonsDoneCallback );
+      },
 
-			var url = 'sampledata.json';
+      /*
+       * Method for adding current record to
+       * the merger module
+       */
+      add: function( data ){
 
-			/*
-			 * Kludge we use for demo purposes so that we can fetch
-			 * data from a different URL. We do this since we don't have
-			 * an actual backend API that supports updating the data
-			 * and retreiving the updated records back
-			 */
-			if( fetchDifferentData === true ){
+        beingMerged.push(data);
+        PubSub.publish('spc/surgeon/add-record', data );
+      },
 
-				url = 'sampledata2.json';
-			}
+      /*
+       * Determines if the the <tbody> should have
+       * the accordion style based on the
+       * childRecord array length
+       */
+      parentRowStyle: function( data ){
 
-			$.ajax({
-				'url': url,
-				'type': 'get'
-			}).done( loadSurgeonsDoneCallback );
+        if( data.childRecords.length > 0 ){
 
-			//Alternative ...
-			//$.get('sampledata.json', loadSurgeonsDoneCallback);
-		},
+          return 'tbl--accordion__is-collapsed';
 
-		isMerging: ko.computed(function(){
+        } else {
 
-			return ( beingMerged().length > 0 );
-		}),
+          return '';
+        }
+      },
 
-		allSurgeons: function() {
+      /*
+       * Method for toggling accordion rows
+       * between their open and closed states
+       */
+      toggle: function( data ){
 
-			var searchTerm = typeof publicAPI.searchTerm() === 'string' ? publicAPI.searchTerm().toLowerCase() : '';
+        //check to see if we can expand it
 
-			return ko.utils.arrayFilter( surgeons(), function(data) {
-				return ( data.name.toLowerCase().indexOf( searchTerm ) > -1 );
-			});
-		},
+        if( data.childRecords.length > 0 ){
 
-		possibleDuplicateSurgeons: function() {
+          var $container = $(arguments[1].toElement).parents('tbody');
+          $container.toggleClass('tbl--accordion__is-expanded').toggleClass('tbl--accordion__is-collapsed');
+        }
+      },
 
-			var searchTerm = typeof publicAPI.searchTerm() === 'string' ? publicAPI.searchTerm().toLowerCase() : '';
+      //Tracks if the current record is being merged
+      recordIsBeingMerged: function( selectedData ){
 
-			return ko.utils.arrayFilter( surgeons(), function(data) {
-				return ( data.possibleDuplicate === true && data.name.toLowerCase().indexOf( searchTerm ) > -1 );
-			});
-		},
+        var result = beingMerged().filter(function(currentData){
 
-		mergedSurgeons: function() {
+          if( currentData.id === selectedData.id ){
 
-			var searchTerm = typeof publicAPI.searchTerm() === 'string' ? publicAPI.searchTerm().toLowerCase() : '';
+            return currentData;
+          }
+        });
 
-			return ko.utils.arrayFilter( surgeons(), function(data) {
-				return ( data.childRecords.length > 0 && data.name.toLowerCase().indexOf( searchTerm ) > -1 );
-			});
-		},
-	};
+        return( result.length > 0 );
+      },
 
-	/*
-	 * Computed needs to be defined outside of the
-	 * original publicAPI definition because it executes
-	 * right away and needs to be able to reference the
-	 * publicAPI value
-	 */
-	publicAPI.records = ko.computed(function(){
+      // Resets the merge state in response to merger module
+      resetMerge: function(){
 
-		switch( publicAPI.filter() ){
+        beingMerged.removeAll();
+        this.selectedSurgeon({});
+      },
 
-			case 'all':
+      // Removes the surgeon from the beingMerged list
+      removeFromMergeList: function( data ){
 
-				return publicAPI.allSurgeons();
+        beingMerged.remove(function(item) {
 
-			case 'possible':
+          return item.id === data.id;
+        });
+      },
 
-				return publicAPI.possibleDuplicateSurgeons();
+      allSurgeons: function() {
 
-			case 'merged':
+        var searchTerm = typeof this.searchTerm() === 'string' ? this.searchTerm().toLowerCase() : '';
 
-				return publicAPI.mergedSurgeons();
-		}
-	});
+        return ko.utils.arrayFilter( surgeons(), function(data) {
+          return ( data.name.toLowerCase().indexOf( searchTerm ) > -1 );
+        });
+      },
 
-	return publicAPI;
+      possibleDuplicateSurgeons: function() {
 
-})();
+        var searchTerm = typeof this.searchTerm() === 'string' ? this.searchTerm().toLowerCase() : '';
+
+        return ko.utils.arrayFilter( surgeons(), function(data) {
+          return ( data.possibleDuplicate === true && data.name.toLowerCase().indexOf( searchTerm ) > -1 );
+        });
+      },
+
+      mergedSurgeons: function() {
+
+        var searchTerm = typeof this.searchTerm() === 'string' ? this.searchTerm().toLowerCase() : '';
+
+        return ko.utils.arrayFilter( surgeons(), function(data) {
+          return ( data.childRecords.length > 0 && data.name.toLowerCase().indexOf( searchTerm ) > -1 );
+        });
+      }
+    };
+
+    return Surgeons;
+  }
+);
