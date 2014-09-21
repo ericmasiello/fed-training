@@ -1,0 +1,26 @@
+/*
+ * Layout utility classes
+ */
+
+.clearfix::before,
+.clearfix::after{
+
+  display: table;
+  content: "";
+  line-height: 0;
+}
+
+.clearfix::after {
+
+  clear: both;
+}
+
+.fl {
+
+  float: left;
+}
+
+.fr {
+
+  float: right;
+}

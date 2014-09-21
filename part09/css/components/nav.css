@@ -1,0 +1,63 @@
+/*
+ * Navigation
+ */
+
+/*a*/.global-nav-toggle {
+
+  color: #363636;
+}
+
+/*
+ * When global-nav-toggle exists within the app-header, its line height must match the .app-title/.h4
+ */
+.app-header .global-nav-toggle {
+
+  line-height: 18px;
+}
+
+.global-nav-toggle:hover {
+
+  text-decoration: none;
+}
+
+.section-nav {
+
+  margin-bottom: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
+  border-bottom: 1px solid #D1D1D1;
+}
+
+.section-nav > li {
+
+  float: left;
+  line-height: 28px;
+  margin-bottom: -1px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.section-nav > li > a {
+
+  border-bottom: 2px solid transparent;
+  display: block;
+  padding-bottom: 10px;
+  text-decoration: none;
+}
+
+.section-nav > li > a:hover {
+
+  border-bottom-color: #007DB1;
+}
+
+.section-nav > li > .is-selected {
+
+  color: #363636;
+  cursor: default;
+}
+
+.section-nav > li > .is-selected,
+.section-nav > li > .is-selected:hover {
+
+  border-bottom-color: #888;
+}
