@@ -1,6 +1,6 @@
-require(['account', 'surgeons'],
+require(['account', 'surgeons', 'merger'],
 
-  function(Account, Surgeons){
+  function(Account, Surgeons, Merger){
 
     'use strict';
 
@@ -38,6 +38,21 @@ require(['account', 'surgeons'],
       })).run();
     };
 
+    var bindEvents = function(){
+
+      //Delegate events
+      PubSub.subscribe('spc/surgeon/add-record', function( e, data ){
+
+        this.merger.add(data);
+      }.bind(this));
+
+      PubSub.subscribe('spc/merger/merged-record', function( e, data ){
+
+        //surgeons.
+        this.surgeons.loadSurgeons(true);
+      }.bind(this));
+    };
+
     /*
      * Public object
      */
@@ -48,6 +63,9 @@ require(['account', 'surgeons'],
         this.currentTab = ko.observable('manager');
         this.surgeons = Object.create(Surgeons).init();
         this.account = Object.create(Account).init();
+        this.merger = Object.create(Merger).init();
+
+        bindEvents.call(this);
         routePage.call(this);
         return this;
       }

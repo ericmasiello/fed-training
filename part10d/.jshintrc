@@ -25,6 +25,7 @@
     "jQuery": false,
     "Sammy": false,
     "require": false,
-    "define": false
+    "define": false,
+    "PubSub": false
   }
 }
