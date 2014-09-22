@@ -1,0 +1,40 @@
+1.	Surgical Profitability Compass Surgeon Manager
+	a.	Current User Jane Doe
+	b.	Signout
+	c.	Feedback
+	d.	Manager Duplicate Surgeons
+		i.	Find and select a surgeon from the list to manage duplicates.
+		ii.	Then add or remove duplicate names to merge with the selected surgeon.
+		iii.	[Search Filters]
+			1.	[Search input]
+			2.	[Filter Options]
+				a.	All Surgeons
+				b.	Possible Surgeons
+				c.	Merged Surgeons
+		iv.	[Search Results]
+			1.	[Record]
+				a.	Jones, Alan T
+				b.	83
+				c.	Add to List
+			2.	[Record]
+				a.	Jones, Andrew
+					i.	View Merged
+				b.	-
+				c.	Selected
+					d.	[Child Record]
+						i.	Jones, Andrew
+						ii.	236
+					e.	[Child Record]
+						i.	Jones, Andrew B
+						ii.	54
+		v.	Managing Duplicate Surgeons for Jones, Andrew
+			1.	[Duplicate Record]
+				a.	Jones, John
+				b.	Case Volume 52
+				c.	[Selected - Display Name]
+			2.	[Duplicate Record]
+				a.	Jones, John
+				b.	Case Volume 52
+				c.	Set as Display Name
+			3.	Confirm Duplicates button
+			4.	Cancel button
