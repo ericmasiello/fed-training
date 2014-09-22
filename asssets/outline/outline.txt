@@ -1,40 +1,69 @@
 1.	Surgical Profitability Compass Surgeon Manager
-	a.	Current User Jane Doe
-	b.	Signout
-	c.	Feedback
-	d.	Manager Duplicate Surgeons
-		i.	Find and select a surgeon from the list to manage duplicates.
-		ii.	Then add or remove duplicate names to merge with the selected surgeon.
-		iii.	[Search Filters]
+	a.  Menu
+	b.  Nav
+			i.  Manage Duplicate Surgeons
+			ii. My Account
+	c.	Manager Duplicate Surgeons
+		i.	Find and select a surgeon from the list to manage duplicates. Then add or remove duplicate names to merge with the selected surgeon.
+		ii.	[Search Filters]
 			1.	[Search input]
-			2.	[Filter Options]
-				a.	All Surgeons
-				b.	Possible Surgeons
-				c.	Merged Surgeons
-		iv.	[Search Results]
+			2.	All Surgeons
+			3.	Possible Surgeons
+			4.	Merged Surgeons
+		iii.	[Search Results]
 			1.	[Record]
 				a.	Jones, Alan T
 				b.	83
-				c.	Add to List
+				c.	Manage Duplictes
 			2.	[Record]
-				a.	Jones, Andrew
-					i.	View Merged
-				b.	-
-				c.	Selected
-					d.	[Child Record]
-						i.	Jones, Andrew
-						ii.	236
-					e.	[Child Record]
-						i.	Jones, Andrew B
-						ii.	54
-		v.	Managing Duplicate Surgeons for Jones, Andrew
+        a. [Parent record]
+          i.	Jones, Andrew
+          ii. -
+          iii. Manage Duplicates
+        b.	[Child Record]
+          i.	Jones, Andrew
+          ii.	236
+        c.	[Child Record]
+          i.	Jones, Andrew B
+          ii.	54
+        d.	[Child Record]
+          i.	Jones, Andy
+          ii.	76
+		iv.	Managing Duplicate Surgeons for Jones, Andrew
 			1.	[Duplicate Record]
-				a.	Jones, John
-				b.	Case Volume 52
-				c.	[Selected - Display Name]
+				a.	[x] Remove
+				b.	Jones, John
+					i.	Portland Medical Center
+					i.	Case Volume 52
+				c. [Display Name]
 			2.	[Duplicate Record]
-				a.	Jones, John
-				b.	Case Volume 52
-				c.	Set as Display Name
-			3.	Confirm Duplicates button
-			4.	Cancel button
+				a.	[x] Remove
+        b.	Jones, Andrew
+          i.	Portland Medical Center
+          i.	Case Volume 52
+        c. [Set as Display Name]
+      3. [Control bar]
+				a.	Confirm Duplicates
+				b.	Cancel
+
+
+	d. My Account
+		1.  All fields required unless marked optional
+		2.  Contact information
+			a.  [list for form fields]
+				i.  First name
+				ii.  Last name
+				iii.  Job title
+				iv.  Email
+				v.  Cell number
+				vi. Home number
+		3.  Address
+			a. To change your password, enter your current (old) password, then enter and re-enter a new password.
+			b.  [list of fields]
+				i. ...
+			c.  Password Rules
+				i. 8 chars minimum...
+				ii. ...
+		4.  Security Questions
+			a. ...
+		5.  Complete Registration
