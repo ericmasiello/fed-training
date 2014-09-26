@@ -12,29 +12,29 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-        jshint: {
-            options: {
-                jshintrc: '.jshintrc'
-            },
-            all: ['js/*.js']
-        },
+		jshint: {
+				options: {
+						jshintrc: '.jshintrc'
+				},
+				all: ['js/*.js']
+		},
 
-        watch: {
-            css: {
-                files: 'css/**/*.css',
-                tasks: ['cssmin'],
-                options: {
-                    livereload: true
-                }
-            },
-            scripts: {
-              files: ['**/*.js'],
-              tasks: ['jshint'],
-              options: {
-                spawn: false
-              }
-            }
-        }
+		watch: {
+				css: {
+						files: 'css/**/*.css',
+						tasks: ['cssmin'],
+						options: {
+								livereload: true
+						}
+				},
+				scripts: {
+					files: ['**/*.js'],
+					tasks: ['jshint'],
+					options: {
+						spawn: false
+					}
+				}
+		}
 	});
 
 	// 3. Where we tell Grunt we plan to use this plug-in.

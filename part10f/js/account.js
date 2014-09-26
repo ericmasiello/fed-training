@@ -30,8 +30,6 @@ define([],
         this.cellNumber3(this.homeNumber3());
         this.cellNumberExt(this.homeNumberExt());
       }
-
-      return true; //must return true to allow defualt browser behavior
     };
 
     // Verifies the password typed by user matches the password fetched via the Ajax request
