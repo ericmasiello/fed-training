@@ -1,0 +1,57 @@
+/*
+ * State
+ */
+
+.is-success {
+
+	color: #74982F;
+}
+
+.is-error {
+
+	color: #CD1126;
+}
+
+.is-warning {
+
+	color: #D5801D;
+}
+
+[type="email"].is-error,
+[type="number"].is-error,
+[type="password"].is-error,
+[type="phone"].is-error,
+[type="text"].is-error,
+[type="url"].is-error,
+textarea.is-error {
+
+	border-color: #CD1126;
+}
+
+.is-hidden {
+
+	display: none;
+}
+
+.is-visible {
+
+	display: block;
+}
+
+.is-invisible {
+
+	visibility: hidden;
+}
+
+@media (min-width: 900px) {
+
+	.med-is-hidden {
+
+		display: none;
+	}
+
+	.med-is-visible {
+
+		display: block;
+	}
+}
