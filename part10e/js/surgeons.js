@@ -126,16 +126,16 @@ define([],
       //Tracks if the current record is being merged
       recordIsBeingMerged: function( selectedData ){
 
-        var result = beingMerged().filter(function(currentData){
+				var result = beingMerged().filter(function(currentData){
 
-          if( currentData.id === selectedData.id ){
+					if( currentData.id === selectedData.id ){
 
-            return currentData;
-          }
-        });
+						return currentData;
+					}
+				});
 
-        return( result.length > 0 );
-      },
+				return( result.length > 0 );
+			},
 
       // Resets the merge state in response to merger module
       resetMerge: function(){

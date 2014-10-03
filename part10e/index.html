@@ -96,17 +96,17 @@
 
             <!-- ko if: $parent.isMerging -->
 
-            <!-- ko if: $parent.selectedSurgeon().id === $data.id -->
-            Selected <i class="i-move-right-dark"></i>
-            <!-- /ko -->
+	            <!-- ko if: $parent.selectedSurgeon().id === $data.id -->
+	            Selected <i class="i-move-right-dark"></i>
+	            <!-- /ko -->
 
-            <!-- ko if: ( ($parent.selectedSurgeon().id !== $data.id) && ($parent.recordIsBeingMerged($data) === true)) -->
-            <span class="is-success"><i class="i-check"></i> Added</span>
-            <!-- /ko -->
+	            <!-- ko if: ( ($parent.selectedSurgeon().id !== $data.id) && ($parent.recordIsBeingMerged($data) === true)) -->
+	            <span class="is-success"><i class="i-check"></i> Added</span>
+	            <!-- /ko -->
 
-            <!-- ko if: (($parent.selectedSurgeon().id !== $data.id) && ($parent.recordIsBeingMerged($data) === false) ) -->
-            <a href="#" data-bind="click: $parent.add, clickBubble: false">Add to List <i class="i-plus-circle"></i></a>
-            <!-- /ko -->
+	            <!-- ko if: (($parent.selectedSurgeon().id !== $data.id) && ($parent.recordIsBeingMerged($data) === false) ) -->
+	            <a href="#" data-bind="click: $parent.add, clickBubble: false">Add to List <i class="i-plus-circle"></i></a>
+	            <!-- /ko -->
 
             <!-- /ko -->
 
