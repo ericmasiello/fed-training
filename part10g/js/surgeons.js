@@ -1,5 +1,5 @@
-define([],
-  function() {
+define(['models/surgeon-model'],
+  function(SurgeonModel) {
 
     'use strict';
 
@@ -40,12 +40,6 @@ define([],
         this.filter = ko.observable('all');
 
         /*
-         * Binds the "this" context to the instance
-         * for these private methods
-         */
-        loadSurgeonsDoneCallback = loadSurgeonsDoneCallback.bind(this);
-
-        /*
          * Computed that publicly exposes the the correct records
          * from the private surgeons observable based on the currently
          * selected filter
@@ -81,23 +75,11 @@ define([],
        */
       loadSurgeons: function( fetchDifferentData ){
 
-        var url = 'sampledata.json';
-
-        /*
-         * Kludge we use for demo purposes so that we can fetch
-         * data from a different URL. We do this since we don't have
-         * an actual backend API that supports updating the data
-         * and retreiving the updated records back
-         */
-        if( fetchDifferentData === true ){
-
-          url = 'sampledata2.json';
-        }
-
-        $.ajax({
-          'url': url,
-          'type': 'get',
-        }).done( loadSurgeonsDoneCallback );
+        SurgeonModel.read({
+          callback: loadSurgeonsDoneCallback,
+          context: this,
+          fetchDifferentData: fetchDifferentData
+        });
       },
 
       /*

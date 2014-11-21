@@ -30,24 +30,16 @@ define([],
 				}
 
 				/*
-				 * Adding setTimeout to artificially add a loading delay...
-				 * for demo purposes
+				 * Kludge we use for demo purposes so that we can fetch
+				 * data from a different URL. We do this since we don't have
+				 * an actual backend API that supports updating the data
+				 * and retreiving the updated records back
 				 */
-				setTimeout(function(){
-
-					/*
-					 * Kludge we use for demo purposes so that we can fetch
-					 * data from a different URL. We do this since we don't have
-					 * an actual backend API that supports updating the data
-					 * and retreiving the updated records back
-					 */
-					$.ajax({
-						'url': ( options.fetchDifferentData === true ) ? 'sampledata2.json' : API_PATHS.read,
-						'type': 'get',
-						'context': ( options.context ) ? options.context : undefined,
-					}).done( options.callback );
-
-				}.bind(this), 2000);
+				$.ajax({
+					'url': ( options.fetchDifferentData === true ) ? 'sampledata2.json' : API_PATHS.read,
+					'type': 'get',
+					'context': ( options.context ) ? options.context : undefined,
+				}).done( options.callback );
 			},
 
 			update: function(){

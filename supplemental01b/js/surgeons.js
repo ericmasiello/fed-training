@@ -17,20 +17,12 @@ define(['models/surgeon-model'],
     // Private callback method
     var loadSurgeonsDoneCallback = function(resp){
 
-      /*
-       * Adding setTimeout to artificially add a loading delay...
-       * for demo purposes
-       */
-      setTimeout(function(){
+      this.isLoaded(true);
 
-        this.isLoaded(true);
+      if( jQuery.isPlainObject( resp ) === true && jQuery.isArray( resp.data ) === true ) {
 
-        if( jQuery.isPlainObject( resp ) === true && jQuery.isArray( resp.data ) === true ) {
-
-          surgeons(resp.data);
-        }
-
-      }.bind(this), 2000);
+        surgeons(resp.data);
+      }
     };
 
     /*
@@ -86,8 +78,6 @@ define(['models/surgeon-model'],
        * Loads the surgeon data
        */
       loadSurgeons: function( fetchDifferentData ){
-
-        this.isLoaded(false);
 
         SurgeonModel.read({
           callback: loadSurgeonsDoneCallback,
