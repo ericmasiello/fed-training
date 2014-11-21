@@ -1,5 +1,5 @@
-define([],
-  function() {
+define(['models/surgeon-model'],
+  function(SurgeonModel) {
 
     'use strict';
 
@@ -29,12 +29,6 @@ define([],
       init: function(){
 
         /*
-         * Binds the "this" context to the instance
-         * for these private methods
-         */
-        loadSurgeonsDoneCallback = loadSurgeonsDoneCallback.bind(this);
-
-        /*
          * Placeholder method, this will be modified
          * once we start to add filter capabilities
          */
@@ -52,13 +46,10 @@ define([],
        */
       loadSurgeons: function(){
 
-        $.ajax({
-          'url': 'sampledata.json',
-          'type': 'get',
-        }).done( loadSurgeonsDoneCallback );
-
-        //Alternative ...
-        //$.get('sampledata.json', loadSurgeonsDoneCallback);
+        SurgeonModel.read({
+          callback: loadSurgeonsDoneCallback,
+          context: this
+        });
       }
     };
 
