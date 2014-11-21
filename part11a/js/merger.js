@@ -1,5 +1,5 @@
-define([],
-  function() {
+define(['models/surgeon-model'],
+  function(SurgeonModel) {
 
     'use strict';
 
@@ -76,16 +76,13 @@ define([],
           }
         });
 
-        //Pretend we make an API call to save this
-        //		$.ajax({
-        //			'url': 'mergesurgeons/' + displaySurgeon.id,
-        //			'type': 'put',
-        //			'data': JSON.stringify( displaySurgeon ),
-        //			'done': mergeRecordsDoneCallback
-        //		});
-
-        //Faux call response
-        mergeRecordsDoneCallback( displaySurgeon );
+        SurgeonModel.update({
+          //Fake callback
+          callback: function(){
+            mergeRecordsDoneCallback( displaySurgeon );
+          },
+          context: this
+        });
       },
 
       // Clears the selection

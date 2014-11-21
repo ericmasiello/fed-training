@@ -50,9 +50,16 @@ define([],
 				}.bind(this), 2000);
 			},
 
-			update: function(){
+			update: function( options ){
 
-				//FIXME in a real app
+				if( jQuery.isPlainObject( options ) === false ||
+					jQuery.isFunction( options.callback ) === false ){
+
+					return;
+				}
+
+				//Faking it...
+				options.callback();
 			},
 
 			//'delete' is a reserved word

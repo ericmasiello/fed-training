@@ -42,9 +42,16 @@ define([],
 				}).done( options.callback );
 			},
 
-			update: function(){
+			update: function( options ){
 
-				//FIXME in a real app
+				if( jQuery.isPlainObject( options ) === false ||
+					jQuery.isFunction( options.callback ) === false ){
+
+					return;
+				}
+
+				//Faking it...
+				options.callback();
 			},
 
 			//'delete' is a reserved word
