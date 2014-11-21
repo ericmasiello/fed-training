@@ -1,5 +1,5 @@
-define([],
-  function() {
+define(['models/account'],
+  function(AccountModel) {
 
     'use strict';
 
@@ -121,16 +121,16 @@ define([],
         // Sets up subscription to changes on sameAsCell observable
         this.sameAsCell.subscribe( sameAsCellChanged.bind( this ) );
 
-        // Keep this binding context correct
-        loadAccountDoneCallback = loadAccountDoneCallback.bind( this );
-
         return this;
       },
 
       // loads the account data
       loadAccount: function(){
 
-        $.get('sampleuser.json', loadAccountDoneCallback);
+        AccountModel.read({
+          callback: loadAccountDoneCallback,
+          context: this
+        });
       }
     };
 
