@@ -1,4 +1,4 @@
-define(['models/surgeons'],
+define(['models/surgeon-model'],
   function(SurgeonModel) {
 
     'use strict';

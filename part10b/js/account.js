@@ -3,64 +3,59 @@ define([],
 
     'use strict';
 
-    /*
-     * Private variables
-     * & methods
-     */
+    var isInitialized = false;
 
-    // Verifies if the new-password and new-password-2 field match
-    var isPasswordMismatch = function(){
+    var isPasswordMatch = function(){
 
-      var misMatch = false;
+      var $password = $('#new-password');
+      var $password2 = $('#new-password-2');
+      var setError = false;
 
-      if( this.newPassword() !== '' && this.newPassword2() !== '' && this.newPassword() !== this.newPassword2() ){
+      if( $password.val() !== '' && $password2.val() !== '' && $password.val() !== $password2.val() ){
 
-        misMatch = true;
+        setError = true;
       }
 
-      return misMatch;
+      $password2.toggleClass('is-error', setError)
+        .siblings('label').toggleClass('is-error', setError)
+        .end()
+        .siblings('div, i').toggle(setError);
     };
 
-    // Copies the cell phone into the home number fields
-    var sameAsCellChanged = function(checked){
+    var toggleSameAsCell = function(){
 
+      var checked = $(this).is(':checked');
       if( checked === true ){
-        this.cellNumber1(this.homeNumber1());
-        this.cellNumber2(this.homeNumber2());
-        this.cellNumber3(this.homeNumber3());
-        this.cellNumberExt(this.homeNumberExt());
+
+        $('#home-number-1').val( $('#cell-number-1').val() ).prop('disabled', checked);
+        $('#home-number-2').val( $('#cell-number-2').val() ).prop('disabled', checked);
+        $('#home-number-3').val( $('#cell-number-3').val() ).prop('disabled', checked);
+        $('#home-number-ext').val( $('#cell-number-ext').val() ).prop('disabled', checked);
+
+      } else {
+
+        $('#home-number-1').prop('disabled', checked);
+        $('#home-number-2').prop('disabled', checked);
+        $('#home-number-3').prop('disabled', checked);
+        $('#home-number-ext').prop('disabled', checked);
       }
     };
 
-    /*
-     * Account module that is returned publicly
-     */
-    var Account = {
+    var init = function(){
 
-      init: function(){
+      if( isInitialized === false ){
 
-        this.homeNumber1 = ko.observable();
-        this.homeNumber2 = ko.observable();
-        this.homeNumber3 = ko.observable();
-        this.homeNumberExt = ko.observable();
-        this.sameAsCell = ko.observable(false);
-        this.cellNumber1 = ko.observable();
-        this.cellNumber2 = ko.observable();
-        this.cellNumber3 = ko.observable();
-        this.cellNumberExt = ko.observable();
-        this.newPassword = ko.observable('');
-        this.newPassword2 = ko.observable('');
-
-        // Automatically check whenever newPassword or newPassword2 changes
-        this.isPasswordMismatch = ko.computed( isPasswordMismatch, this );
-
-        // Sets up subscription to changes on sameAsCell observbale
-        this.sameAsCell.subscribe( sameAsCellChanged.bind( this ) );
-
-        return this;
+        $('#same-as-cell').on('click', toggleSameAsCell);
+        $('#new-password-2, #new-password').on('change', isPasswordMatch);
       }
+
+      isInitialized = true;
     };
 
-    return Account;
+    return {
+
+      init: init
+    };
+
   }
 );

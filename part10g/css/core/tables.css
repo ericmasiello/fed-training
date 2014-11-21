@@ -9,8 +9,7 @@ table {
    * http://stackoverflow.com/questions/7725110/double-dotted-border-while-using-colspan
    */
 	border-collapse: separate;
-	table-layout: fixed;
-	width: 100%;
+  width: 100%;
 }
 
 thead tr:last-child td,
@@ -22,14 +21,14 @@ thead tr:last-child th {
 thead td,
 thead th {
 
-	color: #868686;
-	vertical-align: bottom;
+  color: #868686;
+  vertical-align: bottom;
 }
 
 td, th {
 
 	padding: 10px;
-	text-align: left;
+  text-align: left;
 	vertical-align: top;
 }
 
@@ -46,5 +45,5 @@ td:last-child, th:last-child {
 tbody:nth-of-type(1) tr:first-child td,
 tbody:nth-of-type(1) tr:first-child th {
 
-	padding-top: 20px;
+  padding-top: 20px;
 }

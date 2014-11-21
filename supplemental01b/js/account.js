@@ -1,4 +1,4 @@
-define(['models/account'],
+define(['models/account-model'],
   function(AccountModel) {
 
     'use strict';

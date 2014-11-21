@@ -17,20 +17,11 @@ define([],
     // Private callback method
     var loadSurgeonsDoneCallback = function(resp){
 
-      /*
-       * Adding setTimeout to artificially add a loading delay...
-       * for demo purposes
-       */
-      setTimeout(function(){
+      if( jQuery.isPlainObject( resp ) === true &&
+        jQuery.isArray( resp.data ) === true ) {
 
-        this.isLoaded(true);
-
-        if( jQuery.isPlainObject( resp ) === true && jQuery.isArray( resp.data ) === true ) {
-
-          surgeons(resp.data);
-        }
-
-      }.bind(this), 2000);
+        surgeons(resp.data);
+      }
     };
 
     /*
@@ -42,9 +33,6 @@ define([],
 
         // Tracks the selected surgeon in merger module
         this.selectedSurgeon = ko.observable({});
-
-        // Tracks if data has been loaded from ajax call
-        this.isLoaded = ko.observable(false);
 
         // Bound to search text box
         this.searchTerm = ko.observable('');
@@ -92,8 +80,6 @@ define([],
        * Loads the surgeon data
        */
       loadSurgeons: function( fetchDifferentData ){
-
-        this.isLoaded(false);
 
         var url = 'sampledata.json';
 

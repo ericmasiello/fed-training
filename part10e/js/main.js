@@ -49,20 +49,8 @@ require(['account', 'surgeons', 'merger'],
       PubSub.subscribe('spc/merger/merged-record', function( e, data ){
 
         //surgeons.
-        this.surgeons.resetMerge();
         this.surgeons.loadSurgeons(true);
       }.bind(this));
-
-      PubSub.subscribe('spc/merger/set-display-surgeon', function(e, data){
-
-        this.surgeons.selectedSurgeon(data);
-      }.bind(this));
-
-      PubSub.subscribe('spc/merger/cancel', function(){
-
-        this.surgeons.resetMerge();
-      }.bind(this));
-
     };
 
     /*
