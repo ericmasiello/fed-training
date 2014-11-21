@@ -8,6 +8,28 @@ require(['account', 'surgeons'],
      * Private methods
      */
 
+    // Toggles different views in the application
+    var toggleTabs = function (tab){
+
+      var $tabs = $('#main-nav').find('a');
+      var $selectedTab = $tabs.filter('[data-val="' + tab + '"]');
+      var $otherTab = $tabs.not($selectedTab);
+
+      $selectedTab.addClass('is-selected');
+      $otherTab.removeClass('is-selected');
+
+      if( tab === 'manager'){
+
+        $('#manager').show();
+        $('#account').hide();
+
+      } else {
+
+        $('#manager').hide();
+        $('#account').show();
+      }
+    };
+
     // Handles routing
     var routePage = function(){
 
@@ -24,14 +46,15 @@ require(['account', 'surgeons'],
 
         this.get('#!/manager', function () {
 
-          self.currentTab('manager');
+          toggleTabs('manager');
           self.surgeons.loadSurgeons();
 
         });
 
         this.get('#!/account', function () {
 
-          self.currentTab('account');
+          toggleTabs('account');
+          Account.init();
 
         });
       })).run();
@@ -44,9 +67,7 @@ require(['account', 'surgeons'],
 
       init: function(){
 
-        this.currentTab = ko.observable('manager');
         this.surgeons = Object.create(Surgeons).init();
-        this.account = Object.create(Account).init();
         routePage.call(this);
         return this;
       }

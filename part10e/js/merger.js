@@ -1,5 +1,5 @@
-define([],
-  function() {
+define(['models/surgeon-model'],
+  function(SurgeonModel) {
 
     'use strict';
 
@@ -38,7 +38,6 @@ define([],
       setSurgeon: function( data ){
 
         this.displaySurgeon( data );
-        PubSub.publish('spc/merger/set-display-surgeon', data );
       },
 
       // Method for adding a new record to the list of surgeons
@@ -75,23 +74,19 @@ define([],
           }
         });
 
-        //Pretend we make an API call to save this
-        //		$.ajax({
-        //			'url': 'mergesurgeons/' + displaySurgeon.id,
-        //			'type': 'put',
-        //			'data': JSON.stringify( displaySurgeon ),
-        //			'done': mergeRecordsDoneCallback
-        //		});
-
-        //Faux call response
-        mergeRecordsDoneCallback( displaySurgeon );
+        SurgeonModel.update({
+          //Fake callback
+          callback: function(){
+            mergeRecordsDoneCallback( displaySurgeon );
+          },
+          context: this
+        });
       },
 
       // Clears the selection
       cancelMerge: function(){
 
         this.records.removeAll();
-        PubSub.publish('spc/merger/cancel');
       }
     };
 

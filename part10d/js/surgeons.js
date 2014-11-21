@@ -1,5 +1,5 @@
-define([],
-  function() {
+define(['models/surgeon-model'],
+  function(SurgeonModel) {
 
     'use strict';
 
@@ -29,12 +29,6 @@ define([],
       init: function(){
 
         /*
-         * Binds the "this" context to the instance
-         * for these private methods
-         */
-        loadSurgeonsDoneCallback = loadSurgeonsDoneCallback.bind(this);
-
-        /*
          * Placeholder method, this will be modified
          * once we start to add filter capabilities
          */
@@ -50,34 +44,12 @@ define([],
       /*
        * Loads the surgeon data
        */
-      loadSurgeons: function( fetchDifferentData ){
+      loadSurgeons: function(){
 
-        var url = 'sampledata.json';
-
-        /*
-         * Kludge we use for demo purposes so that we can fetch
-         * data from a different URL. We do this since we don't have
-         * an actual backend API that supports updating the data
-         * and retreiving the updated records back
-         */
-        if( fetchDifferentData === true ){
-
-          url = 'sampledata2.json';
-        }
-
-        $.ajax({
-          'url': url,
-          'type': 'get',
-        }).done( loadSurgeonsDoneCallback );
-      },
-
-      /*
-       * Method for adding current record to
-       * the merger module
-       */
-      add: function( data ){
-
-        PubSub.publish('spc/surgeon/add-record', data );
+        SurgeonModel.read({
+          callback: loadSurgeonsDoneCallback,
+          context: this
+        });
       }
     };
 

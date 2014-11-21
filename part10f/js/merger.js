@@ -1,5 +1,5 @@
-define([],
-  function() {
+define(['models/surgeon-model'],
+  function(SurgeonModel) {
 
     'use strict';
 
@@ -30,7 +30,6 @@ define([],
         //Set "this" context
         mergeRecordsDoneCallback = mergeRecordsDoneCallback.bind(this);
         this.setSurgeon = this.setSurgeon.bind(this);
-        this.remove = this.remove.bind(this);
 
         return this;
       },
@@ -76,16 +75,13 @@ define([],
           }
         });
 
-        //Pretend we make an API call to save this
-        //		$.ajax({
-        //			'url': 'mergesurgeons/' + displaySurgeon.id,
-        //			'type': 'put',
-        //			'data': JSON.stringify( displaySurgeon ),
-        //			'done': mergeRecordsDoneCallback
-        //		});
-
-        //Faux call response
-        mergeRecordsDoneCallback( displaySurgeon );
+        SurgeonModel.update({
+          //Fake callback
+          callback: function(){
+            mergeRecordsDoneCallback( displaySurgeon );
+          },
+          context: this
+        });
       },
 
       // Clears the selection
@@ -93,17 +89,6 @@ define([],
 
         this.records.removeAll();
         PubSub.publish('spc/merger/cancel');
-      },
-
-      // removes the surgeon from the list
-      remove: function( data ){
-
-        this.records.remove(function(item) {
-
-          return item.id === data.id;
-        });
-
-        PubSub.publish('spc/merger/remove', data);
       }
     };
 
