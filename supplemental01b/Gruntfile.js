@@ -16,7 +16,7 @@ module.exports = function(grunt) {
             options: {
                 jshintrc: '.jshintrc'
             },
-            all: ['js/*.js']
+            all: ['js/*.js', 'js/models/*.js']
         },
 
         watch: {
