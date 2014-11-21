@@ -1,5 +1,5 @@
-define([],
-  function() {
+define(['models/account-model'],
+  function(AccountModel) {
 
     'use strict';
 
@@ -30,8 +30,6 @@ define([],
         this.cellNumber3(this.homeNumber3());
         this.cellNumberExt(this.homeNumberExt());
       }
-
-      return true; //must return true to allow defualt browser behavior
     };
 
     // Verifies the password typed by user matches the password fetched via the Ajax request
@@ -123,16 +121,16 @@ define([],
         // Sets up subscription to changes on sameAsCell observable
         this.sameAsCell.subscribe( sameAsCellChanged.bind( this ) );
 
-        // Keep this binding context correct
-        loadAccountDoneCallback = loadAccountDoneCallback.bind( this );
-
         return this;
       },
 
       // loads the account data
       loadAccount: function(){
 
-        $.get('sampleuser.json', loadAccountDoneCallback);
+        AccountModel.read({
+          callback: loadAccountDoneCallback,
+          context: this
+        });
       }
     };
 

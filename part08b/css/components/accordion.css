@@ -1,31 +1,34 @@
-.tbl--accordion tr {
-
-
-}
-
 .tbl--accordion thead tr:last-child td,
 .tbl--accordion thead tr:last-child th {
 
-  border-bottom-color: #D1D1D1;
-  border-bottom-style: solid;
+  border-style: solid;
 }
 
-.tbl--accordion tbody td,
-.tbl--accordion tbody th {
+.tbl--accordion tbody tr td,
+.tbl--accordion tbody tr th {
 
   border-bottom: 1px dotted #D1D1D1;
 }
+
+.tbl--accordion tbody :first-child td,
+.tbl--accordion tbody :first-child th,
+.tbl--accordion tbody :last-child td,
+.tbl--accordion tbody :last-child th{
+
+  border-style: solid;
+}
+
 
 .tbl--accordion tbody tr:first-child td,
 .tbl--accordion tbody tr:first-child th {
 
   border-left: none;
-  border-bottom: 1px solid #D1D1D1;
   padding-bottom: 15px;
   padding-top: 15px;
 }
 
-.tbl--accordion tbody td:first-child {
+.tbl--accordion tbody td:first-child,
+.tbl--accordion tbody th:first-child {
 
   border-left: 15px solid #D1D1D1;
 }

@@ -38,7 +38,7 @@ function toggleSameAsCell(){
 
 function initAccount(){
 
-  $('#same-as-cell').on('click', toggleSameAsCell);
+	$('#same-as-cell').on('click', toggleSameAsCell);
 	$('#new-password-2, #new-password').on('change', isPasswordMatch);
 }
 

@@ -1,7 +1,6 @@
 .search {
 
-  background: url("../../img/search.svg") no-repeat 5px 9px #fff;
-  position: relative;
+  background: url("../../img/search.svg") no-repeat 5px center #fff;
 }
 
 .search > [type="text"] {

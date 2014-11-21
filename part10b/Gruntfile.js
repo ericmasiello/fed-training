@@ -1,4 +1,4 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
 	// 1. All configuration goes here
 	grunt.initConfig({
@@ -12,34 +12,34 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-        jshint: {
-            options: {
-                jshintrc: '.jshintrc'
-            },
-            all: ['js/*.js']
-        },
+		jshint: {
+			options: {
+				jshintrc: '.jshintrc'
+			},
+			all: ['js/*.js', 'js/models/*.js']
+		},
 
-        watch: {
-            css: {
-                files: 'css/**/*.css',
-                tasks: ['cssmin'],
-                options: {
-                    livereload: true
-                }
-            },
-            scripts: {
-              files: ['**/*.js'],
-              tasks: ['jshint'],
-              options: {
-                spawn: false
-              }
-            }
-        }
+		watch: {
+			css: {
+				files: 'css/**/*.css',
+				tasks: ['cssmin'],
+				options: {
+					livereload: true
+				}
+			},
+			scripts: {
+				files: ['**/*.js', 'js/models/*.js'],
+				tasks: ['jshint'],
+				options: {
+					spawn: false
+				}
+			}
+		}
 	});
 
 	// 3. Where we tell Grunt we plan to use this plug-in.
-    grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.registerTask('default', ['cssmin', 'jshint', 'watch']);
 };

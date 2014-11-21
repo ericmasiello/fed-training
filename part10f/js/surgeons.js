@@ -1,5 +1,5 @@
-define([],
-  function() {
+define(['models/surgeon-model'],
+  function(SurgeonModel) {
 
     'use strict';
 
@@ -34,38 +34,13 @@ define([],
         // Tracks the selected surgeon in merger module
         this.selectedSurgeon = ko.observable({});
 
-        // Bound to search text box
-        this.searchTerm = ko.observable('');
-        // Bound to selected radio filter option
-        this.filter = ko.observable('all');
-
         /*
-         * Binds the "this" context to the instance
-         * for these private methods
-         */
-        loadSurgeonsDoneCallback = loadSurgeonsDoneCallback.bind(this);
-
-        /*
-         * Computed that publicly exposes the the correct records
-         * from the private surgeons observable based on the currently
-         * selected filter
+         * Placeholder method, this will be modified
+         * once we start to add filter capabilities
          */
         this.records = ko.computed(function(){
 
-          switch( this.filter() ){
-
-            case 'all':
-
-              return this.allSurgeons();
-
-            case 'possible':
-
-              return this.possibleDuplicateSurgeons();
-
-            case 'merged':
-
-              return this.mergedSurgeons();
-          }
+          return surgeons();
         }, this);
 
         this.isMerging = ko.computed(function(){
@@ -81,23 +56,11 @@ define([],
        */
       loadSurgeons: function( fetchDifferentData ){
 
-        var url = 'sampledata.json';
-
-        /*
-         * Kludge we use for demo purposes so that we can fetch
-         * data from a different URL. We do this since we don't have
-         * an actual backend API that supports updating the data
-         * and retreiving the updated records back
-         */
-        if( fetchDifferentData === true ){
-
-          url = 'sampledata2.json';
-        }
-
-        $.ajax({
-          'url': url,
-          'type': 'get',
-        }).done( loadSurgeonsDoneCallback );
+        SurgeonModel.read({
+          callback: loadSurgeonsDoneCallback,
+          context: this,
+          fetchDifferentData: fetchDifferentData
+        });
       },
 
       /*
@@ -145,58 +108,22 @@ define([],
       //Tracks if the current record is being merged
       recordIsBeingMerged: function( selectedData ){
 
-        var result = beingMerged().filter(function(currentData){
+				var result = beingMerged().filter(function(currentData){
 
-          if( currentData.id === selectedData.id ){
+					if( currentData.id === selectedData.id ){
 
-            return currentData;
-          }
-        });
+						return currentData;
+					}
+				});
 
-        return( result.length > 0 );
-      },
+				return( result.length > 0 );
+			},
 
       // Resets the merge state in response to merger module
       resetMerge: function(){
 
         beingMerged.removeAll();
         this.selectedSurgeon({});
-      },
-
-      // Removes the surgeon from the beingMerged list
-      removeFromMergeList: function( data ){
-
-        beingMerged.remove(function(item) {
-
-          return item.id === data.id;
-        });
-      },
-
-      allSurgeons: function() {
-
-        var searchTerm = typeof this.searchTerm() === 'string' ? this.searchTerm().toLowerCase() : '';
-
-        return ko.utils.arrayFilter( surgeons(), function(data) {
-          return ( data.name.toLowerCase().indexOf( searchTerm ) > -1 );
-        });
-      },
-
-      possibleDuplicateSurgeons: function() {
-
-        var searchTerm = typeof this.searchTerm() === 'string' ? this.searchTerm().toLowerCase() : '';
-
-        return ko.utils.arrayFilter( surgeons(), function(data) {
-          return ( data.possibleDuplicate === true && data.name.toLowerCase().indexOf( searchTerm ) > -1 );
-        });
-      },
-
-      mergedSurgeons: function() {
-
-        var searchTerm = typeof this.searchTerm() === 'string' ? this.searchTerm().toLowerCase() : '';
-
-        return ko.utils.arrayFilter( surgeons(), function(data) {
-          return ( data.childRecords.length > 0 && data.name.toLowerCase().indexOf( searchTerm ) > -1 );
-        });
       }
     };
 

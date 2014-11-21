@@ -46,23 +46,21 @@
     <p>Find and select a surgeon from the list to manage duplicates. Then add or remove duplicate names to merge
       with the selected surgeon.</p>
 
-    <form data-bind="with: surgeons">
-      <!--<pre data-bind="text: ko.toJSON($data, null, 2)"></pre>-->
-
+    <form>
       <ul class="flat-list">
         <li>
           <div class="search  width-250">
-            <input type="text" placeholder="Search surgeon names" data-bind="value: searchTerm, valueUpdate: 'keyup'"/>
+            <input type="text" placeholder="Search surgeon names"/>
           </div>
         </li>
         <li>
-          <label><input type="radio" name="filter" value="all" checked data-bind="checked: filter" />All Surgeons (<!-- ko text: allSurgeons().length --><!-- /ko -->)</label>
+          <label><input type="radio" name="filter" value="all" checked />All Surgeons ()</label>
         </li>
         <li>
-          <label><input type="radio" name="filter" value="possible" data-bind="checked: filter"/>Possible Duplicates (<!-- ko text: possibleDuplicateSurgeons().length --><!-- /ko -->)</label>
+          <label><input type="radio" name="filter" value="possible"/>Possible Duplicates ()</label>
         </li>
         <li>
-          <label><input type="radio" name="filter" value="merged" data-bind="checked: filter"/>Merged Surgeons (<!-- ko text: mergedSurgeons().length --><!-- /ko -->)</label>
+          <label><input type="radio" name="filter" value="merged"/>Merged Surgeons ()</label>
         </li>
       </ul>
     </form>
@@ -98,17 +96,17 @@
 
             <!-- ko if: $parent.isMerging -->
 
-            <!-- ko if: $parent.selectedSurgeon().id === $data.id -->
-            Selected <i class="i-move-right-dark"></i>
-            <!-- /ko -->
+	            <!-- ko if: $parent.selectedSurgeon().id === $data.id -->
+	            Selected <i class="i-move-right-dark"></i>
+	            <!-- /ko -->
 
-            <!-- ko if: ( ($parent.selectedSurgeon().id !== $data.id) && ($parent.recordIsBeingMerged($data) === true)) -->
-            <span class="is-success"><i class="i-check"></i> Added</span>
-            <!-- /ko -->
+	            <!-- ko if: ( ($parent.selectedSurgeon().id !== $data.id) && ($parent.recordIsBeingMerged($data) === true)) -->
+	            <span class="is-success"><i class="i-check"></i> Added</span>
+	            <!-- /ko -->
 
-            <!-- ko if: (($parent.selectedSurgeon().id !== $data.id) && ($parent.recordIsBeingMerged($data) === false) ) -->
-            <a href="#" data-bind="click: $parent.add, clickBubble: false">Add to List <i class="i-plus-circle"></i></a>
-            <!-- /ko -->
+	            <!-- ko if: (($parent.selectedSurgeon().id !== $data.id) && ($parent.recordIsBeingMerged($data) === false) ) -->
+	            <a href="#" data-bind="click: $parent.add, clickBubble: false">Add to List <i class="i-plus-circle"></i></a>
+	            <!-- /ko -->
 
             <!-- /ko -->
 
@@ -134,6 +132,7 @@
     <div class="fl  one-third" data-bind="with: merger">
       <!-- Right Column -->
 
+      <!-- <pre data-bind="text: ko.toJSON($data, null, 2)"></pre> -->
       <!-- ko if: records().length > 0 -->
       <table class="bsth">
         <col>
@@ -161,9 +160,7 @@
         <tbody data-bind="foreach: records">
         <tr>
           <td class="prn">
-            <!-- ko if: ( $data.id !== $parent.displaySurgeon().id ) -->
-            <a href="#" class="i-remove" data-bind="click: $parent.remove"></a>
-            <!-- /ko -->
+            <a href="#"></a>
           </td>
           <td>
             <!-- ko text: name --><!--/ko -->

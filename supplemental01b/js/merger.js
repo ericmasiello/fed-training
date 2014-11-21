@@ -1,5 +1,5 @@
-define([],
-  function() {
+define(['models/surgeon-model', 'confirm-dialog'],
+  function(SurgeonModel, ConfirmDialog) {
 
     'use strict';
 
@@ -30,6 +30,11 @@ define([],
         //Set "this" context
         mergeRecordsDoneCallback = mergeRecordsDoneCallback.bind(this);
         this.setSurgeon = this.setSurgeon.bind(this);
+        this.remove = this.remove.bind(this);
+
+				this.confirmDialog = Object.create(ConfirmDialog).init();
+
+				PubSub.subscribe('spc/merger-dialog/confirm', this.mergeRecords.bind(this));
 
         return this;
       },
@@ -38,6 +43,7 @@ define([],
       setSurgeon: function( data ){
 
         this.displaySurgeon( data );
+        PubSub.publish('spc/merger/set-display-surgeon', data );
       },
 
       // Method for adding a new record to the list of surgeons
@@ -51,6 +57,14 @@ define([],
 
         this.records.push( data );
       },
+
+			mergeVerify: function(){
+
+				var displaySurgeon = this.displaySurgeon();
+
+				this.confirmDialog.name( this.displaySurgeon().name );
+				this.confirmDialog.isVisible(true);
+			},
 
       // merges records, saves records via faux API
       mergeRecords: function(){
@@ -74,22 +88,31 @@ define([],
           }
         });
 
-        //Pretend we make an API call to save this
-        //		$.ajax({
-        //			'url': 'mergesurgeons/' + displaySurgeon.id,
-        //			'type': 'put',
-        //			'data': JSON.stringify( displaySurgeon ),
-        //			'done': mergeRecordsDoneCallback
-        //		});
-
-        //Faux call response
-        mergeRecordsDoneCallback( displaySurgeon );
+        SurgeonModel.update({
+          //Fake callback
+          callback: function(){
+            mergeRecordsDoneCallback( displaySurgeon );
+          },
+          context: this
+        });
       },
 
       // Clears the selection
       cancelMerge: function(){
 
         this.records.removeAll();
+        PubSub.publish('spc/merger/cancel');
+      },
+
+      // removes the surgeon from the list
+      remove: function( data ){
+
+        this.records.remove(function(item) {
+
+          return item.id === data.id;
+        });
+
+        PubSub.publish('spc/merger/remove', data);
       }
     };
 

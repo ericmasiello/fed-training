@@ -1,18 +1,13 @@
 /*
- * Width utility classes
+ * Width utitlity classes
  */
-
-.width-40 {
-
-	width: 40px;
-}
 
 .width-50 {
 
-	width: 50px;
+  width: 50px;
 }
 
 .width-250 {
 
-	width: 250px;
+  width: 250px;
 }
