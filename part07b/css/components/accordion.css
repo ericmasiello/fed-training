@@ -1,21 +1,17 @@
+.tbl--accordion td,
+.tbl--accordion th,
 .tbl--accordion thead tr:last-child td,
-.tbl--accordion thead tr:last-child th {
+.tbl--accordion thead tr:last-child th,
+.tbl--accordion__is-expanded tr:last-child td,
+.tbl--accordion__is-expanded tr:last-child th {
 
-  border-style: solid;
+  border-bottom: 1px solid #D1D1D1;
 }
 
-.tbl--accordion tbody tr td,
-.tbl--accordion tbody tr th {
+.tbl--accordion__is-expanded td,
+.tbl--accordion__is-expanded th {
 
-  border-bottom: 1px dotted #D1D1D1;
-}
-
-.tbl--accordion tbody :first-child td,
-.tbl--accordion tbody :first-child th,
-.tbl--accordion tbody :last-child td,
-.tbl--accordion tbody :last-child th{
-
-  border-style: solid;
+  border-bottom-style: dotted;
 }
 
 
