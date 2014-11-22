@@ -39,7 +39,7 @@ define([],
 					 * Kludge we use for demo purposes so that we can fetch
 					 * data from a different URL. We do this since we don't have
 					 * an actual backend API that supports updating the data
-					 * and retreiving the updated records back
+					 * and retrieving the updated records back
 					 */
 					$.ajax({
 						'url': ( options.fetchDifferentData === true ) ? 'sampledata2.json' : API_PATHS.read,
