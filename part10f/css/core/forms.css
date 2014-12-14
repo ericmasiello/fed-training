@@ -21,8 +21,7 @@ select {
 
   background-color: #fff;
   border: 1px solid #C4C6C8;
-  line-height: 22px;
-  padding: 3px;
+  padding: 6px 3px;
   width: 100%;
   max-width: 300px;
 }
@@ -64,8 +63,7 @@ select {
 
     border: none;
     background-color: transparent;
-    line-height: 22px;
-    padding: 3px 20px 3px 3px;
+    padding: 6px 20px 6px 3px;
     position: relative;
     width: 100%;
     z-index: 2;

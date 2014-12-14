@@ -79,6 +79,9 @@ define(['models/surgeon-model'],
        */
       loadSurgeons: function( fetchDifferentData ){
 
+        // Tells UI ajax is in flight
+        this.isLoaded(false);
+
         SurgeonModel.read({
           callback: loadSurgeonsDoneCallback,
           context: this,
