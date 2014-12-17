@@ -16,6 +16,7 @@ button {
 [type="phone"],
 [type="text"],
 [type="url"],
+[type="search"],
 textarea,
 select {
 
@@ -24,6 +25,12 @@ select {
   padding: 6px 3px;
   width: 100%;
   max-width: 300px;
+}
+
+[type="search"] {
+
+  background: url("../../img/search.svg") no-repeat 5px center #fff;
+  padding-left: 20px;
 }
 
 select {
