@@ -101,6 +101,7 @@ button {
 [type="phone"],
 [type="text"],
 [type="url"],
+[type="search"],
 textarea,
 select {
 
@@ -122,6 +123,7 @@ select {
 [type="phone"]:hover,
 [type="text"]:hover,
 [type="url"]:hover,
+[type="search"]:hover,
 textarea:hover,
 [type="email"]:focus,
 [type="number"]:focus,
@@ -129,6 +131,7 @@ textarea:hover,
 [type="phone"]:focus,
 [type="text"]:focus,
 [type="url"]:focus,
+[type="search"]:focus,
 textarea:focus{
 
   border-color: #007DB1;
@@ -140,6 +143,7 @@ textarea:focus{
 [type="phone"]:disabled,
 [type="text"]:disabled,
 [type="url"]:disabled,
+[type="search"]:disabled,
 textarea:disabled {
 
   background-color: #F8F8F8;
@@ -586,6 +590,7 @@ ol.decorated-list {
 [type="phone"].is-error,
 [type="text"].is-error,
 [type="url"].is-error,
+[type="search"].is-error,
 textarea.is-error {
 
   border-color: #CD1126;
