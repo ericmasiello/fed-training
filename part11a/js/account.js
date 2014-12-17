@@ -1,5 +1,5 @@
-define(['models/account-model'],
-  function(AccountModel) {
+define(['controllers/account-controller'],
+  function(AccountController) {
 
     'use strict';
 
@@ -127,7 +127,7 @@ define(['models/account-model'],
       // loads the account data
       loadAccount: function(){
 
-        AccountModel.read({
+        AccountController.read({
           callback: loadAccountDoneCallback,
           context: this
         });
