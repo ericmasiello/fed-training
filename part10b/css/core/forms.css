@@ -27,6 +27,12 @@ select {
   max-width: 300px;
 }
 
+[type="search"] {
+
+  background: url("../../img/search.svg") no-repeat 5px center #fff;
+  padding-left: 20px;
+}
+
 select {
 
   background-image: none; /* Used to remove styles from Firefox */
