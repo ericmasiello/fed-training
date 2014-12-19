@@ -183,23 +183,23 @@
       </li>
       <li>
         <label class="block  mbs" for="cell-number-1">Cell number</label>
-        <input class="width-50" id="cell-number-1" type="text" maxlength="3" data-bind="value: homeNumber1">
-        <input class="width-50" id="cell-number-2" type="text" maxlength="3" data-bind="value: homeNumber2">
-        <input class="width-50" id="cell-number-3" type="text" maxlength="4" data-bind="value: homeNumber3">
+        <input class="width-50" id="cell-number-1" type="text" maxlength="3" data-bind="value: cellNumber1">
+        <input class="width-50" id="cell-number-2" type="text" maxlength="3" data-bind="value: cellNumber2">
+        <input class="width-50" id="cell-number-3" type="text" maxlength="4" data-bind="value: cellNumber3">
         <label for="cell-number-ext">Ext</label>
-        <input class="width-50" id="cell-number-ext" type="text" maxlength="5" data-bind="value: homeNumberExt">
+        <input class="width-50" id="cell-number-ext" type="text" maxlength="5" data-bind="value: cellNumberExt">
       </li>
       <li>
         <label class="block  mbs" for="home-number-1">Home number</label>
         <input class="width-50" id="home-number-1" type="text" maxlength="3"
-               data-bind="value: cellNumber1, disable: sameAsCell">
+               data-bind="value: homeNumber1, disable: sameAsCell">
         <input class="width-50" id="home-number-2" type="text" maxlength="3"
-               data-bind="value: cellNumber2, disable: sameAsCell">
+               data-bind="value: homeNumber2, disable: sameAsCell">
         <input class="width-50" id="home-number-3" type="text" maxlength="4"
-               data-bind="value: cellNumber3, disable: sameAsCell">
+               data-bind="value: homeNumber3, disable: sameAsCell">
         <label for="home-number-ext">Ext</label>
         <input class="width-50" id="home-number-ext" type="text" maxlength="5"
-               data-bind="value: cellNumberExt, disable: sameAsCell">
+               data-bind="value: homeNumberExt, disable: sameAsCell">
 
         <div class="mtm">
           <label><input type="checkbox" value="same" data-bind="checked: sameAsCell"/>Same as Cell number</label>
