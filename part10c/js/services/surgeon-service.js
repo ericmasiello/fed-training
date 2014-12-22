@@ -14,7 +14,7 @@ define([],
 		/*
 		 * Handles all API interactions for dealing with Surgeons
 		 */
-		var SurgeonController = {
+		var SurgeonService = {
 
 			create: function(){
 
@@ -47,6 +47,6 @@ define([],
 			}
 		};
 
-		return SurgeonController;
+		return SurgeonService;
 	}
 );

@@ -1,5 +1,5 @@
-define(['controllers/surgeon-controller'],
-  function(SurgeonController) {
+define(['services/surgeon-service'],
+  function(SurgeonService) {
 
     'use strict';
 
@@ -75,7 +75,7 @@ define(['controllers/surgeon-controller'],
           }
         });
 
-        SurgeonController.update({
+        SurgeonService.update({
           //Fake callback
           callback: function(){
             mergeRecordsDoneCallback( displaySurgeon );
