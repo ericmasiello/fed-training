@@ -85,11 +85,7 @@
         <!-- ko foreach: records -->
         <tbody data-bind="css: $parent.parentRowStyle($data)">
         <tr data-bind="click: $parent.toggle">
-          <td>
-            <!-- ko if: (childRecords.length > 0) --><i class="i-toggle"></i><!-- /ko -->
-            <!-- ko if: possibleDuplicate --><i class="i-error"></i><!--/ko -->
-            <span class="h4" data-bind="text: name"></span>
-          </td>
+          <td><!-- ko if: possibleDuplicate --><i class="i-error"></i> <!--/ko --><span class="h4" data-bind="text: name"></span></td>
           <td class="right" data-bind="text: caseVolume"></td>
           <td class="right">
 
@@ -369,7 +365,7 @@
 <!--
 							<tbody class="tbl--accordion__is-expanded">
 								<tr>
-										<td><i class="i-toggle"></i> <span class="h4">User 1</span></td>
+										<td><span class="h4">User 1</span></td>
 										<td class="right">349</td>
 										<td class="right">
 												<a href="#">Manage Duplicates  <i class="i-move-right"></i></a>
@@ -395,7 +391,7 @@
 
 							<tbody class="tbl--accordion__is-collapsed">
 								<tr>
-									<td><i class="i-toggle"></i> <span class="h4">User 11</span></td>
+									<td><span class="h4">User 11</span></td>
 									<td class="right">349</td>
 									<td class="right">
 										<a href="#">Manage Duplicates <i class="i-move-right"></i></a>

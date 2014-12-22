@@ -40,10 +40,17 @@
   cursor: pointer;
 }
 
-/*tbody*/.tbl--accordion__is-collapsed .i-toggle {
+/*tbody*/.tbl--accordion__is-collapsed tr:first-child > :first-child::before,
+/*tbody*/.tbl--accordion__is-expanded tr:first-child > :first-child::before {
+
+  content: "";
+  display: inline-block;
+  margin-right: 5px;
+}
+
+/*tbody*/.tbl--accordion__is-collapsed tr:first-child > :first-child::before {
 
   background-image: url("../../img/right-arrow.svg");
-  bottom: 0; /* overwrite the -1px on [class*="i-"] */
   height: 10px;
   width: 6px;
 }
@@ -64,11 +71,11 @@
   display: table-row;
 }
 
-/*tbody*/.tbl--accordion__is-expanded .i-toggle {
+/*tbody*/.tbl--accordion__is-expanded tr:first-child > :first-child::before {
 
-  background-image: url("../../img/down-arrow.svg");
-  height: 6px;
-  width: 10px;
+ background-image: url("../../img/down-arrow.svg");
+ height: 6px;
+ width: 10px;
 }
 
 /*
@@ -86,10 +93,3 @@
 
   color: #888;
 }
-
-/* get the i-down-arrow realigned properly */
-/*tbody*/.tbl--accordion__is-expanded .i-toggle {
-
-  top: -2px;
-}
-
