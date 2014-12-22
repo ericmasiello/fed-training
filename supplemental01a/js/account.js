@@ -21,14 +21,19 @@ define(['controllers/account-controller'],
       return misMatch;
     };
 
-    // Copies the cell phone into the home number fields
-    var sameAsCellChanged = function(checked){
+    var homePhoneComputed = {
 
-      if( checked === true ){
-        this.cellNumber1(this.homeNumber1());
-        this.cellNumber2(this.homeNumber2());
-        this.cellNumber3(this.homeNumber3());
-        this.cellNumberExt(this.homeNumberExt());
+      read: function(){
+
+        return ( this.sameAsCell() === true ? this.cell() : this.home() );
+      },
+
+      write: function( value ){
+
+        if( this.sameAsCell() === false ) {
+
+          this.home( value );
+        }
       }
     };
 
@@ -94,10 +99,6 @@ define(['controllers/account-controller'],
           cellNumber2: '',
           cellNumber3: '',
           cellNumberExt: '',
-          homeNumber1: '',
-          homeNumber2: '',
-          homeNumber3: '',
-          homeNumberExt: '',
           password: '',
           securityQuestion1: '',
           securityQuestion2: '',
@@ -112,14 +113,41 @@ define(['controllers/account-controller'],
           securityQuestions: ['Name of your cat', 'Name of your spouse', 'Name of your favorite Disney character']
         }));
 
+        var homeNumber1 = ko.observable();
+        var homeNumber2 = ko.observable();
+        var homeNumber3 = ko.observable();
+        var homeNumberExt = ko.observable();
+
+        this.homeNumber1 = ko.computed(homePhoneComputed, {
+          sameAsCell: this.sameAsCell,
+          cell: this.cellNumber1,
+          home: homeNumber1
+        });
+
+        this.homeNumber2 = ko.computed(homePhoneComputed, {
+          sameAsCell: this.sameAsCell,
+          cell: this.cellNumber2,
+          home: homeNumber2
+        });
+
+        this.homeNumber3 = ko.computed(homePhoneComputed, {
+          sameAsCell: this.sameAsCell,
+          cell: this.cellNumber3,
+          home: homeNumber3
+        });
+
+        this.homeNumberExt = ko.computed(homePhoneComputed, {
+          sameAsCell: this.sameAsCell,
+          cell: this.cellNumberExt,
+          home: homeNumberExt
+        });
+
+
         // Automatically check whenever newPassword or newPassword2 changes
         this.isPasswordMismatch = ko.computed( isPasswordMismatch, this );
 
         // Checks if password stored in API matches the one the user entered
         this.isOriginalPasswordMismatch = ko.computed( isOriginalPasswordMismatch, this );
-
-        // Sets up subscription to changes on sameAsCell observable
-        this.sameAsCell.subscribe( sameAsCellChanged.bind( this ) );
 
         return this;
       },
