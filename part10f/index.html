@@ -80,10 +80,7 @@
         <!-- ko foreach: records -->
         <tbody data-bind="css: $parent.parentRowStyle($data)">
         <tr data-bind="click: $parent.toggle">
-          <td>
-            <!-- ko if: possibleDuplicate --><i class="i-error"></i><!--/ko -->
-            <span class="h4" data-bind="text: name"></span>
-          </td>
+          <td><!-- ko if: possibleDuplicate --><i class="i-error"></i> <!--/ko --><span class="h4" data-bind="text: name"></span></td>
           <td class="right" data-bind="text: caseVolume"></td>
           <td class="right">
 
