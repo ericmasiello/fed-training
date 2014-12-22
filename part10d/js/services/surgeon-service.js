@@ -14,7 +14,7 @@ define([],
 		/*
 		 * Handles all API interactions for dealing with Surgeons
 		 */
-		var SurgeonController = {
+		var SurgeonService = {
 
 			create: function(){
 
@@ -31,7 +31,8 @@ define([],
 
 				$.ajax({
 					'url': API_PATHS.read,
-					'type': 'get'
+					'type': 'get',
+					'context': ( options.context ) ? options.context : undefined
 				}).done( options.callback );
 			},
 
@@ -47,6 +48,6 @@ define([],
 			}
 		};
 
-		return SurgeonController;
+		return SurgeonService;
 	}
 );

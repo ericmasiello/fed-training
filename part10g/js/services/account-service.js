@@ -14,7 +14,7 @@ define([],
 		/*
 		 * Handles all API interactions for dealing with Surgeons
 		 */
-		var AccountController = {
+		var AccountService = {
 
 			create: function(){
 
@@ -48,6 +48,6 @@ define([],
 			}
 		};
 
-		return AccountController;
+		return AccountService;
 	}
 );

@@ -1,5 +1,5 @@
-define(['controllers/surgeon-controller', 'confirm-dialog'],
-  function(SurgeonController, ConfirmDialog) {
+define(['services/surgeon-service', 'confirm-dialog'],
+  function(SurgeonService, ConfirmDialog) {
 
     'use strict';
 
@@ -88,7 +88,7 @@ define(['controllers/surgeon-controller', 'confirm-dialog'],
           }
         });
 
-        SurgeonController.update({
+        SurgeonService.update({
           //Fake callback
           callback: function(){
             mergeRecordsDoneCallback( displaySurgeon );

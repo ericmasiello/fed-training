@@ -6,7 +6,7 @@ define([],
 		var API_PATHS = {
 
 			create: 'FIXME-IN-REAL-APP',
-			read: 'sampleuser.json',
+			read: 'sampledata.json',
 			update: 'FIXME-IN-REAL-APP',
 			del: 'FIXME-IN-REAL-APP'
 		};
@@ -14,7 +14,7 @@ define([],
 		/*
 		 * Handles all API interactions for dealing with Surgeons
 		 */
-		var AccountController = {
+		var SurgeonService = {
 
 			create: function(){
 
@@ -31,8 +31,7 @@ define([],
 
 				$.ajax({
 					'url': API_PATHS.read,
-					'type': 'get',
-					'context': ( options.context ) ? options.context : undefined
+					'type': 'get'
 				}).done( options.callback );
 			},
 
@@ -48,6 +47,6 @@ define([],
 			}
 		};
 
-		return AccountController;
+		return SurgeonService;
 	}
 );

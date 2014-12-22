@@ -1,5 +1,5 @@
-define(['controllers/surgeon-controller'],
-  function(SurgeonController) {
+define(['services/surgeon-service'],
+  function(SurgeonService) {
 
     'use strict';
 
@@ -82,7 +82,7 @@ define(['controllers/surgeon-controller'],
         // Tells UI ajax is in flight
         this.isLoaded(false);
 
-        SurgeonController.read({
+        SurgeonService.read({
           callback: loadSurgeonsDoneCallback,
           context: this,
           fetchDifferentData: fetchDifferentData
