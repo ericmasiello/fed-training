@@ -45,6 +45,7 @@
 
   content: "";
   display: inline-block;
+  margin-right: 5px;
 }
 
 /*tbody*/.tbl--accordion__is-collapsed tr:first-child > :first-child::before {
