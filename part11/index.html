@@ -86,7 +86,6 @@
         <tbody data-bind="css: $parent.parentRowStyle($data)">
         <tr data-bind="click: $parent.toggle">
           <td>
-            <!-- ko if: (childRecords.length > 0) --><i class="i-toggle"></i><!-- /ko -->
             <!-- ko if: possibleDuplicate --><i class="i-error"></i><!--/ko -->
             <span class="h4" data-bind="text: name"></span>
           </td>
