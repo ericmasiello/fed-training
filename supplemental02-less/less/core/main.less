@@ -5,8 +5,9 @@
 
 html {
 
-  color: #363636;
-  font-size: 12px;
+  .default;
+  background-color: @base-color-bg;
+  font-size: @base-font-size;
 }
 
 /*
@@ -15,13 +16,13 @@ html {
  */
 html, input, select, textarea, button {
 
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: @base-font;
 }
 
 body, input, select, textarea, button {
 
-  font-size: 12px;
-  line-height: 16px;
+  font-size: @base-font-size;
+  line-height: @base-line-height;
 }
 
 strong, .strong {
@@ -31,13 +32,13 @@ strong, .strong {
 
 small {
 
-  font-size: 11px;
-  line-height: 15px;
+  font-size: @small-font-size;
+  line-height: @small-line-height;
 }
 
 a {
 
-  color: #007db1;
+  color: @link-color-type;
   text-decoration: none;
 }
 

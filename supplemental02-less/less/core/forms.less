@@ -20,16 +20,16 @@ button {
 textarea,
 select {
 
-  background-color: #fff;
-  border: 1px solid #C4C6C8;
+  background-color: @base-color-bg;
+  border: 1px solid @form-color-brd;
   padding: 6px 3px;
   width: 100%;
-  max-width: 300px;
+  max-width: @form-width-max;
 }
 
 [type="search"] {
 
-  background: url("@{image-url}/search.svg") no-repeat 5px center #fff;
+  background: url("@{image-url}/search.svg") no-repeat 5px center @base-color-bg;
   padding-left: 20px;
 }
 
@@ -47,11 +47,11 @@ select {
 
   .select {
 
-    background-color: #fff;
-    border: 1px solid #C4C6C8;
+    background-color: @base-color-bg;
+    border: 1px solid @form-color-brd;
     display: inline-block;
     position: relative;
-    width: 300px;
+    width: @form-width-max;
   }
 
   .select::after {
@@ -97,7 +97,7 @@ textarea:hover,
 [type="search"]:focus,
 textarea:focus{
 
-  border-color: #007DB1;
+  border-color: @form-color-brd-hover;
 }
 
 [type="email"]:disabled,
@@ -109,8 +109,8 @@ textarea:focus{
 [type="search"]:disabled,
 textarea:disabled {
 
-  background-color: #F8F8F8;
-  border-color: #D1D1D1;
+  background-color: @form-color-bg-disable;
+  border-color: @form-color-brd-disable;
 }
 
 /*

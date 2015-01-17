@@ -15,9 +15,9 @@
 
 .dialog {
 
-  background-color: #fff;
-  border: 1px solid #d1d1d1;
-  max-width: 388px;
+  background-color: @base-color-bg;
+  border: 1px solid @base-color-brd;
+  max-width: @dialog-width-max;
   box-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
 
@@ -25,13 +25,13 @@
 .dialog-body,
 .dialog-footer {
 
-  padding: 20px;
+  padding: @base-unit * 2;
 }
 
 .dialog-header {
 
-  border-bottom: 1px solid #d1d1d1;
-  padding-bottom: 5px;
+  border-bottom: 1px solid @base-color-brd;
+  padding-bottom: @base-unit / 2;
 }
 
 .dialog-footer {
