@@ -13,38 +13,44 @@ table {
 	width: 100%;
 }
 
-thead tr:last-child td,
-thead tr:last-child th {
+thead {
 
-  border-bottom: 1px dotted @base-color-brd;
-}
-
-thead td,
-thead th {
+  td, th {
 
 	.muted;
 	vertical-align: bottom;
+  }
+
+  tr:last-child {
+
+	td, th {
+
+	  border-bottom: 1px dotted @base-color-brd;
+	}
+  }
 }
 
 td, th {
 
-	padding: @base-unit;
-	text-align: left;
-	vertical-align: top;
-}
+  padding: @base-unit;
+  text-align: left;
+  vertical-align: top;
 
-td:first-child, th:first-child {
+  &:first-child {
 
 	padding-left: @base-unit * 2;
-}
+  }
 
-td:last-child, th:last-child {
+  &:last-child {
 
 	padding-right: @base-unit * 2;
+  }
 }
 
-tbody:nth-of-type(1) tr:first-child td,
-tbody:nth-of-type(1) tr:first-child th {
+tbody:nth-of-type(1) tr:first-child {
+
+  td, th {
 
 	padding-top: @base-unit * 2;
+  }
 }

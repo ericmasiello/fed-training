@@ -16,29 +16,19 @@ button {
   padding: 6px 9px;
   text-align: center;
   vertical-align: middle;
-}
 
-input[type="button"]:hover,
-input[type="submit"]:hover,
-input[type="reset"]:hover,
-button:hover,
-input[type="button"]:active,
-input[type="submit"]:active,
-input[type="reset"]:active,
-button:active{
+  &:hover, &:active {
 
-  background-color: @btn-color-bg-hover;
-}
+    background-color: @btn-color-bg-hover;
+  }
 
-input[type="button"]:disabled,
-input[type="submit"]:disabled,
-input[type="reset"]:disabled,
-button:disabled {
+  &:disabled {
 
-  .muted;
-  border-color: @btn-color-brd-disable;
-  background-color: @btn-color-bg-disable;
-  cursor: default;
+    .muted;
+    border-color: @btn-color-brd-disable;
+    background-color: @btn-color-bg-disable;
+    cursor: default;
+  }
 }
 
 .button-bar {
