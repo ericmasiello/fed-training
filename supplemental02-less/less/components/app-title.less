@@ -2,13 +2,15 @@
  * App title
  */
 
-.app-title,
-.app-title a {
+.app-title {
 
-  color: @app-title-color-type;
-}
+  &, & a {
 
-.app-title a:hover {
+    color: @app-title-color-type;
+  }
 
-  text-decoration: none;
+  & a:hover {
+
+    text-decoration: none;
+  }
 }

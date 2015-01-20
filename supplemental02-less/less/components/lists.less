@@ -2,53 +2,63 @@
  * Lists
  */
 
-/*ul, ol*/.flat-list > li {
+/*ul, ol*/.flat-list {
 
-  display: inline-block;
-  padding-left: @base-unit * 2;
-}
+  > li {
 
-.flat-list > li:first-child {
+    display: inline-block;
+    padding-left: @base-unit * 2;
 
-  padding-left: 0;
+    &:first-child {
+
+      padding-left: 0;
+    }
+  }
+
 }
 
 @media (min-width: 900px) {
 
-	.med-flat-list > li {
+	.med-flat-list {
 
-		display: inline-block;
-		padding-left: @base-unit * 2;
-	}
+      > li {
 
-	.med-flat-list > li:first-child {
+        display: inline-block;
+        padding-left: @base-unit * 2;
 
-		padding-left: 0;
-	}
+        &:first-child {
+
+          padding-left: 0;
+        }
+      }
+    }
 }
 
-/*ul*/.form-list > li {
+/*ul*/.form-list {
 
-  margin-top: @base-unit * 2;
-}
+  > li {
 
-.form-list > li:first-child {
+    margin-top: @base-unit * 2;
 
-  margin-top: 0;
+    &:first-child {
+
+      margin-top: 0;
+    }
+  }
 }
 
 .decorated-list {
 
   margin: 0 0 @base-unit @base-unit * 2.5;
   padding: 0;
-}
 
-ul.decorated-list {
+  ul& {
 
-  list-style-type: disc;
-}
+    list-style-type: disc;
+  }
 
-ol.decorated-list {
+  ol& {
 
-  list-style-type: decimal;
+    list-style-type: decimal;
+  }
 }
