@@ -1,95 +1,113 @@
-.tbl--accordion td,
-.tbl--accordion th,
-.tbl--accordion thead tr:last-child td,
-.tbl--accordion thead tr:last-child th,
-.tbl--accordion__is-expanded tr:last-child td,
-.tbl--accordion__is-expanded tr:last-child th {
+.tbl--accordion,
+.tbl--accordion thead tr:last-child,
+.tbl--accordion__is-expanded tr:last-child {
 
-  border-bottom: 1px solid @base-color-brd;
+  td, th {
+
+    border-bottom: 1px solid @base-color-brd;
+  }
 }
 
-.tbl--accordion__is-expanded td,
-.tbl--accordion__is-expanded th {
+.tbl--accordion__is-expanded {
 
-  border-bottom-style: dotted;
+  td, th {
+
+    border-bottom-style: dotted;
+  }
 }
 
+.tbl--accordion {
 
-.tbl--accordion tbody tr:first-child td,
-.tbl--accordion tbody tr:first-child th {
+  tbody {
 
-  border-left: none;
-  padding-bottom: @base-unit * 1.5;
-  padding-top: @base-unit * 1.5;
-}
+    td:first-child, th:first-child {
 
-.tbl--accordion tbody td:first-child,
-.tbl--accordion tbody th:first-child {
+      border-left: @base-unit * 1.5 solid @base-color-brd;
+    }
 
-  border-left: @base-unit * 1.5 solid @base-color-brd;
+    tr:first-child {
+
+      td, th {
+
+        border-left: none;
+        padding-bottom: @base-unit * 1.5;
+        padding-top: @base-unit * 1.5;
+      }
+    }
+  }
 }
 
 /*
  * Set hover states for collapsed and expanded
  * containers
  */
-/*tbody*/.tbl--accordion__is-collapsed tr:first-child:hover,
-/*tbody*/.tbl--accordion__is-expanded tr:first-child:hover{
+/*tbody*/.tbl--accordion__is-collapsed, /*tbody*/.tbl--accordion__is-expanded{
 
-  background-color: @base-color-highlight;
-  cursor: pointer;
-}
+  tr:first-child {
 
-/*tbody*/.tbl--accordion__is-collapsed tr:first-child > :first-child::before,
-/*tbody*/.tbl--accordion__is-expanded tr:first-child > :first-child::before {
+    &:hover {
 
-  content: "";
-  display: inline-block;
-  margin-right: @base-unit / 2;
-}
+      background-color: @base-color-highlight;
+      cursor: pointer;
+    }
 
-/*tbody*/.tbl--accordion__is-collapsed tr:first-child > :first-child::before {
+    > :first-child::before {
 
-  background-image: url("@{image-url}/right-arrow.svg");
-  height: 10px;
-  width: 6px;
+      content: "";
+      display: inline-block;
+      margin-right: @base-unit / 2;
+    }
+  }
 }
 
 /*
  * Hide all rows in collapsed container
  */
-/*tbody*/.tbl--accordion__is-collapsed tr {
+/*tbody*/.tbl--accordion__is-collapsed {
 
-  display: none;
+   tr {
+
+     display: none;
+
+     /*
+      * Show only the first row (parent row) of a collapsed container
+      */
+     &:first-child {
+
+       display: table-row;
+
+       > :first-child::before {
+
+         background-image: url("@{image-url}/right-arrow.svg");
+         height: 10px;
+         width: 6px;
+       }
+     }
+   }
 }
 
-/*
- * Show only the first row (parent row) of a collapsed container
- */
-/*tbody*/.tbl--accordion__is-collapsed tr:first-child {
+/*tbody*/.tbl--accordion__is-expanded {
 
-  display: table-row;
-}
+  /*
+   * In an expanded row, make background gray
+   */
+  tr:first-child {
 
-/*tbody*/.tbl--accordion__is-expanded tr:first-child > :first-child::before {
+    background-color: @form-color-bg-disable;
 
- background-image: url("@{image-url}/down-arrow.svg");
- height: 6px;
- width: 10px;
-}
+    /*
+     * In an expanded row, mute the color of the first cell's text of the first row
+     */
+    > :first-child {
 
-/*
- * In an expanded row, make background gray
- */
-/*tbody*/.tbl--accordion__is-expanded tr:first-child {
+      .muted;
 
-  background-color: @form-color-bg-disable;
-}
+      &::before {
 
-/*
- * In an expanded row, mute the color of the first cell's text of the first row
- */
-/*tbody*/.tbl--accordion__is-expanded tr:first-child > :first-child {
-
-  .muted;
+        background-image: url("@{image-url}/down-arrow.svg");
+        height: 6px;
+        width: 10px;
+      }
+    }
+  }
 }
