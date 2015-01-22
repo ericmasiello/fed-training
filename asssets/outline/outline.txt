@@ -57,7 +57,7 @@
 				iv.  Email
 				v.  Cell number
 				vi. Home number
-		3.  Address
+		3.  Password
 			a. To change your password, enter your current (old) password, then enter and re-enter a new password.
 			b.  [list of fields]
 				i. ...

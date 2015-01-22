@@ -1,5 +1,5 @@
-define(['models/surgeon-model'],
-  function(SurgeonModel) {
+define(['services/surgeon-service'],
+  function(SurgeonService) {
 
     'use strict';
 
@@ -56,7 +56,7 @@ define(['models/surgeon-model'],
        */
       loadSurgeons: function( fetchDifferentData ){
 
-        SurgeonModel.read({
+        SurgeonService.read({
           callback: loadSurgeonsDoneCallback,
           context: this,
           fetchDifferentData: fetchDifferentData

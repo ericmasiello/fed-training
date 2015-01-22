@@ -51,9 +51,7 @@
 
       <ul class="flat-list">
         <li>
-          <div class="search  width-250">
-            <input type="text" placeholder="Search surgeon names" data-bind="value: searchTerm, valueUpdate: 'keyup'"/>
-          </div>
+          <input type="search" class="width-250" placeholder="Search surgeon names" data-bind="value: searchTerm, valueUpdate: 'keyup'"/>
         </li>
         <li>
           <label><input type="radio" name="filter" value="all" checked data-bind="checked: filter" />All Surgeons (<!-- ko text: allSurgeons().length --><!-- /ko -->)</label>
@@ -84,11 +82,7 @@
         <!-- ko foreach: records -->
         <tbody data-bind="css: $parent.parentRowStyle($data)">
         <tr data-bind="click: $parent.toggle">
-          <td>
-            <!-- ko if: (childRecords.length > 0) --><i class="i-toggle"></i><!-- /ko -->
-            <!-- ko if: possibleDuplicate --><i class="i-error"></i><!--/ko -->
-            <span class="h4" data-bind="text: name"></span>
-          </td>
+          <td><!-- ko if: possibleDuplicate --><i class="i-error"></i> <!--/ko --><span class="h4" data-bind="text: name"></span></td>
           <td class="right" data-bind="text: caseVolume"></td>
           <td class="right">
 
@@ -220,19 +214,23 @@
       </li>
       <li>
         <label class="block  mbs" for="cell-number-1">Cell number</label>
-        <input class="width-50" id="cell-number-1" type="text" maxlength="3" data-bind="value: homeNumber1">
-        <input class="width-50" id="cell-number-2" type="text" maxlength="3" data-bind="value: homeNumber2">
-        <input class="width-50" id="cell-number-3" type="text" maxlength="4" data-bind="value: homeNumber3">
+        <input class="width-50" id="cell-number-1" type="text" maxlength="3" data-bind="value: cellNumber1">
+        <input class="width-50" id="cell-number-2" type="text" maxlength="3" data-bind="value: cellNumber2">
+        <input class="width-50" id="cell-number-3" type="text" maxlength="4" data-bind="value: cellNumber3">
         <label for="cell-number-ext">Ext</label>
-        <input class="width-50" id="cell-number-ext" type="text" maxlength="5" data-bind="value: homeNumberExt">
+        <input class="width-50" id="cell-number-ext" type="text" maxlength="5" data-bind="value: cellNumberExt">
       </li>
       <li>
         <label class="block  mbs" for="home-number-1">Home number</label>
-        <input class="width-50" id="home-number-1" type="text" maxlength="3" data-bind="value: cellNumber1, disable: sameAsCell">
-        <input class="width-50" id="home-number-2" type="text" maxlength="3" data-bind="value: cellNumber2, disable: sameAsCell">
-        <input class="width-50" id="home-number-3" type="text" maxlength="4" data-bind="value: cellNumber3, disable: sameAsCell">
+        <input class="width-50" id="home-number-1" type="text" maxlength="3"
+               data-bind="value: homeNumber1, disable: sameAsCell">
+        <input class="width-50" id="home-number-2" type="text" maxlength="3"
+               data-bind="value: homeNumber2, disable: sameAsCell">
+        <input class="width-50" id="home-number-3" type="text" maxlength="4"
+               data-bind="value: homeNumber3, disable: sameAsCell">
         <label for="home-number-ext">Ext</label>
-        <input class="width-50" id="home-number-ext" type="text" maxlength="5" data-bind="value: cellNumberExt, disable: sameAsCell">
+        <input class="width-50" id="home-number-ext" type="text" maxlength="5"
+               data-bind="value: homeNumberExt, disable: sameAsCell">
 
         <div class="mtm">
           <label><input type="checkbox" value="same" data-bind="checked: sameAsCell"/>Same as Cell number</label>
@@ -240,7 +238,7 @@
       </li>
     </ul>
 
-    <h2 class="h3">Address</h2>
+    <h2 class="h3">Password</h2>
 
     <p>To change your password, enter your current (old) password, then enter and re-enter a new password.</p>
 
@@ -248,10 +246,13 @@
       <div class="fl  six-twelfths">
         <ul class="form-list">
           <li>
-            <label class="block  mbs" for="password" data-bind="css: {'is-error': isOriginalPasswordMismatch}">Password</label>
-            <input id="password" type="password"  data-bind="value: passwordMatch, css: {'is-error': isOriginalPasswordMismatch}">
+            <label class="block  mbs" for="password"
+                   data-bind="css: {'is-error': isOriginalPasswordMismatch}">Password</label>
+            <input id="password" type="password"
+                   data-bind="value: passwordMatch, css: {'is-error': isOriginalPasswordMismatch}">
             <!-- ko if: isOriginalPasswordMismatch -->
             <i class="i-error"></i>
+
             <div class="is-error  mts">
               Your password does not match your previously saved password.
             </div>
@@ -262,8 +263,10 @@
             <input id="new-password" type="password" data-bind="value: newPassword">
           </li>
           <li>
-            <label class="block  mbs" for="new-password-2" data-bind="css: {'is-error': isPasswordMismatch}">Re-enter new password</label>
-            <input id="new-password-2" type="password" data-bind="value: newPassword2, css: {'is-error': isPasswordMismatch}">
+            <label class="block  mbs" for="new-password-2" data-bind="css: {'is-error': isPasswordMismatch}">Re-enter
+              new password</label>
+            <input id="new-password-2" type="password"
+                   data-bind="value: newPassword2, css: {'is-error': isPasswordMismatch}">
             <!-- ko if: isPasswordMismatch -->
             <i class="i-error"></i>
 
@@ -292,14 +295,16 @@
     <ul class="form-list  mtl">
       <li>
 	              <span class="select">
-	                <select id="security-question-1" data-bind="options: securityQuestions, optionsCaption: 'Select a security question', value: securityQuestion1"></select>
+	                <select id="security-question-1"
+                          data-bind="options: securityQuestions, optionsCaption: 'Select a security question', value: securityQuestion1"></select>
 		            </span>
         <label for="answer-1" class="mll">Answer 1</label>
-        <input id="answer-1" type="text" data-bind="value: securityAnswer1" />
+        <input id="answer-1" type="text" data-bind="value: securityAnswer1"/>
       </li>
       <li>
 	              <span class="select">
-	                <select id="security-question-2" data-bind="options: securityQuestions, optionsCaption: 'Select a security question', value: securityQuestion2"></select>
+	                <select id="security-question-2"
+                          data-bind="options: securityQuestions, optionsCaption: 'Select a security question', value: securityQuestion2"></select>
 		            </span>
 
         <label for="answer-2" class="mll">Answer 2</label>
@@ -307,7 +312,8 @@
       </li>
       <li>
 	              <span class="select">
-	                <select id="security-question-3"  data-bind="options: securityQuestions, optionsCaption: 'Select a security question', value: securityQuestion3"></select>
+	                <select id="security-question-3"
+                          data-bind="options: securityQuestions, optionsCaption: 'Select a security question', value: securityQuestion3"></select>
                 </span>
         <label for="answer-3" class="mll">Answer 3</label>
         <input id="answer-3" type="text" data-bind="value: securityAnswer3"/>
@@ -355,7 +361,7 @@
 <!--
 							<tbody class="tbl--accordion__is-expanded">
 								<tr>
-										<td><i class="i-toggle"></i> <span class="h4">User 1</span></td>
+										<td><span class="h4">User 1</span></td>
 										<td class="right">349</td>
 										<td class="right">
 												<a href="#">Manage Duplicates  <i class="i-move-right"></i></a>
@@ -381,7 +387,7 @@
 
 							<tbody class="tbl--accordion__is-collapsed">
 								<tr>
-									<td><i class="i-toggle"></i> <span class="h4">User 11</span></td>
+									<td><span class="h4">User 11</span></td>
 									<td class="right">349</td>
 									<td class="right">
 										<a href="#">Manage Duplicates <i class="i-move-right"></i></a>

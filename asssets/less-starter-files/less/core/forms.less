@@ -1,0 +1,124 @@
+/*
+ * Form Elements
+ */
+
+input,
+select,
+textarea,
+button {
+
+  margin: 0;
+}
+
+[type="email"],
+[type="number"],
+[type="password"],
+[type="phone"],
+[type="text"],
+[type="url"],
+[type="search"],
+textarea,
+select {
+
+  background-color: @base-color-bg;
+  border: 1px solid @form-color-brd;
+  padding: 6px 3px;
+  width: 100%;
+  max-width: @form-width-max;
+}
+
+[type="search"] {
+
+  background: url("@{image-url}/search.svg") no-repeat 5px center @base-color-bg;
+  padding-left: 20px;
+}
+
+select {
+
+  background-image: none; /* Used to remove styles from Firefox */
+  height: 30px; /* Forces height in Firefox */
+}
+
+/*
+ * Webkit Select
+ */
+
+@media screen and ( -webkit-min-device-pixel-ratio: 0 ) {
+
+  .select {
+
+    background-color: @base-color-bg;
+    border: 1px solid @form-color-brd;
+    display: inline-block;
+    position: relative;
+    width: @form-width-max;
+  }
+
+  .select::after {
+
+    content: "";
+    background: url("@{image-url}/down-arrow.svg") no-repeat 0 center transparent;
+    height: 28px;
+    position: absolute;
+    right: 3px;
+    top: 0;
+    width: 10px;
+    z-index: 1;
+  }
+
+  .select select {
+
+    border: none;
+    background-color: transparent;
+    padding: 6px 20px 6px 3px;
+    position: relative;
+    width: 100%;
+    z-index: 2;
+
+    /* removes default styling for webkit */
+    -webkit-appearance: none;
+  }
+}
+
+[type="email"]:hover,
+[type="number"]:hover,
+[type="password"]:hover,
+[type="phone"]:hover,
+[type="text"]:hover,
+[type="url"]:hover,
+[type="search"]:hover,
+textarea:hover,
+[type="email"]:focus,
+[type="number"]:focus,
+[type="password"]:focus,
+[type="phone"]:focus,
+[type="text"]:focus,
+[type="url"]:focus,
+[type="search"]:focus,
+textarea:focus{
+
+  border-color: @form-color-brd-hover;
+}
+
+[type="email"]:disabled,
+[type="number"]:disabled,
+[type="password"]:disabled,
+[type="phone"]:disabled,
+[type="text"]:disabled,
+[type="url"]:disabled,
+[type="search"]:disabled,
+textarea:disabled {
+
+  background-color: @form-color-bg-disable;
+  border-color: @form-color-brd-disable;
+}
+
+/*
+ * Radio, Checkboxes
+ */
+
+[type="radio"],
+[type="checkbox"]{
+
+  margin-right: 5px;
+}

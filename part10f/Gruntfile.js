@@ -16,19 +16,19 @@ module.exports = function (grunt) {
       options: {
         jshintrc: '.jshintrc'
       },
-      all: ['js/*.js', 'js/models/*.js']
+      all: ['js/*.js', 'js/services/*.js']
     },
 
     watch: {
       css: {
-        files: 'css/**/*.css',
+        files: ['css/**/*.css', '!css/*.min.css'],
         tasks: ['cssmin'],
         options: {
           livereload: true
         }
       },
       scripts: {
-        files: ['**/*.js', 'js/models/*.js'],
+        files: ['**/*.js', 'js/services/*.js'],
         tasks: ['jshint'],
         options: {
           spawn: false

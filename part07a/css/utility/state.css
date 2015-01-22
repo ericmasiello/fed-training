@@ -18,6 +18,7 @@
 [type="phone"].is-error,
 [type="text"].is-error,
 [type="url"].is-error,
+[type="search"].is-error,
 textarea.is-error {
 
   border-color: #CD1126;
