@@ -1,0 +1,64 @@
+
+.createSpacingClasses(){
+
+  .createSideClasses(@sizeKey, @sizeValue, @j:1) when(@j <= length(@sides)){
+
+    //extract "l"
+    @sideKey: extract(extract(@sides, @j),1);
+    //extract "left"
+    @sideValue: extract(extract(@sides, @j),2);
+
+    .m@{sideKey}@{sizeKey} {
+      margin-@{sideValue}: @sizeValue;
+    }
+
+    .p@{sideKey}@{sizeKey} {
+      padding-@{sideValue}: @sizeValue;
+    }
+
+    .createSideClasses(@sizeKey, @sizeValue, (@j + 1));
+  }
+
+  .createSizeClasses(@i:1) when(@i <= length(@sizes)) {
+
+    //store the size key e.g. "s"
+    @sizeKey: extract(extract(@sizes, @i),1);
+    //store the size key e.g. "5px"
+    @sizeValue: extract(extract(@sizes, @i),2);
+
+    .createSideClasses(@sizeKey, @sizeValue);
+    .createSizeClasses((@i + 1));
+  }
+
+  .createSizeClasses();
+}
+
+.createBorderClasses(){
+
+  .createSideClasses(@styleKey, @styleValue, @l:1) when(@l <= length(@sides)){
+
+    //extract "l"
+    @sideKey: extract(extract(@sides, @l),1);
+    //extract "left"
+    @sideValue: extract(extract(@sides, @l),2);
+
+    .b@{styleKey}@{sideKey}h {
+      border-@{sideValue}: 1px @styleValue @base-color-brd;
+    }
+
+    .createSideClasses(@styleKey, @styleValue, (@l + 1));
+  }
+
+  .createStyleClasses(@k:1) when(@k <= length(@borderStyles)) {
+
+    //store the size key e.g. "s"
+    @styleKey: extract(extract(@borderStyles, @k),1);
+    //store the size key e.g. "5px"
+    @styleValue: extract(extract(@borderStyles, @k),2);
+
+    .createSideClasses(@styleKey, @styleValue);
+    .createStyleClasses((@k + 1));
+  }
+
+  .createStyleClasses();
+}
