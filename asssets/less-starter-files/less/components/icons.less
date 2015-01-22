@@ -1,0 +1,86 @@
+/*
+ * Icons
+ */
+
+[class*="i-"] {
+
+	bottom: -1px;
+	display: inline-block;
+	background-color: transparent;
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	background-size: contain; /* anything above 12px seems to throw off line heights of text */
+	position: relative;
+}
+
+.i-menu {
+
+	background-image: url("@{image-url}/menu.svg");
+	height: 11px;
+	width: 12px;
+}
+
+.i-error {
+
+	background-image: url("@{image-url}/error.svg");
+	height: 12px;
+	width: 12px;
+}
+
+.i-close {
+  background-image: url("@{image-url}/x.svg");
+  height: 12px;
+  width: 12px;
+}
+
+.i-remove {
+	background-image: url("@{image-url}/x-box.svg");
+	height: 12px;
+	width: 12px;
+}
+
+.i-remove:hover {
+
+	background-image: url("@{image-url}/x-box-hover.svg");
+}
+
+.i-down-arrow {
+
+	background-image: url("@{image-url}/down-arrow.svg");
+	height: 6px;
+	width: 10px;
+}
+
+.i-right-arrow {
+
+	background-image: url("@{image-url}/right-arrow.svg");
+	bottom: 0; /* overwrite the -1px on [class*="i-"] */
+	height: 10px;
+	width: 6px;
+}
+
+.i-move-right, .i-move-right-dark {
+
+	background-image: url("@{image-url}/right-arrow-thin.svg");
+	height: 10px;
+	width: 6px;
+}
+
+.i-move-right-dark {
+
+	background-image: url("@{image-url}/right-arrow-thin-dark.svg");
+}
+
+.i-check {
+
+	background-image: url("@{image-url}/check.svg");
+	height: 12px;
+	width: 12px;
+}
+
+.i-plus {
+
+	background-image: url("@{image-url}/plus.svg");
+	height: 12px;
+	width: 12px;
+}
