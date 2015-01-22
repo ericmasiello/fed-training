@@ -26,6 +26,40 @@
     //store the size key e.g. "5px"
     @sizeValue: extract(extract(@sizes, @i),2);
 
+    .mh@{sizeKey} {
+      margin-left: @sizeValue;
+      margin-right: @sizeValue;
+    }
+
+    .ph@{sizeKey} {
+      padding-left: @sizeValue;
+      padding-right: @sizeValue;
+    }
+
+    .mv@{sizeKey} {
+      margin-top: @sizeValue;
+      margin-bottom: @sizeValue;
+    }
+
+    .pv@{sizeKey} {
+      padding-top: @sizeValue;
+      padding-bottom: @sizeValue;
+    }
+
+    .ma@{sizeKey} {
+      margin-top: @sizeValue;
+      margin-bottom: @sizeValue;
+      margin-left: @sizeValue;
+      margin-right: @sizeValue;
+    }
+
+    .pa@{sizeKey} {
+      padding-top: @sizeValue;
+      padding-bottom: @sizeValue;
+      padding-left: @sizeValue;
+      padding-right: @sizeValue;
+    }
+
     .createSideClasses(@sizeKey, @sizeValue);
     .createSizeClasses((@i + 1));
   }
