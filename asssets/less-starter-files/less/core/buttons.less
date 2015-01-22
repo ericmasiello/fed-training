@@ -1,0 +1,47 @@
+/*
+ * Buttons
+ */
+
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+button {
+
+  background-color: @btn-color-bg;
+  border: 1px solid @btn-color-brd;
+  border-radius: 2px;
+  color: @btn-color-type;
+  cursor: pointer;
+  font-size: @btn-color-bg-disable;
+  padding: 6px 9px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+button:hover,
+input[type="button"]:active,
+input[type="submit"]:active,
+input[type="reset"]:active,
+button:active{
+
+  background-color: @btn-color-bg-hover;
+}
+
+input[type="button"]:disabled,
+input[type="submit"]:disabled,
+input[type="reset"]:disabled,
+button:disabled {
+
+  .muted;
+  border-color: @btn-color-brd-disable;
+  background-color: @btn-color-bg-disable;
+  cursor: default;
+}
+
+.button-bar {
+
+  background-color: @btn-bar-color-bg;
+}

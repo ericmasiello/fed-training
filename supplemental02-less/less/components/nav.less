@@ -1,0 +1,62 @@
+/*
+ * Navigation
+ */
+
+/*a*/.global-nav-toggle {
+
+  color: @base-color-type;
+}
+
+/*
+ * When global-nav-toggle exists within the app-header, its line height must match the .app-title/.h4
+ */
+.app-header .global-nav-toggle {
+
+  line-height: 18px;
+}
+
+.global-nav-toggle:hover {
+
+  text-decoration: none;
+}
+
+.section-nav {
+
+  margin-bottom: @base-unit * 2;
+  margin-right: @base-unit;
+  margin-left: @base-unit;
+  border-bottom: 1px solid @base-color-brd;
+
+  > li {
+
+    float: left;
+    line-height: 28px;
+    margin-bottom: -1px;
+    margin-left: @base-unit;
+    margin-right: @base-unit;
+
+    > a {
+
+      border-bottom: 2px solid transparent;
+      display: block;
+      padding-bottom: @base-unit;
+      text-decoration: none;
+
+      &:hover {
+
+        border-bottom-color: @link-color-type;
+      }
+    }
+
+    > .is-selected {
+
+      .default;
+      cursor: default;
+
+      &, &:hover {
+
+        border-bottom-color: @section-nav-color-brd-selected;
+      }
+    }
+  }
+}

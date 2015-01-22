@@ -1,0 +1,53 @@
+*, :after, :before {
+
+  box-sizing: border-box;
+}
+
+html {
+
+  .default;
+  background-color: @base-color-bg;
+  font-size: @base-font-size;
+}
+
+/*
+  Some font proprties do not inherit properly on form elements.
+  this forces them.
+ */
+html, input, select, textarea, button {
+
+  font-family: @base-font;
+}
+
+body, input, select, textarea, button {
+
+  font-size: @base-font-size;
+  line-height: @base-line-height;
+}
+
+strong, .strong {
+
+  font-weight: 600;
+}
+
+small {
+
+  font-size: @small-font-size;
+  line-height: @small-line-height;
+}
+
+a {
+
+  color: @link-color-type;
+  text-decoration: none;
+}
+
+a:hover {
+
+  text-decoration: underline;
+}
+
+p {
+
+  margin-bottom: 5px;
+}

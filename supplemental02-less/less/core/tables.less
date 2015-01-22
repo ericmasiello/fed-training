@@ -1,0 +1,56 @@
+/*
+ * Tables
+ */
+
+table {
+
+	/*
+	 * Needed to address a Chrome bug with colspans
+   * http://stackoverflow.com/questions/7725110/double-dotted-border-while-using-colspan
+   */
+	border-collapse: separate;
+	table-layout: fixed;
+	width: 100%;
+}
+
+thead {
+
+  td, th {
+
+	.muted;
+	vertical-align: bottom;
+  }
+
+  tr:last-child {
+
+	td, th {
+
+	  border-bottom: 1px dotted @base-color-brd;
+	}
+  }
+}
+
+td, th {
+
+  padding: @base-unit;
+  text-align: left;
+  vertical-align: top;
+
+  &:first-child {
+
+	padding-left: @base-unit * 2;
+  }
+
+  &:last-child {
+
+	padding-right: @base-unit * 2;
+  }
+}
+
+tbody:nth-of-type(1) tr:first-child {
+
+  td, th {
+
+	padding-top: @base-unit * 2;
+  }
+}

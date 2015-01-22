@@ -1,0 +1,40 @@
+.dialog-container {
+
+  /* flex box properties */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(0,0,0,.4);
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+.dialog {
+
+  background-color: @base-color-bg;
+  border: 1px solid @base-color-brd;
+  max-width: @dialog-width-max;
+  box-shadow: 0 1px 3px rgba(0,0,0,.5);
+}
+
+.dialog-header,
+.dialog-body,
+.dialog-footer {
+
+  padding: @base-unit * 2;
+}
+
+.dialog-header {
+
+  border-bottom: 1px solid @base-color-brd;
+  padding-bottom: @base-unit / 2;
+}
+
+.dialog-footer {
+
+  padding-top: 0;
+}

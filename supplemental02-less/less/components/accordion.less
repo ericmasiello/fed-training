@@ -1,0 +1,113 @@
+.tbl--accordion,
+.tbl--accordion thead tr:last-child,
+.tbl--accordion__is-expanded tr:last-child {
+
+  td, th {
+
+    border-bottom: 1px solid @base-color-brd;
+  }
+}
+
+.tbl--accordion__is-expanded {
+
+  td, th {
+
+    border-bottom-style: dotted;
+  }
+}
+
+.tbl--accordion {
+
+  tbody {
+
+    td:first-child, th:first-child {
+
+      border-left: @base-unit * 1.5 solid @base-color-brd;
+    }
+
+    tr:first-child {
+
+      td, th {
+
+        border-left: none;
+        padding-bottom: @base-unit * 1.5;
+        padding-top: @base-unit * 1.5;
+      }
+    }
+  }
+}
+
+/*
+ * Set hover states for collapsed and expanded
+ * containers
+ */
+/*tbody*/.tbl--accordion__is-collapsed, /*tbody*/.tbl--accordion__is-expanded{
+
+  tr:first-child {
+
+    &:hover {
+
+      background-color: @base-color-highlight;
+      cursor: pointer;
+    }
+
+    > :first-child::before {
+
+      content: "";
+      display: inline-block;
+      margin-right: @base-unit / 2;
+    }
+  }
+}
+
+/*
+ * Hide all rows in collapsed container
+ */
+/*tbody*/.tbl--accordion__is-collapsed {
+
+   tr {
+
+     display: none;
+
+     /*
+      * Show only the first row (parent row) of a collapsed container
+      */
+     &:first-child {
+
+       display: table-row;
+
+       > :first-child::before {
+
+         background-image: url("@{image-url}/right-arrow.svg");
+         height: 10px;
+         width: 6px;
+       }
+     }
+   }
+}
+
+/*tbody*/.tbl--accordion__is-expanded {
+
+  /*
+   * In an expanded row, make background gray
+   */
+  tr:first-child {
+
+    background-color: @form-color-bg-disable;
+
+    /*
+     * In an expanded row, mute the color of the first cell's text of the first row
+     */
+    > :first-child {
+
+      .muted;
+
+      &::before {
+
+        background-image: url("@{image-url}/down-arrow.svg");
+        height: 6px;
+        width: 10px;
+      }
+    }
+  }
+}

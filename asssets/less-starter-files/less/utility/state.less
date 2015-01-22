@@ -1,0 +1,57 @@
+/*
+ * State
+ */
+
+.is-success {
+
+	color: @success-color-type;
+}
+
+.is-error {
+
+	color: @error-color-type;
+}
+
+.is-warning {
+
+	color: @warning-color-type;
+}
+
+[type="email"].is-error,
+[type="number"].is-error,
+[type="password"].is-error,
+[type="phone"].is-error,
+[type="text"].is-error,
+[type="url"].is-error,
+textarea.is-error {
+
+	border-color: @form-color-brd-error;
+}
+
+.is-hidden {
+
+	display: none;
+}
+
+.is-visible {
+
+	display: block;
+}
+
+.is-invisible {
+
+	visibility: hidden;
+}
+
+@media (min-width: 900px) {
+
+	.med-is-hidden {
+
+		display: none;
+	}
+
+	.med-is-visible {
+
+		display: block;
+	}
+}
