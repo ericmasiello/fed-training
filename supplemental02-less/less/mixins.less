@@ -69,11 +69,11 @@
 
 .createBorderClasses(){
 
-  .createSideClasses(@styleKey, @styleValue, @l:1) when(@l <= length(@sides)){
+.createSideClasses(@styleKey, @styleValue, @l:1) when(@l <= length(@sides)){
 
-    //extract "l"
+    //extract "t"
     @sideKey: extract(extract(@sides, @l),1);
-    //extract "left"
+    //extract "top"
     @sideValue: extract(extract(@sides, @l),2);
 
     .b@{styleKey}@{sideKey}h {
@@ -85,9 +85,9 @@
 
   .createStyleClasses(@k:1) when(@k <= length(@borderStyles)) {
 
-    //store the size key e.g. "s"
+    //store the size key e.g. "s" or "d"
     @styleKey: extract(extract(@borderStyles, @k),1);
-    //store the size key e.g. "5px"
+    //store the size key e.g. "solid" or "dotted"
     @styleValue: extract(extract(@borderStyles, @k),2);
 
     .createSideClasses(@styleKey, @styleValue);
