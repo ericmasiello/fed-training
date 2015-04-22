@@ -1,7 +1,7 @@
 define(["knockout", "text!./home.html"], function(ko, homeTemplate) {
 
   function HomeViewModel(route) {
-    this.message = ko.observable('Welcome to supplemental03-ko!');
+    this.message = ko.observable('Welcome to To-Do!');
   }
 
   HomeViewModel.prototype.doSomething = function() {
